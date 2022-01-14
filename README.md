@@ -6,9 +6,7 @@ Group Members:
   Waqas Qurban | wq16ou@brocku.ca | 6244438
   Peter Hrynuik | ph15gf@brocku.ca | 6041073
   Muditaa Annauth | ma17jq@brocku.ca | 6334965
-  
-  
-  
+  Ridwaaan Toure | rt18yd@brocku.ca / ridwaantoure@gmail.com | 6556138
   
   
  
