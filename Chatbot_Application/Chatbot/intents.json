@@ -1,0 +1,27 @@
+{"intents": [
+    {"tag": "greetings",
+    "patterns": ["Hi", "Hey", "Is anyone there?", "Hello", "Hay", "What up", "How's it going"], 
+    "responses": ["Hello", "Hi", "Hi there", "Hey"]
+    }, 
+    {"tag": "goodbye",
+    "patterns": ["Bye", "See you later", "Goodbye", "Have a nice day"],
+    "responses": ["See you later", "Bye", "Have a nice day", "Bye! Hope to chat with you again"]
+    }, 
+    {"tag": "Thanks",
+    "patterns": ["Thnaks", "Thank you", "That was helpful", "Thanks for the help"], 
+    "responses": ["Hapy to help", "Any time", "My Pleasure", "You are most welcome", "I live to please"] 
+    }, 
+    {"tag": "about",
+    "patterns": ["Who are you?", "What are you?"], 
+    "responses": ["I am an AI built to help answer any question you might have about Canada Summer Games 2022"] 
+    }, 
+    {"tag": "help", 
+    "patterns": ["Could you help me?", "Give me a hand please", "Can you help me?", "What can you do for me", "I need help", "I need support", "support me please", "Help"],
+    "responses": ["Tell me how can I assist you", "Tell me your problem", "Yes sure, ask any question you like"]
+    },
+    {"tag": "Question1",
+    "patterns": ["What is the Canada Game website?", "Is there a Canada Game webiste?", "How can I get to the Canada Game website?", "What is the link to the Canada Game website", "give me the link to canada summer games"],
+    "responses": ["You can get to the Canada Game website by using this link : https://niagara2022games.ca/?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ym4JMO1oHPSmRfiX047qNfEf9FtK22b_Y8FrkJQxEMnOcZFlv3MbCEaAtQiEALw_wcB",
+        "The link to the Canada Game website is https://niagara2022games.ca/?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ym4JMO1oHPSmRfiX047qNfEf9FtK22b_Y8FrkJQxEMnOcZFlv3MbCEaAtQiEALw_wcB"]}
+
+]}
