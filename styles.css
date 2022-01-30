@@ -1,7 +1,12 @@
 @charset "UTF-8";
 
 @import url("https://use.fontawesome.com/releases/v5.13.1/css/all.css");
-@font-face {font-family: "Gilroy Black"; src: url("//db.onlinewebfonts.com/t/03064356c75fa5724311add92fe92b0f.eot"); src: url("//db.onlinewebfonts.com/t/03064356c75fa5724311add92fe92b0f.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/03064356c75fa5724311add92fe92b0f.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/03064356c75fa5724311add92fe92b0f.woff") format("woff"), url("//db.onlinewebfonts.com/t/03064356c75fa5724311add92fe92b0f.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/03064356c75fa5724311add92fe92b0f.svg#Gilroy Black") format("svg"); }
+@font-face {
+    font-family: Gilroy-Black;
+    src: url(Gilroy-Black.woff);
+  }
+  
+
 *{
     box-sizing: border-box;
 }
@@ -87,3 +92,50 @@ body {
     text-rendering: auto;
     line-height: 1;
 }
+
+.navbar {
+    position: relative;
+    z-index: 1500;
+    background: white;
+    width: 100%;
+    transition: all 0.4s;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 0.25rem;
+    padding-top: 0.25rem;
+}
+
+.shadow {
+    box-shadow: 0 0.9375rem 1.40625rem 
+    rgba(90,97,105,0.1),0 0.25rem 0.53125rem 
+    rgba(90,97,105,0.12),0 0.125rem 0.1875rem 
+    rgba(90,97,105,0.1);
+}
+
+.navbar-logo {
+    display: inline-block;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+    width: 130px;
+}
+
+.navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.nav{
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
