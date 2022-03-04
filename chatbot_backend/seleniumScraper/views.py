@@ -19,7 +19,7 @@ from seleniumScraper.KeyValues import KeyValues
 database = r"./4P02 Chatbot Database.db"
 
 chrome_options = Options()  
-chrome_options.add_argument("--headless")  
+# chrome_options.add_argument("--headless")  
 driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
 driver.implicitly_wait(2)
 wait = WebDriverWait(driver, 5)
@@ -28,6 +28,7 @@ conn = SQLMethods.create_connection(database)
 
 
 def navigate(url):
+    
         driver.get(url)
         title = driver.title
         print(driver.title)
@@ -43,12 +44,6 @@ def getInfo(element):
 def view_name(request):
     getData()
     return HttpResponse("Done")
-
-    # printout = navigate(URL)
-    # header = Utilities.getHeading(driver)
-    # data =getInfo(header)
-    # print("Data returned")
-    # return HttpResponse(data)
 
 
 def index(request):

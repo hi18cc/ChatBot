@@ -17,6 +17,9 @@ class SQLMethods:
             print(e)
 
         print("connection created")
+        cursor = conn.cursor
+        cursor.fe
+
         return conn
 
  
@@ -139,20 +142,128 @@ class SQLMethods:
         print("commited gameContingents")
         return cur.lastrowid
 
-    def insert_players(conn, player):
+    def insert_players(conn, playerName):
         """
-        insert player into the players table
-        :param conn:
-        :param palyer:
+        Insert player into the players table
+        :param conn: connected database file.
+        :param playerName: player name (string).
         :return: player id
         """
         sql = ''' INSERT OR IGNORE INTO gameContingents(playerID, playerName) VALUES (?,?)'''
 
         cur = conn.cursor()
-        cur.execute(sql, player)
+        cur.execute(sql, playerName)
         conn.commit()
         print("commited Players")
         return cur.lastrowid
+
+    
+    def sql_select_all_columns_query(conn, table, queryColumn, value):
+        """
+        Basic query which takes strings
+        :param table: The tables in the database. (string)
+        :param column: The column you want to check for e.g. 'playerName' = x. (string)
+        :param value: The value you want to check for  'value' 'playerName' = value. (string)
+        :return: records
+        """
+        query = """ select * from ? where ? = ?"""
+
+        cur = conn.cursor()
+
+        queryTuple = (table, queryColumn, value)
+        cur.execute(query, queryTuple)
+        records = cur.fetchall()
+        cur.close()
+        return records
+        
+
+    def sql_select_player(conn, playerName):
+        """
+        Gets the playerName, Contingent, and SportName column for player with a specific name.
+
+        :param playerName: Player name string. (string)
+        :return: records
+        """
+
+        query = """ select playerName, Contingent, SportName from Players, Sport where players.player = ? AND playerSport.PlayerID = Players.PlayerID"""
+
+        cur = conn.cursor()
+
+        queryTuple = (playerName,)
+        cur.execute(query, queryTuple)
+        records = cur.fetchall()
+        cur.close()
+
+        return records
+
+    def sql_select_player_by_sport(conn, playerName, sportName):
+        """
+        select playerName, Contingent, and sportName
+        :param conn: connected database file.
+        :param playerName: Player name string. (string)
+        :param playerSport: Name of sport . (string)
+
+        :return: records
+        """
+        query = """ select playerName, Contingent, SportName from Players, PlayerSport where players.playerName = ? AND playerSport = ?"""
+
+        cur = conn.cursor()
+
+        queryTuple = (playerName, sportName)
+        cur.execute(query, queryTuple)
+        records = cur.fetchall()
+        cur.close()
+
+        return records
+
+    def sql_select_player_by_contingent(conn, player, ContingentAbbreviation): 
+        """
+        select player, Contingent and sportname
+
+        :param conn: connected database file.
+        :param playerName: Player name string. (string)
+        :param playerSport: Name of sport . (string)
+
+        :return: records
+        """
+        query = """ select playerName, Contingent, SportName from Players, PlayerSport where players.playerName = ? AND Contingent = ? AND playerSport.PlayerID = Players.PlayerID"""
+
+        cur = conn.cursor()
+
+        queryTuple = (player, ContingentAbbreviation)
+        cur.execute(query, queryTuple)
+        records = cur.fetchall()
+        cur.close()
+
+        return records
+    
+    def sql_select_all_columns_for_contingents(conn, ContingentAbbreviation): 
+        """
+        Select all columns for contingent that matches the abbreviation
+
+        :param conn: connected database file.
+        :param ContingentAbbreviation: 
+
+        :return: records
+        """
+
+        query = """ select * from Contingent where ContingentAbbreviation = ?"""
+
+        cur = conn.cursor()
+
+        queryTuple = (ContingentAbbreviation)
+        cur.execute(query, queryTuple)
+        records = cur.fetchall()
+        cur.close()
+
+        return records
+
+    
+
+
+
+
+
 
 
 
