@@ -1,13 +1,9 @@
 from flask import Flask, render_template, request, jsonify
-
+from flask_cors import CORS
 from bot import chat
 
 app = Flask(__name__)
-
-@app.get("/")
-def index_get():
-    return render_template("textbox.html")
-
+CORS(app)
 
 @app.post("/predict")
 def predict():

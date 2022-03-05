@@ -2,7 +2,7 @@
 This code is used to run the trained chatbot
 """
 
-# pip install tensorflow, nltk, numpy, scikit_learn
+# pip install tensorflow, nltk, numpy, scikit_learn, flask, flask-cors
 
 import json 
 import numpy as np
