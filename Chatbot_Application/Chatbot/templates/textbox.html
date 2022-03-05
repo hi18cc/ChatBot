@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<style>
+		body {
+			background-color: black;
+		}
+		</style>
+		<title>Canada Games Chatbot</title>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+		<script>
+			messages = []; 
+			function clearMSG ()
+			{
+				document.getElementById ("msg").value = "";
+			}
+			
+			function send ()
+			{
+				var content = document.getElementById ("msg").value;
+				console.log(content);
+				clearMSG ();
+				if (content == "") {
+					return;
+				}
+				let mesg1 = {name: "User", message: content}; 
+				messages.push(content); 
+				
+				fetch ('http://127.0.0.1:5000/predict', {
+					method: 'POST',
+					body: JSON.stringify({message: content}),
+					mode: 'cors',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+				})
+				.then(r => r.json())
+				.then(r => {
+					let msg2 = {name: "Bot", message: r.answer};
+					messages.push(msg2); 
+					console.log(msg2);
+				}).catch ((error) => {
+					console.error('Error: ', error);
+				});
+				document.getElementById ("messages").innerHTML += "<div class =\"row\"> <div class=\"col-sm-10\">" + content +"</div></div>";
+			}
+		</script>
+		
+	</head>
+	
+	<body>
+
+		<nav class="navbar navbar-light bg-light">
+			<div class="container-fluid">
+			  <a class="navbar-brand" href="#">
+			  </a>
+			</div>
+		  </nav>
+		
+		<div class="container shadow-lg bg-dark m-3" id ="messages">
+			<div class=	"row">
+				<div class="col-sm-10"> 
+				<i class="arrow-return-left"></i>
+				</div>
+			</div>
+		</div>
+		<div class="container fixed-bottom ">
+			<div class="input-group input-group-lg mb-3 shadow-lg">
+				<button type="button" class="btn" style="background-color:rgb(0,142,170);" id="clear"><i class="bi-x-square"></i></button>
+				<input type="textarea" id="msg" class="form-control form-control-lg" placeholder="Type your message."/>
+				<button type="button" class="btn btn-dark" id="send"><i class="bi-arrow-return-left"></i></button>
+			</div>
+		</div>
+		
+		<script>
+		
+			document.getElementById ("clear").addEventListener("click", clearMSG);
+			document.getElementById ("send").addEventListener("click", send);
+		
+		</script>
+	</body>
+</html>
