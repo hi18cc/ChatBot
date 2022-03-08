@@ -102,16 +102,16 @@ class Utilities:
 
         return elements
 
-    def getTableSport(driver):
+    def getTableSport(driver, index):
         """
         """
-        element = CanadaGamesPlayerPage.table_row_sport()
-        elements = driver.find_element(*element)
+        element = CanadaGamesPlayerPage.table_row_sport(index)
+        element = driver.find_element(*element)
 
         return element
 
-    def getTablePlayer(driver):
-        element = CanadaGamesPlayerPage.table_row_player()
+    def getTablePlayer(driver, index):
+        element = CanadaGamesPlayerPage.table_row_player(index)
         element = driver.find_element(*element)
 
         return element

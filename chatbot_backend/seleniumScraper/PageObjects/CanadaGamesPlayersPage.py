@@ -29,7 +29,7 @@ class CanadaGamesPlayerPage:
         :return::return: tuple with By.XPATH as the first item and the locator string as the 2nd item.
         """
 
-        return (By.XPATH, ".LM_Button_Find")
+        return (By.CSS_SELECTOR, ".LM_Button_Find")
 
     def table_row_sport(index):
         """

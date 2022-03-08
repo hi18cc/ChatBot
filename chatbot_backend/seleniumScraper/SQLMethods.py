@@ -18,7 +18,6 @@ class SQLMethods:
 
         print("connection created")
         cursor = conn.cursor
-        cursor.fe
 
         return conn
 
@@ -53,7 +52,6 @@ class SQLMethods:
         cur.execute(sql, sport)
         conn.commit()
 
-        print(sport[0])
 
         return cur.lastrowid
 
@@ -148,11 +146,12 @@ class SQLMethods:
         :param string playerName: player name (string).
         :return: player id
         """
-        query = ''' INSERT gameContingents(Contingent, sportName, personName) VALUES (?,?,?)'''
+        query = ''' INSERT INTO Persons(Contingent, sportName, personName) VALUES (?,?,?)'''
 
         cur = conn.cursor()
-        queryTuple = (Contingent, sportName, personName)
-        cur.execute(query, personName)
+        queryTuple = (Contingent[0], sportName, personName)
+        print(queryTuple)
+        cur.execute(query, queryTuple)
         conn.commit()
         print("commited Players")
         return cur.lastrowid
@@ -269,6 +268,7 @@ class SQLMethods:
         query = """ select contingentName from Contingents"""
 
         cur = conn.cursor()
+        cur.execute(query)
         records = cur.fetchall()
         cur.close()
 
@@ -295,86 +295,89 @@ class SQLMethods:
 
         return records
 
-def sql_select_all_columns_from_games_by_sport(conn, sportName):
-    """
-    Select all columns from Games Table matching sport
-    
-    :param Connect conn: conn connected database file.
-    :param string sportName: Name of the sport. (string)
+    def sql_select_all_columns_from_games_by_sport(conn, sportName):
+        """
+        Select all columns from Games Table matching sport
+        
+        :param Connect conn: conn connected database file.
+        :param string sportName: Name of the sport. (string)
 
-    :return: rows
-    """
+        :return: rows
+        """
 
-    query = """ select * from Games Where sportName = '?'"""
+        query = """ select * from Games Where sportName = '?'"""
 
-    cur = conn.cursor()
+        cur = conn.cursor()
 
-    queryTuple = (sportName)
-    cur.execute(query, queryTuple)
-    records = cur.fetchall()
-    cur.close()
+        queryTuple = (sportName)
+        cur.execute(query, queryTuple)
+        records = cur.fetchall()
+        cur.close()
 
-    return records
+        return records
 
-def sql_select_all_columns_from_games_by_gameName(conn, gameName):
-    """
-    Select all columns from Games Table matching game name.
-    
-    :param Connect conn: conn connected database file.
-    :param string gameName: Name of the sport. (string)
+    def sql_select_all_columns_from_games_by_gameName(conn, gameName):
+        """
+        Select all columns from Games Table matching game name.
+        
+        :param Connect conn: conn connected database file.
+        :param string gameName: Name of the sport. (string)
 
-    :return: rows
-    """
+        :return: rows
+        """
 
-    query = """ select * from Games Where sportName = '?'"""
+        query = """ select * from Games Where sportName = '?'"""
 
-    cur = conn.cursor()
+        cur = conn.cursor()
 
-    queryTuple = (gameName)
-    cur.execute(query, queryTuple)
-    records = cur.fetchall()
-    cur.close()
+        queryTuple = (gameName)
+        cur.execute(query, queryTuple)
+        records = cur.fetchall()
+        cur.close()
 
-    return records
+        return records
 
-def sql_select_all_columns_from_sports(conn):
-    """
-    Select all columns from Sports
+    def sql_select_all_columns_from_sports(conn):
+        """
+        Select all columns from Sports
 
-    :param Connect conn: conn connected database file.
+        :param Connect conn: conn connected database file.
 
-    :return: rows
-    """
-    
-    query = """select * from Sports"""
+        :return: rows
+        """
+        
+        query = """select * from Sports"""
 
-    cur = conn.cursor()
-    cur.execute(query)
-    records = cur.fetchall()
-    cur.close()
+        cur = conn.cursor()
+        cur.execute(query)
+        records = cur.fetchall()
+        cur.close()
 
-    return records
+        return records
 
-def sql_exists(conn, table, column, value):
-    """
-    This will check the database to see if an item exists.
 
-    :param Connect conn: conn connected database file.
-    :param string table: Name of the table you're checking in.
-    :param string column: Name of the column you're checking
+    def sql_exists_for_sports_by_name(conn, value):
+        """
+        This will check the database to see if an item exists.
 
-    :return: if item exists.
-    :rtype: bool
-    """
+        :param Connect conn: conn connected database file.
+        :param string table: Name of the table you're checking in.
+        :param string column: Name of the column you're checking
 
-    query = """SELECT EXISTS(SELECT 1 FROM ? WHERE ? = '?')"""
+        :return: if item exists.
+        :rtype: bool
+        """
 
-    cur = conn.cursor()
-    queryTuple = (table, column, value)
-    cur.execute(query, queryTuple)
-    records = cur.fetchall()
-    cur.close()
-    return bool(records)
+        query = """SELECT EXISTS (SELECT 1 FROM Sports WHERE SportName = ?) """
+        
+        cur = conn.cursor()
+        queryTuple = (value, )
+        cur.execute(query, queryTuple)
+        records = cur.fetchall()
+        cur.close()
+        return bool(records)
+
+
 
 
 
