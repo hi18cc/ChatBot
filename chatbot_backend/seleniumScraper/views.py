@@ -14,6 +14,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from . import urls
 from seleniumScraper.utils import Utilities
 from seleniumScraper.KeyValues import KeyValues
+from SQLMethods import SQLMethods
 
 
 database = r"./4P02 Chatbot Database.db"
@@ -50,6 +51,55 @@ def index(request):
     return HttpResponse("Hello, world. You're at the poll index.")
 
     print("test")
+
+def get_players():
+    """
+    """
+
+    #Select contingent from SQL database
+    conn = SQLMethods.create_connection(database)
+
+    contingents = SQLMethods.sql_select_contingentName_from_contingents_table(conn)
+
+    #Loop through all players, get player sport if not in database add sport and then add name
+    
+    for contingent in contingents:
+        contingent_dropdown_webelement = Utilities.getContingentDropdown(driver)
+        find_button = Utilities.getFindButton(driver)
+        contingent_dropdown_select = Utilities.select_dropdown(contingent_dropdown_webelement)
+        Utilities.select_dropdown_item_by_visible_text(contingent)
+        Utilities.click_element(find_button)
+        rows = Utilities.get_table_rows(driver)
+        row_count = len(rows) -1
+        row_range = range(1,row_count)
+
+        for i in row_range:
+            sport = Utilities.getTableSport(driver)
+            if not (SQLMethods.sql_exists(conn, 'Sports', 'SportName', sport)):
+                SQLMethods.insert_sports(conn, (sport,))
+            player = Utilities.getTablePlayer(driver)
+            
+            SQLMethods.sql_ex
+
+            
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+    
+
+
 
 def getData():
     dates = KeyValues.GameDay_Keys

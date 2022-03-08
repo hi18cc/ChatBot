@@ -1,4 +1,7 @@
 from seleniumScraper.PageObjects.NiagaraSchedulePage import NiagaraSchedulePage
+from seleniumScraper.PageObjects.CanadaGamesPlayersPage import CanadaGamesPlayerPage
+from selenium.webdriver.support.ui import Select
+
 
 class Utilities:
     def getHeading(driver, headingNum=1):
@@ -64,6 +67,111 @@ class Utilities:
     def getElementText(driver, element):
         #Selenium driver needs to be initialized to the right website first.
         return driver.find_element(*element).text
+
+
+    def getContingentDropdown(driver):
+        """
+        gets the XPATH for the contingent dropdown on the Canada Summer Games page and finds the element.
+
+        :param WebDriver driver: driver used to find element.
+
+        :return WebElement: element to be used.
+        """
+        element = CanadaGamesPlayerPage.contingent_dropdown()
+        element = driver.find_element(*element)
+        return element
+    
+    def getFindButton(driver):
+        """
+        Gets the XPATH for the Find button on the Canada summer games.
+
+        :param WebDriver driver: driver used to find element.
+
+        :return WebElement: element to be used.
+        """
+        element = CanadaGamesPlayerPage.find_button()
+        element = driver.find_element(*element)
+
+        return element
+    
+    def get_table_rows(driver):
+        """
+        """
+        element = CanadaGamesPlayerPage.table_rows()
+        elements = driver.find_elements(*element)
+
+        return elements
+
+    def getTableSport(driver):
+        """
+        """
+        element = CanadaGamesPlayerPage.table_row_sport()
+        elements = driver.find_element(*element)
+
+        return element
+
+    def getTablePlayer(driver):
+        element = CanadaGamesPlayerPage.table_row_player()
+        element = driver.find_element(*element)
+
+        return element
+
+
+    def select_dropdown(webElement, driver):
+        """
+        Will take the select dropdown element found by driver and create a Select object.
+
+        :param WebElement webElement: An element found by selenium driver.
+        :param WebDriver driver: driver used to find webElement.
+
+        :return: this will turn the object that will control the select object.
+        :rtype: Select
+        """
+        drpdwn = Select(webElement)
+
+        return drpdwn
+
+    def select_dropdown_item_by_index(dropdown, index):
+        """
+        Will take the Select object and select an item by index.
+
+        :param Select dropdown: Dropdown to be controlled.
+        :param int index: the number item to be accessed.
+
+        :return: bool
+        """
+
+        dropdown.select_by_index(index)
+
+        return True
+
+    def select_dropdown_item_by_visible_text(dropdown, value):
+        """
+        Will take the Select object and select an item by value.
+
+        :param Select dropdown: Dropdown to be controlled.
+        :param string value: the number item to be accessed.
+
+        :return: bool
+        """
+
+        dropdown.select_by_visible_text(value)
+
+        return True
+
+    def click_element( element):
+        """
+        Clicks on the web element provided using the driver provided
+        :param WebElement element: element to be clicked on and found by driver
+
+        :return: boolean
+        """
+
+        element.click()
+
+        return True
+
+
 
 
 

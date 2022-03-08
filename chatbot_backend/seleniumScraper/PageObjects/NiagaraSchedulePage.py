@@ -3,7 +3,7 @@ from selenium.webdriver.common.keys import Keys
 
 # Scraper organizes the page based on Date, sport
 class  NiagaraSchedulePage:
-    URL = 'Example URL: https://cg2022.gems.pro/Result/Calendar.aspx?SetLanguage=en-CA&Grouping=DS'
+    URL = 'https://cg2022.gems.pro/Result/Calendar.aspx?SetLanguage=en-CA&Grouping=DS' #Example URL
 
     def date_dropdown():
         return (By.XPATH, '//*[@id="ctl00_ctl00_ContentPlaceHolderBasicMaster_ContentPlaceHolder1_selGameDay"]')

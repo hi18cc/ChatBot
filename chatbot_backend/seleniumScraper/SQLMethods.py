@@ -26,7 +26,7 @@ class SQLMethods:
     def insert_games(conn, game):
         """
         insert game into the games table
-        :param conn:
+        :param Connect conn: conn connected database file.
         :param games:
         :return: game id
         """
@@ -42,7 +42,7 @@ class SQLMethods:
     def insert_sports(conn, sport):
         """
         insert sport into the sports table
-        :param conn:
+        :param Connect conn: conn connected database file.
         :param sport:
         :return: sport id
         """
@@ -60,7 +60,7 @@ class SQLMethods:
     def insert_sportgames(conn, sportGame):
         """
         insert sportGame into the sportGames table
-        :param conn:
+        :param Connect conn: conn connected database file.
         :param sport:
         :return: sportGames id
         """
@@ -74,12 +74,11 @@ class SQLMethods:
         print("commited Sportgames")
         return cur.lastrowid
 
-
     def insert_locations(conn, location):
         """
-        insert locaiton into the locations table
-        :param conn:
-        :param sport:
+        insert location into the locations table
+        :param Connect conn: conn connected database file.
+        :param Tuple location: Tuple with the location name. (location name,)
         :return: location id
         """
 
@@ -95,8 +94,8 @@ class SQLMethods:
     def insert_sportLocations(conn, sportLocation):
         """
         insert location into the locations table
-        :param conn:
-        :param sport:
+        :param Connect conn: conn connected database file.
+        :param Tuple sportLocation: The tuple containing (sportName, Location Name).
         :return: location id
         """
 
@@ -112,12 +111,12 @@ class SQLMethods:
     def insert_contingents(conn, contingent):
         """
         insert contingent into the contingents table
-        :param conn:
-        :param sport:
+        :param Connect conn: conn connected database file.
+        :param Tuple contingent: Contingent abberviation, Contingent Name, medals
         :return: location id
         """
 
-        sql = ''' INSERT OR IGNORE INTO contingents(contingent) VALUES (?)'''
+        sql = ''' INSERT OR IGNORE INTO contingents(contingentAbbreviation, ContingentName, Medals) VALUES (?,?,?)'''
 
         cur = conn.cursor()
         cur.execute(sql, contingent)
@@ -129,8 +128,8 @@ class SQLMethods:
     def insert_gameContingents(conn, gameContingent):
         """
         insert gameContingent into the gameContingents table
-        :param conn:
-        :param sport:
+        :param Connect conn: conn connected database file.
+        :param tuple gameContingent:The tuple of (gameName, contingentName)
         :return: gameContingent id
         """
 
@@ -142,31 +141,31 @@ class SQLMethods:
         print("commited gameContingents")
         return cur.lastrowid
 
-    def insert_players(conn, playerName):
+    def insert_person_with_contingent_sportName_playerName(conn, Contingent, sportName, personName ):
         """
-        Insert player into the players table
-        :param conn: connected database file.
-        :param playerName: player name (string).
+        Insert person into the players table
+        :param Connect conn: connected database file.
+        :param string playerName: player name (string).
         :return: player id
         """
-        sql = ''' INSERT OR IGNORE INTO gameContingents(playerID, playerName) VALUES (?,?)'''
+        query = ''' INSERT gameContingents(Contingent, sportName, personName) VALUES (?,?,?)'''
 
         cur = conn.cursor()
-        cur.execute(sql, playerName)
+        queryTuple = (Contingent, sportName, personName)
+        cur.execute(query, personName)
         conn.commit()
         print("commited Players")
         return cur.lastrowid
-
     
     def sql_select_all_columns_query(conn, table, queryColumn, value):
         """
         Basic query which takes strings
-        :param table: The tables in the database. (string)
-        :param column: The column you want to check for e.g. 'playerName' = x. (string)
-        :param value: The value you want to check for  'value' 'playerName' = value. (string)
+        :param string table: The tables in the database.
+        :param string column: The column you want to check for e.g. 'playerName' = x.
+        :param string value: The value you want to check for  'value' 'playerName' = value.
         :return: records
         """
-        query = """ select * from ? where ? = ?"""
+        query = """ select * from ? where ? = '?'"""
 
         cur = conn.cursor()
 
@@ -176,16 +175,17 @@ class SQLMethods:
         cur.close()
         return records
         
+        
 
     def sql_select_player(conn, playerName):
         """
         Gets the playerName, Contingent, and SportName column for player with a specific name.
 
-        :param playerName: Player name string. (string)
+        :param string playerName: Player name string. (string)
         :return: records
         """
 
-        query = """ select playerName, Contingent, SportName from Players, Sport where players.player = ? AND playerSport.PlayerID = Players.PlayerID"""
+        query = """ select playerName, Contingent, SportName from Players, Sport where players.player = '?' AND playerSport.PlayerID = Players.PlayerID"""
 
         cur = conn.cursor()
 
@@ -199,13 +199,13 @@ class SQLMethods:
     def sql_select_player_by_sport(conn, playerName, sportName):
         """
         select playerName, Contingent, and sportName
-        :param conn: connected database file.
+        :param Connect conn: conn connected database file.
         :param playerName: Player name string. (string)
         :param playerSport: Name of sport . (string)
 
         :return: records
         """
-        query = """ select playerName, Contingent, SportName from Players, PlayerSport where players.playerName = ? AND playerSport = ?"""
+        query = """ select playerName, Contingent, SportName from Players, PlayerSport where players.playerName = '?' AND playerSport = '?'"""
 
         cur = conn.cursor()
 
@@ -220,13 +220,13 @@ class SQLMethods:
         """
         select player, Contingent and sportname
 
-        :param conn: connected database file.
+        :param Connect conn: conn connected database file.
         :param playerName: Player name string. (string)
         :param playerSport: Name of sport . (string)
 
         :return: records
         """
-        query = """ select playerName, Contingent, SportName from Players, PlayerSport where players.playerName = ? AND Contingent = ? AND playerSport.PlayerID = Players.PlayerID"""
+        query = """ select playerName, Contingent, SportName from Players, PlayerSport where players.playerName = '?' AND Contingent = '?' AND playerSport.PlayerID = Players.PlayerID"""
 
         cur = conn.cursor()
 
@@ -241,24 +241,141 @@ class SQLMethods:
         """
         Select all columns for contingent that matches the abbreviation
 
-        :param conn: connected database file.
+        :param Connect conn: conn connected database file.
         :param ContingentAbbreviation: 
 
         :return: records
         """
 
-        query = """ select * from Contingent where ContingentAbbreviation = ?"""
+        query = """ select * from Contingents where ContingentAbbreviation = '?'"""
 
         cur = conn.cursor()
 
-        queryTuple = (ContingentAbbreviation)
+        queryTuple = (ContingentAbbreviation,)
         cur.execute(query, queryTuple)
         records = cur.fetchall()
         cur.close()
 
         return records
 
+    def sql_select_contingentName_from_contingents_table(conn):
+        """
+        Select contingent Name column from the Contingents table
+        :param Connect conn: conn connected database file.
+
+        :return: records
+        """
+
+        query = """ select contingentName from Contingents"""
+
+        cur = conn.cursor()
+        records = cur.fetchall()
+        cur.close()
+
+        return records
+
+    def sql_select_all_colums_from_contingent_games(conn, ContingentAbbreviation):
+        """
+        Select all columns from the contingent games table
+
+        :param Connect conn: conn connected database file.
+        :param String ContingentAbbreviation:
+
+        :return: rows
+        """
+
+        query = """select * from ContingentGames where contingentAbbreviation = '?'"""
+
+        cur = conn.cursor()
+
+        queryTuple = (ContingentAbbreviation,)
+        cur.execute(query, queryTuple)
+        records = cur.fetchall()
+        cur.close()
+
+        return records
+
+def sql_select_all_columns_from_games_by_sport(conn, sportName):
+    """
+    Select all columns from Games Table matching sport
     
+    :param Connect conn: conn connected database file.
+    :param string sportName: Name of the sport. (string)
+
+    :return: rows
+    """
+
+    query = """ select * from Games Where sportName = '?'"""
+
+    cur = conn.cursor()
+
+    queryTuple = (sportName)
+    cur.execute(query, queryTuple)
+    records = cur.fetchall()
+    cur.close()
+
+    return records
+
+def sql_select_all_columns_from_games_by_gameName(conn, gameName):
+    """
+    Select all columns from Games Table matching game name.
+    
+    :param Connect conn: conn connected database file.
+    :param string gameName: Name of the sport. (string)
+
+    :return: rows
+    """
+
+    query = """ select * from Games Where sportName = '?'"""
+
+    cur = conn.cursor()
+
+    queryTuple = (gameName)
+    cur.execute(query, queryTuple)
+    records = cur.fetchall()
+    cur.close()
+
+    return records
+
+def sql_select_all_columns_from_sports(conn):
+    """
+    Select all columns from Sports
+
+    :param Connect conn: conn connected database file.
+
+    :return: rows
+    """
+    
+    query = """select * from Sports"""
+
+    cur = conn.cursor()
+    cur.execute(query)
+    records = cur.fetchall()
+    cur.close()
+
+    return records
+
+def sql_exists(conn, table, column, value):
+    """
+    This will check the database to see if an item exists.
+
+    :param Connect conn: conn connected database file.
+    :param string table: Name of the table you're checking in.
+    :param string column: Name of the column you're checking
+
+    :return: if item exists.
+    :rtype: bool
+    """
+
+    query = """SELECT EXISTS(SELECT 1 FROM ? WHERE ? = '?')"""
+
+    cur = conn.cursor()
+    queryTuple = (table, column, value)
+    cur.execute(query, queryTuple)
+    records = cur.fetchall()
+    cur.close()
+    return bool(records)
+
 
 
 
