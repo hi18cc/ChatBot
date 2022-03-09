@@ -81,9 +81,10 @@ def get_players():
             if not SQLMethods.sql_exists_for_sports_by_name(conn, sport):
                 SQLMethods.insert_sports(conn, (sport,))
             person = Utilities.getTablePlayer(driver, i)
+            personURL = Utilities.get_URL_from_element(person)
             person = person.text
-            print(contingent)
-            SQLMethods.insert_person_with_contingent_sportName_playerName(conn, contingent, sport, person)
+            
+            SQLMethods.insert_person_with_contingent_sportName_playerName(conn, contingent, sport, person, personURL)
       
 
 def getData():

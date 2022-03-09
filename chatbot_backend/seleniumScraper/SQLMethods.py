@@ -139,17 +139,17 @@ class SQLMethods:
         print("commited gameContingents")
         return cur.lastrowid
 
-    def insert_person_with_contingent_sportName_playerName(conn, Contingent, sportName, personName ):
+    def insert_person_with_contingent_sportName_playerName(conn, Contingent, sportName, personName, personURL ):
         """
         Insert person into the players table
         :param Connect conn: connected database file.
         :param string playerName: player name (string).
         :return: player id
         """
-        query = ''' INSERT INTO Persons(Contingent, sportName, personName) VALUES (?,?,?)'''
+        query = ''' INSERT INTO Persons(Contingent, sportName, personName, URL) VALUES (?,?,?,?)'''
 
         cur = conn.cursor()
-        queryTuple = (Contingent[0], sportName, personName)
+        queryTuple = (Contingent[0], sportName, personName, personURL)
         print(queryTuple)
         cur.execute(query, queryTuple)
         conn.commit()

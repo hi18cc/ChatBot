@@ -63,18 +63,7 @@ class CanadaGamesPlayerPage:
 
 
 
-    def get_URL_from_element(webElement):
-        """
-        Takes the web element and finds the href which should ocntain the URL.
-
-        :param WebElement webElement: the element which is a link to the URL
-
-        :return: URL as string
-        :rtype: string
-        """
-        url = webElement.get_attribute('href')
-
-        return url
+    
     
 
 
