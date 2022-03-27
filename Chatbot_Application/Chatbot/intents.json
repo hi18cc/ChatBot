@@ -192,7 +192,7 @@
     "responses": ["I'm sorry. Perhaps I misunderstood. Could you rephrase your question"]
     },
     {"tag": "Question1",
-    "patterns": ["What is the Canada Game website?", "Is there a Canada Game webiste?", "How can I get to the Canada Game website?", "What is the link to the Canada Game website", "give me the link to canada summer games"],
+    "patterns": ["What is the Canada Game website?", "Is there a Canada Game webiste?", "How can I get to the Canada Game website?", "What is the link to the Canada Game website", "give me the link to canada summer games", "canada game website", "website", "what is the website to canada games", "what website", "what canada game website"],
     "responses": ["You can get to the Canada Game website by using this link: https://niagara2022games.ca/?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ym4JMO1oHPSmRfiX047qNfEf9FtK22b_Y8FrkJQxEMnOcZFlv3MbCEaAtQiEALw_wcB",
     "The link to the Canada Game website is https://niagara2022games.ca/?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ym4JMO1oHPSmRfiX047qNfEf9FtK22b_Y8FrkJQxEMnOcZFlv3MbCEaAtQiEALw_wcB"]
     },
@@ -202,7 +202,7 @@
     },
     {"tag": "Question3",
     "patterns": ["Is there an app for the buses?", "Where can I find the app for buses?", "Give me the app for buses", "Is there an iOS app for buses?", "Is there an android app for buses?", "Are there buses to Canada Games?", "app for buses"],
-    "responses": ["The Niagara Reigon Transit all for Android is avaiable here https://play.google.com/store/apps/details?id=com.thetransitapp.droid and a version for iOS is available here https://apps.apple.com/ca/app/transit-bus-train-times/id498151501"]
+    "responses": ["The Niagara Reigon Transit app for Android is avaiable here https://play.google.com/store/apps/details?id=com.thetransitapp.droid and a version for iOS is available here https://apps.apple.com/ca/app/transit-bus-train-times/id498151501"]
     },
     {"tag": "Question4",
     "patterns": ["What can you do in the Niagara region?", "Is there anything to do in the Niagara region?", "What are some attractions of the Niagra Region?", "Is there anything to do in the Niagara Region?"],
@@ -218,31 +218,31 @@
     }, 
     {"tag": "Question7",
     "patterns": ["How long until Canada Games starts", "When does Canada Games begin", "Has Canada Games already started?", "What's the starting time for Canada Games", "When does Canada Games start", "When is Canada Games starting"],
-    "responses": ["TBD7 ----------------------------------------------------------------"]
+    "responses": ["TBD1"]
     },
     {"tag": "Question8",
     "patterns": ["What's new with the Canada Games?", "Has anything new happened in Canada Games?", "Anything new happen with Canada Games?", "Is there any breaking news with Canada Games?"],
     "responses": ["The Canada Games news is available here https://brocku.ca/important-dates"]
     }, 
     {"tag": "Question9",
-    "patterns": ["Where is the Canada Games", "Where is Canada Games being hosted", "What are the directions to Canada Games?", "Give me directions to Canada games", "How to I get to Canada games?"],
-    "responses": ["The Canada Games events will be taking place in various locations across the Niagara region, locations for specific sports can be found here -----------------------------------------------------------"]
+    "patterns": ["Where is the Canada Games", "Where is Canada Games being hosted", "What are the directions to Canada Games?", "Give me directions to Canada games", "How do I get to Canada games?"],
+    "responses": ["The Canada Games events will be taking place in various locations across the Niagara region, locations for specific sports can be found here https://niagara2022games.ca/sports/"]
     },
     {"tag": "Question10",
     "patterns": ["Tell me about", "I want to know more about", "Give me information on"],
-    "responses": ["TBD10 ----------------------------------------------------"]
+    "responses": ["TBD2"]
     }, 
     {"tag": "Question11",
-    "patterns": ["What sport did", "What sport does"], 
-    "responses": ["TBD11 ----------------------------------------------------------"]
+    "patterns": ["What sport did", "What sport does", "sport", "what sport", "sport did", "sport does", "sport", "what sport did play", "what sport does play"], 
+    "responses": ["TBD3"]
     },
     {"tag": "Question12", 
-    "patterns": ["How many medals does", "What's the scoring for", "What are the stats for"],
-    "responses": ["TBD12 ----------------------------------------------------------------"]
+    "patterns": ["How many medals does", "What's the scoring for", "What are the stats for", "How many silver medals does prince edward island have?", "How many bronze medals does prince edward island have", "How many gold medals does prince edward island have", "medals", "silver", "bronze", "gold", "silver medals", "gold medals", "bronze medals", "How many silver medals does ontario have?", "How many bronze medals does ontario have", "How many gold medals does ontario have", "How many silver medals does New Brunswick have?", "How many bronze medals does New Brunswick have", "How many gold medals does New Brunswick have", "How many medals does Ontario have", "How many medals does New Brunswick have", "How many medals does Prince Edward Island have"],
+    "responses": ["TBD4"]
     },
     {"tag": "Question13",
-    "patterns": ["When is the next game?", "Is there a game today?"],
-    "responses": ["TBD13 ---------------------------------------------------"]
+    "patterns": ["When is the next game?", "Is there a game today?, When is the next archery game that New Brunswick plays in,", "game", "next game", "play in", "when is the next game that plays in", "that plays in", "next game that plays in", "next game that plays", "when is Newfoundland and Labrador next game", "when is Prince Edward Island next game"],
+    "responses": ["TBD5"]
     },
     {"tag": "Question14", 
     "patterns": ["Where can I buy tickets?", "I want to buy a ticket?", "How can I purchase a ticket?", "How much is a ticket?", "How much are tickets?"],

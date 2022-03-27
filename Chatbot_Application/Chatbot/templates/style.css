@@ -13,7 +13,7 @@ body {
 .header {
     position: sticky;
     top: 0;
-    background: orange;
+    background: #004f71;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -27,6 +27,7 @@ body {
     display: flex;
     flex-direction: column;
     transition: all .5s ease-in-out;
+    color: white;
     background: #f9f9f9;
     height: 900px;
     width: 700px;
@@ -44,24 +45,65 @@ body {
     background: white;
 }
 
+.clear {
+    padding: 6px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    background: #ff0005;
+}
+
 .output {
     margin-top: auto;
     display: flex;
     overflow-y: scroll;
     flex-direction: column-reverse;
+    padding-bottom: 20px;
 }
+
+/*----------------------------------------*/
+.messages {
+    background: orange;
+    width: fit-content;
+    margin-top: 10px;
+    padding: 8px 12px;
+    max-width: 70%;
+	word-wrap: break-word;
+	text-align: left;
+}
+
+.bot {
+    margin-left: auto;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background: #004f71;
+    color: white;
+}
+
+.visitor {
+    margin-right: auto;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+	background-color: #DCDCDC;
+	color: black;
+}
+/*----------------------------------------*/
 
 .input {
     position: sticky;
     bottom: 0;
-    background: orange;
+    background: #004f71;
     padding: 10px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
 }
 
 .input input {
-    width: 90%;
+    width: 80%;
     border: none;
     padding: 10px 10px;
     text-align: left;
