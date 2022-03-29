@@ -55,6 +55,20 @@ body {
     background: #ff0005;
 }
 
+.back {
+    color: white;
+    background-color: #004f71;
+}
+
+.history {
+    color: white;
+    background-color: #004f71;
+}
+
+.bi {
+    font-size: 1.5rem;
+}
+
 .output {
     margin-top: auto;
     display: flex;

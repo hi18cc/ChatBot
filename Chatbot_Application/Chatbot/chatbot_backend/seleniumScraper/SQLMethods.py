@@ -612,7 +612,7 @@ class SQLMethods:
         :return: The earliest games
         :rtype: tuple (gameName, sportName, contingent, date, times)
         """
-        query = """ Select ContingentGames.gameName, sportName, contingent, dates, times from games, ContingentGames where sportName = ? AND contingentGames.gamename = games.gamename AND dates = (Select min(dates) from Games where sportName = ? AND contingentGames.gamename = games.gamename AND Dates >= Date())"""
+        query = """ Select ContingentGames.gameName, sportName, contingent, dates, times from games, ContingentGames where sportName = ? AND contingentGames.gamename = games.gamename AND dates = (Select min(dates) from Games where sportName = ? AND contingentGames.gamename = games.gamename AND Dates >= Date()) GROUP BY ContingentGames.gameName,  sportName ORDER BY times"""
 
         cur = conn.cursor()
         queryTuple = (sportName, sportName)
