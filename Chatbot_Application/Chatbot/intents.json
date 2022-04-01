@@ -192,7 +192,7 @@
     "responses": ["I'm sorry. Perhaps I misunderstood. Could you rephrase your question"]
     },
     {"tag": "Question1",
-    "patterns": ["What is the Canada Game website?", "Is there a Canada Game webiste?", "How can I get to the Canada Game website?", "What is the link to the Canada Game website", "give me the link to canada summer games", "canada game website", "website", "what is the website to canada games", "what website", "what canada game website", "link"],
+    "patterns": ["What is the Canada Game website?", "Is there a Canada Game webiste?", "How can I get to the Canada Game website?", "What is the link to the Canada Game website", "give me the link to canada summer games", "canada game website", "website", "what is the website to canada games", "what website", "what canada game website", "link", "I want the website", "want website", "want link"],
     "responses": ["You can get to the Canada Game website by using this link: https://niagara2022games.ca/?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ym4JMO1oHPSmRfiX047qNfEf9FtK22b_Y8FrkJQxEMnOcZFlv3MbCEaAtQiEALw_wcB",
     "The link to the Canada Game website is https://niagara2022games.ca/?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ym4JMO1oHPSmRfiX047qNfEf9FtK22b_Y8FrkJQxEMnOcZFlv3MbCEaAtQiEALw_wcB"]
     },
@@ -229,7 +229,7 @@
     "responses": ["The Canada Games events will be taking place in various locations across the Niagara region, locations for specific sports can be found here https://niagara2022games.ca/sports/"]
     },
     {"tag": "Question10",
-    "patterns": ["Tell me about", "I want to know more about", "Give me information on", "know more about", "more about", "about", "information on", "what do you know about", "do you know", "you know", "know"],
+    "patterns": ["Tell me about", "I want to know more about", "Give me information on", "know more about", "more about", "about", "information on", "what do you know about", "do you know", "you know", "know", "info on"],
     "responses": ["TBD2"]
     }, 
     {"tag": "Question11",
@@ -245,7 +245,7 @@
     "responses": ["TBD5"]
     },
     {"tag": "Question14", 
-    "patterns": ["Where can I buy tickets?", "I want to buy a ticket?", "How can I purchase a ticket?", "How much is a ticket?", "How much are tickets?", "buy", "tickets", "bye tickets", "i want to bye tickets", "want buy tickets", "want bye tickets", "tickets bye"],
+    "patterns": ["Where can I buy tickets?", "I want to buy a ticket?", "How can I purchase a ticket?", "How much is a ticket?", "How much are tickets?", "buy", "tickets", "bye tickets", "i want to bye tickets", "want buy tickets", "want bye tickets", "tickets bye", "where can i get tickets", "get tickets"],
     "responses": ["Tickets and ticket information can be obtained here https://niagara2022games.ca/tickets/"]}
 
 ]}
