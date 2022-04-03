@@ -44,7 +44,11 @@ def getInfo(element):
 
     
 def view_name(request):
+<<<<<<< HEAD
     change_date_format()
+=======
+    get_players()
+>>>>>>> 185074aa463cc5eddb317427af2dee5191307dd2
     return HttpResponse("Done")
 
 
@@ -134,6 +138,7 @@ def getData():
                     SQLMethods.insert_games(conn, game)
                     SQLMethods.insert_locations(conn, location)
                     SQLMethods.insert_sportLocations(conn, sportLocation)
+<<<<<<< HEAD
 
 def fill_player_data():
     conn = SQLMethods.create_connection(database)
@@ -280,6 +285,8 @@ def change_time_format():
             
 
 
+=======
+>>>>>>> 185074aa463cc5eddb317427af2dee5191307dd2
                 
 
             

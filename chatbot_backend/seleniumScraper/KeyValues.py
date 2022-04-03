@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 
+=======
+from seleniumScraper.utils import Utilities
+from . import urls
+>>>>>>> 185074aa463cc5eddb317427af2dee5191307dd2
 class KeyValues:
     GameDay_Keys = [
         ['Saturday, August 6, 2022','9121fc9b-61b8-4be9-ba98-8f17822da322'],
@@ -88,7 +93,11 @@ class KeyValues:
         if(sport_key != ''):
             sport_key = '&Sport_GUID=' + sport_key
         if(contingent_key != ''):
+<<<<<<< HEAD
             contingent_key = '&Contingent_GUID=' + contingent_key
+=======
+            contingent_key = '&Contingent_GUID' + contingent_key
+>>>>>>> 185074aa463cc5eddb317427af2dee5191307dd2
         
 
         url = f'https://cg2022.gems.pro/Result/Calendar.aspx?SetLanguage=en-CA{gameday_key}{sport_key}{contingent_key}&Grouping=DS'
