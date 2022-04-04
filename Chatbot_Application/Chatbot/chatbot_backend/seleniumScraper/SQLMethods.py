@@ -34,7 +34,7 @@ class SQLMethods:
         cur = conn.cursor()
         cur.execute(sql, game)
         conn.commit()
-        print("commited Games")
+        #print("commited Games")
         return cur.lastrowid
 
     def insert_sports(conn, sport):
@@ -68,7 +68,7 @@ class SQLMethods:
         cur.execute(sql, location)
         conn.commit()
 
-        print("commited locations")
+        #print("commited locations")
         return cur.lastrowid
 
     def insert_sportLocations(conn, sportLocation):
@@ -85,7 +85,7 @@ class SQLMethods:
         cur.execute(sql, sportLocation)
         conn.commit()
 
-        print("commited sportLocations")
+        #print("commited sportLocations")
         return cur.lastrowid
 
     def insert_contingents(conn, contingent):
@@ -102,7 +102,7 @@ class SQLMethods:
         cur.execute(sql, contingent)
         conn.commit()
 
-        print("commited contingents")
+        #print("commited contingents")
         return cur.lastrowid
 
     def insert_ContingentGames(conn, gameName, contingent, sport):
@@ -122,7 +122,7 @@ class SQLMethods:
         queryTuple = (gameName, contingent, sport) 
         cur.execute(query, queryTuple)
         conn.commit()
-        print("commited ContingentGames")
+        #print("commited ContingentGames")
         return cur.lastrowid
 
     def insert_person_with_contingent_sportName_personName(conn, Contingent, sportName, personName, personURL ):
@@ -132,14 +132,14 @@ class SQLMethods:
         :param string personName: person name (string).
         :return: person id
         """
-        query = ''' INSERT INTO Persons(Contingent, sportName, personName, URL) VALUES (?,?,?,?)'''
+        query = ''' INSERT OR IGNORE INTO Persons(Contingent, sportName, personName, URL) VALUES (?,?,?,?)'''
 
         cur = conn.cursor()
         queryTuple = (Contingent[0], sportName, personName, personURL)
-        print(queryTuple)
+        #print(queryTuple)
         cur.execute(query, queryTuple)
         conn.commit()
-        print("commited Persons")
+        #print("commited Persons")
         return cur.lastrowid
 
     def sql_select_person_by_personID_all_columns(conn, personID):
@@ -612,7 +612,7 @@ class SQLMethods:
         :return: The earliest games
         :rtype: tuple (gameName, sportName, contingent, date, times)
         """
-        query = """ Select ContingentGames.gameName, sportName, contingent, dates, times from games, ContingentGames where sportName = ? AND contingentGames.gamename = games.gamename AND dates = (Select min(dates) from Games where sportName = ? AND contingentGames.gamename = games.gamename AND Dates >= Date()) GROUP BY ContingentGames.gameName,  sportName ORDER BY times"""
+        query = """ Select ContingentGames.gameName, sportName, contingent, dates, times from games, ContingentGames where sportName = ? AND contingentGames.gamename = games.gamename AND dates = (Select min(dates) from Games where sportName = ? AND contingentGames.gamename = games.gamename AND Dates >= Date())"""
 
         cur = conn.cursor()
         queryTuple = (sportName, sportName)

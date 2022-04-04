@@ -22,32 +22,11 @@ chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 #conn = SQLMethods.create_connection(database)
 
 
-def navigate(url):
-    
-        driver.get(url)
-        title = driver.title
-        print(driver.title)
-        return title
-
-def getInfo(element):
-    print("finding element ====")
-    number = 1
-    info = driver.find_element(*element).text
-    return info
-
-    
-def view_name(request):
-    get_contingent_games()
-    return HttpResponse("Done")
-
-
-def index(request):
-    return HttpResponse("Hello, world. You're at the poll index.")
-
-    print("test")
-
 def get_players():
     """
+    This method gets data an adds to the databse for the players from 2019 using the url: https://cg2019.gems.pro/Result/ShowPerson_List.aspx?
+    The scraper navigates to the website, filters by province and sport, then selects each player and gets the data from their page.
+    Data taken: Name, Contingent, Hometown, Type, Sport, Age, Height, Weight, Club, name of coach, position, goals, awards, other info.
     """
 
     driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
@@ -84,8 +63,40 @@ def get_players():
             SQLMethods.insert_person_with_contingent_sportName_personName(conn, contingent, sport, person, personURL)
       
 
-def getData():
+def update_players():
+    """
+    This method navigates through all players on the page and updates their information in the database.
+    """
 
+    driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
+    driver.implicitly_wait(2)
+    wait = WebDriverWait(driver, 5)
+
+    url = "https://cg2019.gems.pro/Result/ShowPerson_List.aspx?"
+    driver.get(url)
+
+    #Select contingent from SQL database
+    conn = SQLMethods.create_connection(database)
+    contingents = SQLMethods.sql_select_contingentName_from_contingents_table(conn)
+
+    #Loop through all players, get player sport if not in database add sport and then add name
+    for contingent in contingents:
+        contingent_dropdown_webelement = Utilities.getContingentDropdown(driver)
+        find_button = Utilities.getFindButton(driver)
+        contingent_dropdown_select = Utilities.select_dropdown(contingent_dropdown_webelement, driver)
+        Utilities.select_dropdown_item_by_visible_text(contingent_dropdown_select,contingent)
+        Utilities.click_element(find_button)
+        rows = Utilities.get_table_rows(driver)
+        row_count = len(rows) -1
+        row_range = range(1,row_count-1)
+
+
+
+def getData():
+    """
+    (Name should be refactored to get GameData) So this uses the scraper to get game data by using the arguments
+    in the URL to get games based on province, sport and time. The scraper gets data in only one order.
+    """
     driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
     driver.implicitly_wait(2)
     wait = WebDriverWait(driver, 5)
@@ -137,7 +148,67 @@ def getData():
                     SQLMethods.insert_locations(conn, location)
                     SQLMethods.insert_sportLocations(conn, sportLocation)
 
+def update_games():
+    """
+    This will update the games with the appropriate information e.g. Location, GameDate, GameTime
+    """
+
+    conn = SQLMethods.create_connection(database)
+
+    driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
+    driver.implicitly_wait(2)
+    wait = WebDriverWait(driver, 5)
+
+    dates = KeyValues.GameDay_Keys
+    sports = KeyValues.Sport_Keys
+    dateCount = range(len(dates))
+    sportCount = range(len(sports))
+
+    gameTimesXPath = Utilities.getGameTimes(driver)
+    gameEventsXPath = Utilities.getGameEvents(driver)
+    gameNamesXPath = Utilities.getGameNames(driver)
+    gameLocationsXPath = Utilities.getGameLocations(driver)
+    gameDateXPath = Utilities.getHeading(driver)
+    sportNameXPath = Utilities.getSubHeading(driver)
+
+    for i in dateCount:
+        for j in sportCount:
+            url = KeyValues.getURL(dates[i][1],sports[j][1])
+            driver.get(url)
+            try:
+                gameDate = driver.find_element(*gameDateXPath).text
+            except Exception as e:
+                continue
+            sportName = driver.find_element(*sportNameXPath).text
+            gameTimes = driver.find_elements(*gameTimesXPath)
+            gameEvents = driver.find_elements(*gameEventsXPath)
+            gameNames = driver.find_elements(*gameNamesXPath)
+            gameLocations = driver.find_elements(*gameLocationsXPath)
+
+            gameCount = range(len(gameTimes))
+
+ 
+            for m in gameCount:
+                gameTime = gameTimes[m].text
+                gameEvent = gameEvents[m].text
+                gameName = gameNames[m].text
+                gameLocation = gameLocations[m].text
+                with conn:
+                    SQLMethods.update_games(conn, gameLocation, gameDate, gameTime, gameName, sportName)
+                    game = (gameName,sportName,gameLocation,gameEvent,gameDate,gameTime)
+                    sport = (sportName,)
+                    location = (gameLocation,)
+                    sportLocation = (sportName, gameLocation)
+
+
+    
+
 def fill_player_data():
+
+    driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
+    driver.implicitly_wait(2)
+    wait = WebDriverWait(driver, 5)
+
     conn = SQLMethods.create_connection(database)
 
     persons = SQLMethods.sql_select_url_and_id_from_persons(conn)
@@ -217,6 +288,11 @@ def fill_player_data():
         )
 
 def get_contingent_games():
+
+    driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
+    driver.implicitly_wait(2)
+    wait = WebDriverWait(driver, 5)
+
     dates = KeyValues.GameDay_Keys
     sports = KeyValues.Sport_Keys
     contingents = KeyValues.Contingent_Keys

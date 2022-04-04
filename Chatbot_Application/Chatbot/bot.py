@@ -4,8 +4,15 @@ This code is used to run the trained chatbot
 
 # pip install tensorflow, nltk, numpy, scikit_learn, flask, flask-cors, Flask-APScheduler, selenium, webdriver-manager
 # python -m pip install Django
+import nltk
+nltk.download('punkt')
+from nltk.stem.lancaster import LancasterStemmer
+stemmer = LancasterStemmer()
+
 
 import json 
+import os
+import sys
 import numpy as np
 from scipy import rand
 from tensorflow import keras
@@ -21,7 +28,7 @@ from chatbot_backend.seleniumScraper import KeyValues, SQLMethods
 import sqlite3
 from sqlite3 import Error
 
-with open("intents.json") as file:
+with open('intents.json') as file:
     data = json.load(file)
 
 def chat(inp):
