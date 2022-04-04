@@ -37,6 +37,23 @@ class SQLMethods:
         #print("commited Games")
         return cur.lastrowid
 
+    def update_games(conn, Location, GameDate, GameTime, GameName, SportName):
+        """
+        update game in the games table.
+        :param Connect conn: Connected database file.
+        :param 
+        :return: bool
+        """
+
+        sql = ''' UPDATE games SET Location = ?, GameDate = ?, GameTime = ? WHERE GameName = ? & SportName = ? '''
+
+        cur= conn.cursor()
+        queryTuple = (Location, GameDate, GameTime, GameName, SportName)
+        cur.execute(sql, queryTuple)
+        conn.commit()
+        #print("Updated Games")
+        return True
+
     def insert_sports(conn, sport):
         """
         insert sport into the sports table

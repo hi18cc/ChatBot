@@ -16,10 +16,10 @@ def predict():
     return jsonify(message)
 
 def scheduledTask():
-    views.getData()
+    views.update_games()
 
 def scheduledTask2():
-    views.get_players()
+    views.update_players()
 
 if __name__ == '__main__':
     # runs task every hour

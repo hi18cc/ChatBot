@@ -209,7 +209,7 @@
     "responses": ["The Niagara Falls Tourism website provided here https://www.niagarafallstourism.com/niagara-region/ has information about what you can see and do in the region"]
     },
     {"tag": "Question5",
-    "patterns": ["Where can you stay in the Niagara region?", "I need a place to stay", "What are some hotels I can stay in?", "hotels", "motels", "inns", "inn", "bnbs", "Give me some lodging options?", "I need some accommodations I can stay in", "Give me some accommodations", "What are some accomodations I can stay in?", "lodging", "In the Niagara region, where can you stay?", "What hotels are available in the Niagara region?", "How do you find a place to stay in Niagara?", "Is Niagara region a good place to stay?"],
+    "patterns": ["Where can you stay in the Niagara region?", "I need a place to stay", "What are some hotels I can stay in?", "hotels", "motels", "inns", "inn", "bnbs", "Give me some lodging options?", "I need some accommodations I can stay in", "Give me some accommodations", "What are some accomodations I can stay in?", "lodging", "In the Niagara region, where can you stay?", "What hotels are available in the Niagara region?", "How do you find a place to stay in Niagara?", "Is Niagara region a good place to stay?", "Niagara region accommodations", "accommodations"],
     "responses": ["The Niagara Falls Tourism website provided here https://www.niagarafallstourism.com/niagara-region/ has information about accommodations in the Niagara Region "]
     },
     {"tag": "Question6",
@@ -221,7 +221,7 @@
     "responses": ["TBD1"]
     },
     {"tag": "Question8",
-    "patterns": ["What's new with the Canada Games?", "Has anything new happened in Canada Games?", "Anything new happen with Canada Games?", "Is there any breaking news with Canada Games?", "news", "breaking news", "new", "Updates on the Canada Games", "New developments in the Canada Games", "New developments", "The Canada Games have undergone several changes since last year", "Introducing the Canada Games", "anything new happening"],
+    "patterns": ["What's new with the Canada Games?", "Has anything new happened in Canada Games?", "Anything new happen with Canada Games?", "Is there any breaking news with Canada Games?", "news", "breaking news", "new", "Updates on the Canada Games", "New developments in the Canada Games", "New developments", "The Canada Games have undergone several changes since last year", "Introducing the Canada Games", "anything new happening", "the lastest from canada games"],
     "responses": ["The Canada Games news is available here https://niagara2022games.ca/news/"]
     }, 
     {"tag": "Question9",
@@ -229,7 +229,7 @@
     "responses": ["The Canada Games events will be taking place in various locations across the Niagara region, locations for specific sports can be found here https://niagara2022games.ca/sports/"]
     },
     {"tag": "Question10",
-    "patterns": ["Tell me about", "I want to know more about", "Give me information on", "know more about", "more about", "about", "information on", "what do you know about", "do you know", "you know", "know", "info on", "Please tell me about", "Let me know about", "Can you tell me about"],
+    "patterns": ["Tell me about", "I want to know more about", "Give me information on", "know more about", "more about", "about", "information on", "what do you know about", "do you know", "you know", "know", "info on", "Please tell me about", "Let me know about", "Can you tell me about", "who is"],
     "responses": ["TBD2"]
     }, 
     {"tag": "Question11",
