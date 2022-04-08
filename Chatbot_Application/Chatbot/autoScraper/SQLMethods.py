@@ -159,7 +159,6 @@ class SQLMethods:
         #print("commited Persons")
         return cur.lastrowid
 
-
     def sql_select_person_by_personID_all_columns(conn, personID):
         """
         Gets all columns from person, refer to the database to see what order the columns are presented in.
