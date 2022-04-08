@@ -134,9 +134,6 @@ def getData():
                     SQLMethods.insert_locations(conn, location)
                     SQLMethods.insert_sportLocations(conn, sportLocation)
 
-
-
-
 def fill_player_data():
     conn = SQLMethods.create_connection(database)
 

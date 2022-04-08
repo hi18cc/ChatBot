@@ -1,85 +1,97 @@
-# Install tensorflow, nltk, colorama, numpy, scikit_learn
+# things we need for NLP
+import nltk
+nltk.download('punkt')
+from nltk.stem.lancaster import LancasterStemmer
+stemmer = LancasterStemmer()
 
-"""
-This code is designed to train an ai to chat with the user 
-It uses the intents.json file for the training data 
-The intents file is structured by having a tag to define the topic, pattern to define what the user might ask and response, holding possible responses 
-"""
-
-import json 
-import numpy as np 
+# things we need for Tensorflow
+import numpy as np
+import tflearn
 import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Embedding, GlobalAveragePooling1D
-from tensorflow.keras.preprocessing.text import Tokenizer
-from tensorflow.keras.preprocessing.sequence import pad_sequences
-from sklearn.preprocessing import LabelEncoder
-import pickle
+import random
 
-with open('intents.json') as file:
-    data = json.load(file)
-    
-training_sentences = []  # holds all the training data 
-training_labels = []     # holds target label that correspond to each training data
-labels = []              # stores the tags from json file 
-responses = []           # stores the responses from the json file 
+# import our chat-bot intents file
+import json
+with open('intents.json') as json_data:
+    intents = json.load(json_data)
 
-# parses through the intents.json file and stores info to appropriate arrays
-for intent in data['intents']:
+
+
+words = []
+classes = []
+documents = []
+ignore_words = ['?']
+# loop through each sentence in our intents patterns
+for intent in intents['intents']:
     for pattern in intent['patterns']:
-        training_sentences.append(pattern)
-        training_labels.append(intent['tag'])
-    responses.append(intent['responses'])
-    
-    if intent['tag'] not in labels:
-        labels.append(intent['tag'])
-        
-num_classes = len(labels)
+        # tokenize each word in the sentence
+        w = nltk.word_tokenize(pattern)
+        # add to our words list
+        words.extend(w)
+        # add to documents in our corpus
+        documents.append((w, intent['tag']))
+        # add to our classes list
+        if intent['tag'] not in classes:
+            classes.append(intent['tag'])
 
-# convert target labels into model understandbale form 
-lbl_encoder = LabelEncoder()
-lbl_encoder.fit(training_labels)
-training_labels = lbl_encoder.transform(training_labels)
+# stem and lower each word and remove duplicates
+words = [stemmer.stem(w.lower()) for w in words if w not in ignore_words]
+words = sorted(list(set(words)))
 
-vocab_size = 1000 
-embedding_dim = 16
-max_len = 20
-oov_token = "<OOV>"
+# remove duplicates
+classes = sorted(list(set(classes)))
 
-# vecotrizes the text data
-# limits vocab size 
-# removes all punctuations 
-tokenizer = Tokenizer(num_words=vocab_size, oov_token=oov_token)
-tokenizer.fit_on_texts(training_sentences)
-word_index = tokenizer.word_index
-sequences = tokenizer.texts_to_sequences(training_sentences)
-padded_sequences = pad_sequences(sequences, truncating='post', maxlen=max_len) # makes text sequences into the same size
 
-# defines the Neural Network
-model = Sequential()
-model.add(Embedding(vocab_size, embedding_dim, input_length=max_len))
-model.add(GlobalAveragePooling1D())
-model.add(Dense(16, activation='relu'))
-model.add(Dense(16, activation='relu'))
-model.add(Dense(num_classes, activation='softmax'))
 
-model.compile(loss='sparse_categorical_crossentropy', 
-              optimizer='adam', metrics=['accuracy'])
+# create our training data
+training = []
+output = []
+# create an empty array for our output
+output_empty = [0] * len(classes)
 
-model.summary()
+# training set, bag of words for each sentence
+for doc in documents:
+    # initialize our bag of words
+    bag = []
+    # list of tokenized words for the pattern
+    pattern_words = doc[0]
+    # stem each word
+    pattern_words = [stemmer.stem(word.lower()) for word in pattern_words]
+    # create our bag of words array
+    for w in words:
+        bag.append(1) if w in pattern_words else bag.append(0)
 
-# starts the training 
-epochs = 1000
-history = model.fit(padded_sequences, np.array(training_labels), epochs=epochs)
+    # output is a '0' for each tag and '1' for current tag
+    output_row = list(output_empty)
+    output_row[classes.index(doc[1])] = 1
 
-# to save the trained model
-model.save("chat_model")
+    training.append([bag, output_row])
 
-# to save the fitted tokenizer
-with open('tokenizer.pickle', 'wb') as handle:
-    pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
-    
-# to save the fitted label encoder
-with open('label_encoder.pickle', 'wb') as ecn_file:
-    pickle.dump(lbl_encoder, ecn_file, protocol=pickle.HIGHEST_PROTOCOL)
+# shuffle our features and turn into np.array
+random.shuffle(training)
+training = np.array(training)
+
+# create train and test lists
+train_x = list(training[:,0])
+train_y = list(training[:,1])
+
+
+# reset underlying graph data
+tf.compat.v1.reset_default_graph()
+# Build neural network
+net = tflearn.input_data(shape=[None, len(train_x[0])])
+net = tflearn.fully_connected(net, 8)
+net = tflearn.fully_connected(net, 8)
+net = tflearn.fully_connected(net, len(train_y[0]), activation='softmax')
+net = tflearn.regression(net)
+
+# Define model and setup tensorboard
+model = tflearn.DNN(net, tensorboard_dir='tflearn_logs')
+# Start training (apply gradient descent algorithm)
+model.fit(train_x, train_y, n_epoch=1000, batch_size=8, show_metric=True)
+model.save('model.tflearn')
+
+
+# save all of our data structures
+import pickle
+pickle.dump( {'words':words, 'classes':classes, 'train_x':train_x, 'train_y':train_y}, open( "training_data", "wb" ) )
