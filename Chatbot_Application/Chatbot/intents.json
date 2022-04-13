@@ -193,28 +193,27 @@
     },
     {"tag": "Question1",
     "patterns": ["What is the Canada Game website?", "Is there a Canada Game webiste?", "How can I get to the Canada Game website?", "What is the link to the Canada Game website", "give me the link to canada summer games", "canada game website", "website", "what is the website to canada games", "what website", "what canada game website", "link", "I want the website", "want website", "want link", "Where can I find Canadian games online", "Where can I find games from Canada online?"],
-    "responses": ["You can get to the Canada Game website by using this link: https://niagara2022games.ca/?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ym4JMO1oHPSmRfiX047qNfEf9FtK22b_Y8FrkJQxEMnOcZFlv3MbCEaAtQiEALw_wcB",
-    "The link to the Canada Game website is https://niagara2022games.ca/?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ym4JMO1oHPSmRfiX047qNfEf9FtK22b_Y8FrkJQxEMnOcZFlv3MbCEaAtQiEALw_wcB"]
+    "responses": ["You can get to the Canada Game website by using this <a href ='https://niagara2022games.ca/?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ym4JMO1oHPSmRfiX047qNfEf9FtK22b_Y8FrkJQxEMnOcZFlv3MbCEaAtQiEALw_wcB'>link</a>"]
     },
     {"tag": "Question2",
-    "patterns": ["What transportation options are available?", "Are there transportation options avaliable?", "Give me some transportation options", "What modes of transportation could I use", "What are some transporation options?", "Give me transportation options", "What transportation options are there for Canada Summer Games", "I would like transporation options", "transporation options", "transportation", "cars", "vehicles", "trains", "How can I get around?", "How can you get around?", "Is there a range of transportation options?", "Does canada summer games provide transport"],
-    "responses": ["Niagara Region Transit information is available here: https://www.niagararegion.ca/transit/"]
+    "patterns": ["What transportation options are available?", "Are there transportation options avaliable?", "Give me some transportation options", "What modes of transportation could I use", "What are some transporation options?", "Give me transportation options", "What transportation options are there for Canada Summer Games", "I would like transporation options", "transporation options", "transportation", "cars", "vehicles", "trains", "How can I get around?", "How can you get around?", "Is there a range of transportation options?", "Does canada summer games provide transport", "transit information", "transit", "transit info"],
+    "responses": ["Niagara Region Transit information is available <a href ='https://www.niagararegion.ca/transit/'>here</a>"]
     },
     {"tag": "Question3",
     "patterns": ["Is there an app for the buses?", "Where can I find the app for buses?", "Give me the app for buses", "Is there an iOS app for buses?", "Is there an android app for buses?", "Are there buses to Canada Games?", "app for buses", "buesses", "bus", "Buses have apps, do they not?", "Are there any apps for the buses?", "Has an app been developed for the buses?", "The buses have an app, right?"],
-    "responses": ["The Niagara Reigon Transit app for Android is avaiable here https://play.google.com/store/apps/details?id=com.thetransitapp.droid and a version for iOS is available here https://apps.apple.com/ca/app/transit-bus-train-times/id498151501"]
+    "responses": ["The Niagara Reigon Transit app for Android is avaiable <a href ='https://play.google.com/store/apps/details?id=com.thetransitapp.droid'>here</a> and a version for iOS is available <a = href ='https://apps.apple.com/ca/app/transit-bus-train-times/id498151501'>here</a>"]
     },
     {"tag": "Question4",
     "patterns": ["What can you do in the Niagara region?", "Is there anything to do in the Niagara region?", "What are some attractions of the Niagra Region?", "Is there anything to do in the Niagara Region?","niagara", "Niagara offers a variety of things to do.", "Can you find fun things to do in Niagara?", "In Niagara, what are your options?", "The Niagara region has a number of things to offer.", "In Niagara, what is there to do?", "How can you enjoy Niagara?"],
-    "responses": ["The Niagara Falls Tourism website provided here https://www.niagarafallstourism.com/niagara-region/ has information about what you can see and do in the region"]
+    "responses": ["The Niagara Falls Tourism website provided <a href = 'https://www.niagarafallstourism.com/niagara-region/'>here</a> has information about what you can see and do in the region"]
     },
     {"tag": "Question5",
     "patterns": ["Where can you stay in the Niagara region?", "I need a place to stay", "What are some hotels I can stay in?", "hotels", "motels", "inns", "inn", "bnbs", "Give me some lodging options?", "I need some accommodations I can stay in", "Give me some accommodations", "What are some accomodations I can stay in?", "lodging", "In the Niagara region, where can you stay?", "What hotels are available in the Niagara region?", "How do you find a place to stay in Niagara?", "Is Niagara region a good place to stay?", "Niagara region accommodations", "accommodations"],
-    "responses": ["The Niagara Falls Tourism website provided here https://www.niagarafallstourism.com/niagara-region/ has information about accommodations in the Niagara Region "]
+    "responses": ["The Niagara Falls Tourism website provided <a href = 'https://www.niagarafallstourism.com/niagara-region/'>here</a> has information about accommodations in the Niagara Region "]
     },
     {"tag": "Question6",
     "patterns": ["What are the COVID-19 restrictions like in Niagara?", "Are there COVID-19 restrictions in Niagara", "How strict are the COVID-19 restrictions in the Niagara Region?", "covid-19","restrictions", "guidelines", "masks", "do i need to wear a mask", "wear mask", "vaccine", "booster shot", "vaccine passport", "do i need a vaccine passport", "do i need to be vaccinated", "vaccinated", "sick", "flu", "cold", "In Niagara, what restrictions apply to COVID-19?", "Is COVID-19 restricted in Niagara?", "In Niagara, what is the COVID-19 restriction?", "The COVID-19 regulations in Niagara are what?"],
-    "responses": ["The Niagara region COVID-19 information can be found here https://www.niagararegion.ca/health/covid-19/default.aspx?topic=1"]
+    "responses": ["The Niagara region COVID-19 information can be found <a href = 'https://www.niagararegion.ca/health/covid-19/default.aspx?topic=1'>here</a>"]
     }, 
     {"tag": "Question7",
     "patterns": ["How long until Canada Games starts", "When does Canada Games begin", "Has Canada Games already started?", "What's the starting time for Canada Games", "When does Canada Games start", "When is Canada Games starting", "start", "begin", "commence", "when", "When are the Canada Games?", "The start of Canada Games is how long away", "How long until the Canada Games begin?", "In how long will the Canada Games begin?", "How long before the Canada Games start?"],
@@ -222,7 +221,7 @@
     },
     {"tag": "Question8",
     "patterns": ["What's new with the Canada Games?", "Has anything new happened in Canada Games?", "Anything new happen with Canada Games?", "Is there any breaking news with Canada Games?", "news", "breaking news", "new", "Updates on the Canada Games", "New developments in the Canada Games", "New developments", "The Canada Games have undergone several changes since last year", "Introducing the Canada Games", "anything new happening", "the lastest from canada games"],
-    "responses": ["The Canada Games news is available here https://niagara2022games.ca/news/"]
+    "responses": ["The Canada Games news is available <a href = 'https://niagara2022games.ca/news/'>here</a>"]
     }, 
     {"tag": "Question9",
     "patterns": ["Where is the Canada Games", "where is the next game", "Where is Canada Games being hosted", "What are the directions to Canada Games?", "Give me directions to Canada games", "How do I get to Canada games?", "get to canada summer games","where", "directions", "directions to", "The Canada Games are held in Canada", "The Canada Games will take place in Vancouver", "How can I find the Canada Games", "What is the venue for the Canada Games?"],
@@ -246,6 +245,6 @@
     },
     {"tag": "Question14", 
     "patterns": ["Where can I buy tickets?", "I want to buy a ticket?", "How can I purchase a ticket?", "How much is a ticket?", "How much are tickets?", "buy", "tickets", "bye tickets", "i want to bye tickets", "want buy tickets", "want bye tickets", "tickets bye", "where can i get tickets", "get tickets", "Ticket purchasing information"],
-    "responses": ["Tickets and ticket information can be obtained here https://niagara2022games.ca/tickets/"]}
+    "responses": ["Tickets and ticket information can be obtained <a href = 'https://niagara2022games.ca/tickets/'>here</a>"]}
 
 ]}
