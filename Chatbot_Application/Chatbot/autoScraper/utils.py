@@ -410,6 +410,59 @@ class Utilities:
 
         return url
 
+
+    def get_gold_medal_count_for_contingent(contingentAbbrev):
+        """
+        Gets the gold medal element from the webpage.
+
+        :param String contingentAbbrev: This is the abbreviation for the contingent.
+
+        :return: element
+        :rtype: string
+        """
+
+        cell = CanadaGamesMedalPage.gold_medal_count_by_contingent(contingentAbbrev)
+        return cell
+
+    def get_silver_medal_count_for_contingent(contingentAbbrev):
+        """
+        Gets the silver medal element from the webpage.
+
+        :param String contingentAbbrev: This is the abbreviation for the contingent.
+
+        :return: element
+        :rtype: string
+        """
+
+        cell = CanadaGamesMedalPage.silver_medal_count_by_contingent(contingentAbbrev)
+        return cell
+
+    def get_bronze_medal_count_for_contingent(contingentAbbrev):
+        """
+        Gets the bronze medal element from the webpage.
+
+        :param String contingentAbbrev: This is the abbreviation for the contingent.
+
+        :return: element
+        :rtype: string
+        """
+
+        cell = CanadaGamesMedalPage.bronze_medal_count_by_contingent(contingentAbbrev)
+        return cell
+
+    def get_total_medal_count_for_contingent(contingentAbbrev):
+        """
+        Gets the total medal element from the webpage.
+
+        :param String contingentAbbrev: This is the abbreviation for the contingent.
+
+        :return: element
+        :rtype: string
+        """
+
+        cell = CanadaGamesMedalPage.total_medal_count_by_contingent(contingentAbbrev)
+        return cell
+
     
 
 

@@ -82,6 +82,24 @@ class KeyValues:
         ['Yukon','1c709ed0-94c5-4ad3-907d-9f8d45a3a61d']
         ]
 
+    Contingent_Acronym = [
+        ['AB', 'Alberta'],
+        ['BC', 'British Columbia'],
+        ['NS', 'Nova Scotia'],
+        ['NL', 'Newfoundland and Labrador'],
+        ['PE', 'Prince Edward Island'],
+        ['NB', 'New Brunswick'],
+        ['QC', 'Quebec'],
+        ['ON', 'Ontario'],
+        ['MB', 'Manitoba'],
+        ['SK', 'Saskatchewan'],
+        ['YT', 'Yukon'],
+        ['NT', 'Northwest Territories'],
+        ['NU', 'Nunavut']
+
+
+    ]
+
     def getURL(gameday_key = '', sport_key = '', contingent_key = '' ):
         if(gameday_key != ''):
             gameday_key = '&GameDay_GUID=' + gameday_key

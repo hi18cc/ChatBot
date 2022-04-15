@@ -249,13 +249,9 @@ def get_contingent_games():
                     gameName = gameNames[m].text
                     with conn:
                         SQLMethods.insert_ContingentGames(conn, gameName,  contingents[h][0], sportName)
-
-
-                
-
             
 
-                
+    
 
                 
 

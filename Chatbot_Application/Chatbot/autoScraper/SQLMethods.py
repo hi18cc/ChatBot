@@ -748,6 +748,15 @@ class SQLMethods:
 
         return records 
 
+    def sql_update_medals(conn, goldMedals, silverMedals, bronzeMedals, totalMedals, conAbbrev):
+        """
+        Updates the medal count for the contingent provided.
+
+        :param
+        """
+
+
+        query = "update
 
     
 

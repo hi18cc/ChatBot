@@ -1,3 +1,4 @@
+from Chatbot_Application.Chatbot.autoScraper.PageObjects.CanadaGamesMedalsPage import CanadaGamesMedalPage
 from seleniumScraper.PageObjects.CanadaGamePersonPage import CanadaGamesPersonPage
 from seleniumScraper.PageObjects.NiagaraSchedulePage import NiagaraSchedulePage
 from seleniumScraper.PageObjects.CanadaGamesPlayersPage import CanadaGamesPlayerPage

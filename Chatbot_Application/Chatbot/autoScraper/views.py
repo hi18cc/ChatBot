@@ -328,3 +328,25 @@ def get_contingent_games():
                     gameName = gameNames[m].text
                     with conn:
                         SQLMethods.insert_ContingentGames(conn, gameName,  contingents[h][0], sportName)
+
+
+
+def update_medals():
+    """
+    Updates the medal count in the SQL
+    """       
+
+    driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
+    driver.implicitly_wait(2)
+    wait = WebDriverWait(driver, 5)
+
+    for x in KeyValues.Contingent_Acronym
+        cAbbrev = x[0]
+        gold = utils.get_gold_medal_count_for_contingent(cAbbrev)
+        silver = utils.get_silver_medal_count_for_contingent(cAbbrev)
+        bronze = utils.get_bronze_medal_count_for_contingent(cAbbrev)
+        total = utils.get_total_medal_count_for_contingent(cAbbrev)
+
+        SQLMethods.update()
+
+
