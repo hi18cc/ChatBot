@@ -96,8 +96,6 @@ class KeyValues:
         ['YT', 'Yukon'],
         ['NT', 'Northwest Territories'],
         ['NU', 'Nunavut']
-
-
     ]
 
     def getURL(gameday_key = '', sport_key = '', contingent_key = '' ):

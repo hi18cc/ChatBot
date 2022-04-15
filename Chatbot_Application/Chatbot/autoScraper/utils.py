@@ -1,7 +1,7 @@
 from autoScraper.PageObjects.CanadaGamePersonPage import CanadaGamesPersonPage
 from autoScraper.PageObjects.NiagaraSchedulePage import NiagaraSchedulePage
 from autoScraper.PageObjects.CanadaGamesPlayersPage import CanadaGamesPlayerPage
-from autoScraper.PageObjects.CanadaGamePersonPage import CanadaGamesPersonPage
+from autoScraper.PageObjects.CanadaGamesMedalsPage import CanadaGamesMedalPage
 from selenium.webdriver.support.ui import Select
 
 
@@ -411,7 +411,7 @@ class Utilities:
         return url
 
 
-    def get_gold_medal_count_for_contingent(contingentAbbrev):
+    def get_gold_medal_count_for_contingent(driver, contingentAbbrev):
         """
         Gets the gold medal element from the webpage.
 
@@ -421,10 +421,11 @@ class Utilities:
         :rtype: string
         """
 
-        cell = CanadaGamesMedalPage.gold_medal_count_by_contingent(contingentAbbrev)
-        return cell
+        element = CanadaGamesMedalPage.gold_medal_count_by_contingent(contingentAbbrev)
+        element = driver.find_element(*element)
+        return element
 
-    def get_silver_medal_count_for_contingent(contingentAbbrev):
+    def get_silver_medal_count_for_contingent(driver, contingentAbbrev):
         """
         Gets the silver medal element from the webpage.
 
@@ -434,10 +435,11 @@ class Utilities:
         :rtype: string
         """
 
-        cell = CanadaGamesMedalPage.silver_medal_count_by_contingent(contingentAbbrev)
-        return cell
+        element = CanadaGamesMedalPage.silver_medal_count_by_contingent(contingentAbbrev)
+        element = driver.find_element(*element)
+        return element
 
-    def get_bronze_medal_count_for_contingent(contingentAbbrev):
+    def get_bronze_medal_count_for_contingent(driver, contingentAbbrev):
         """
         Gets the bronze medal element from the webpage.
 
@@ -447,10 +449,11 @@ class Utilities:
         :rtype: string
         """
 
-        cell = CanadaGamesMedalPage.bronze_medal_count_by_contingent(contingentAbbrev)
-        return cell
+        element = CanadaGamesMedalPage.bronze_medal_count_by_contingent(contingentAbbrev)
+        element = driver.find_element(*element)
+        return element
 
-    def get_total_medal_count_for_contingent(contingentAbbrev):
+    def get_total_medal_count_for_contingent(driver, contingentAbbrev):
         """
         Gets the total medal element from the webpage.
 
@@ -460,8 +463,9 @@ class Utilities:
         :rtype: string
         """
 
-        cell = CanadaGamesMedalPage.total_medal_count_by_contingent(contingentAbbrev)
-        return cell
+        element = CanadaGamesMedalPage.total_medal_count_by_contingent(contingentAbbrev)
+        element = driver.find_element(*element)
+        return element
 
     
 

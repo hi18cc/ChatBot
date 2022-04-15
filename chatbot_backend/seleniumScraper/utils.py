@@ -1,5 +1,6 @@
 from seleniumScraper.PageObjects.NiagaraSchedulePage import NiagaraSchedulePage
 from seleniumScraper.PageObjects.CanadaGamesPlayersPage import CanadaGamesPlayerPage
+from seleniumScraper.PageObjects.CanadaGamesMedalsPage import CanadaGamesMedalPage
 from selenium.webdriver.support.ui import Select
 
 
@@ -183,6 +184,62 @@ class Utilities:
         url = webElement.get_attribute('href')
 
         return url
+
+    def get_gold_medal_count_for_contingent(driver, contingentAbbrev):
+        """
+        Gets the gold medal element from the webpage.
+
+        :param String contingentAbbrev: This is the abbreviation for the contingent.
+
+        :return: element
+        :rtype: string
+        """
+
+        element = CanadaGamesMedalPage.gold_medal_count_by_contingent(contingentAbbrev)
+        element = driver.find_element(*element)
+        return element
+
+    def get_silver_medal_count_for_contingent(driver, contingentAbbrev):
+        """
+        Gets the silver medal element from the webpage.
+
+        :param String contingentAbbrev: This is the abbreviation for the contingent.
+
+        :return: element
+        :rtype: string
+        """
+
+        element = CanadaGamesMedalPage.silver_medal_count_by_contingent(contingentAbbrev)
+        element = driver.find_element(*element)
+        return element
+
+    def get_bronze_medal_count_for_contingent(driver, contingentAbbrev):
+        """
+        Gets the bronze medal element from the webpage.
+
+        :param String contingentAbbrev: This is the abbreviation for the contingent.
+
+        :return: element
+        :rtype: string
+        """
+
+        element = CanadaGamesMedalPage.bronze_medal_count_by_contingent(contingentAbbrev)
+        element = driver.find_element(*element)
+        return element
+
+    def get_total_medal_count_for_contingent(driver, contingentAbbrev):
+        """
+        Gets the total medal element from the webpage.
+
+        :param String contingentAbbrev: This is the abbreviation for the contingent.
+
+        :return: element
+        :rtype: string
+        """
+
+        element = CanadaGamesMedalPage.total_medal_count_by_contingent(contingentAbbrev)
+        element = driver.find_element(*element)
+        return element
 
 
 

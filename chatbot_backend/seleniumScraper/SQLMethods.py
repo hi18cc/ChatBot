@@ -376,6 +376,25 @@ class SQLMethods:
         cur.close()
         return bool(records)
 
+    def sql_update_medals(conn, goldMedals, silverMedals, bronzeMedals, totalMedals, conAbbrev):
+        """
+        Updates the medal count for the contingent provided.
+
+        :param
+        """
+
+
+        query = """ update Contingents SET goldMedals = ?, silverMedals = ?, bronzeMedals = ?, totalMedals = ?  where ContingentAbbreviation = ? """
+        queryTuple = (goldMedals, silverMedals, bronzeMedals, totalMedals, conAbbrev)
+
+        cur = conn.cursor()
+        cur.execute(query, queryTuple)
+        records = cur.fetchall()
+        conn.commit()
+        cur.close()
+
+        return records
+
 
 
 

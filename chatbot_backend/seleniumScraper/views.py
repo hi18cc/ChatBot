@@ -44,7 +44,7 @@ def getInfo(element):
 
     
 def view_name(request):
-    get_players()
+    update_medals()
     return HttpResponse("Done")
 
 
@@ -134,6 +134,29 @@ def getData():
                     SQLMethods.insert_games(conn, game)
                     SQLMethods.insert_locations(conn, location)
                     SQLMethods.insert_sportLocations(conn, sportLocation)
+    
+def update_medals():
+    """
+    Updates the medal count in the SQL
+    """       
+
+    url = "https://cg2019.gems.pro/Result/MedalList.aspx?SetLanguage=en-CA"
+    driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
+    driver.implicitly_wait(2)
+    wait = WebDriverWait(driver, 5)
+    driver.get(url)
+
+    conn = SQLMethods.create_connection(database)
+
+    for x in KeyValues.Contingent_Acronym:
+        cAbbrev = x[0]
+        gold = Utilities.get_gold_medal_count_for_contingent(driver, cAbbrev).text
+        print(gold)
+        silver = Utilities.get_silver_medal_count_for_contingent(driver, cAbbrev).text
+        bronze = Utilities.get_bronze_medal_count_for_contingent(driver, cAbbrev).text
+        total = Utilities.get_total_medal_count_for_contingent(driver, cAbbrev).text
+
+        SQLMethods.sql_update_medals(conn, gold, silver, bronze, total, cAbbrev)
                 
 
             
