@@ -329,7 +329,6 @@ def get_contingent_games():
                     with conn:
                         SQLMethods.insert_ContingentGames(conn, gameName,  contingents[h][0], sportName)
 
-
 def update_medals():
     """
     Updates the medal count in the SQL
