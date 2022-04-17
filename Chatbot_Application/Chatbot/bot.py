@@ -208,7 +208,7 @@ def chat(sentence):
                                         max3 = len(res)
                                         for k in range(0,max3):
                                             date_time = datetime.strptime(res[k][4], '%H:%M');
-                                            ans = ans + res[k][0] + " at " + res[k][3] + " on " + date_time.strftime('%I:%M %p') + " " + res[k][5] + ".<br> "
+                                            ans = ans + res[k][0] + " at " + res[k][3] + " on " + date_time.strftime('%I:%M %p') + " in " + res[k][5] + ".<br> "
                                         connection.close()
                                         return ans
 
@@ -222,7 +222,7 @@ def chat(sentence):
                                 ans = "Here are the upcoming games for " + KeyValues.KeyValues.Contingent_Keys[i][0] + "<br>"
                                 for k in range(0, max3):
                                     date_time = datetime.strptime(res[k][4], '%H:%M');
-                                    ans = ans + res[k][0] + " " + res[k][1] + " on " + res[k][3] + " at " + date_time.strftime('%I:%M %p') + " " + res[k][5] + ".<br> "
+                                    ans = ans + res[k][0] + " " + res[k][1] + " on " + res[k][3] + " at " + date_time.strftime('%I:%M %p') + " in " + res[k][5] + ".<br> "
                                 connection.close()
                                 return ans
 
