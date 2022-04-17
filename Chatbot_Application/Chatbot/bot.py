@@ -24,6 +24,7 @@ import tflearn
 import tensorflow as tf
 import random
 
+from datetime import datetime
 
 data = pickle.load( open( "training_data", "rb" ) )
 words = data['words']
@@ -206,7 +207,8 @@ def chat(sentence):
                                             KeyValues.KeyValues.Sport_Keys[j][0])
                                         max3 = len(res)
                                         for k in range(0,max3):
-                                            ans = ans + res[k][0] + " at " + res[k][3] + " on " + res[k][4] + ".<br> "
+                                            date_time = datetime.strptime(res[k][4], '%H:%M');
+                                            ans = ans + res[k][0] + " at " + res[k][3] + " on " + date_time.strftime('%I:%M %p') + " " + res[k][5] + ".<br> "
                                         connection.close()
                                         return ans
 
@@ -219,7 +221,8 @@ def chat(sentence):
                                 max3 = len(res)
                                 ans = "Here are the upcoming games for " + KeyValues.KeyValues.Contingent_Keys[i][0] + "<br>"
                                 for k in range(0, max3):
-                                    ans = ans + res[k][0] + " " + res[k][1] + " on " + res[k][3] + " at " + res[k][4] + ".<br> "
+                                    date_time = datetime.strptime(res[k][4], '%H:%M');
+                                    ans = ans + res[k][0] + " " + res[k][1] + " on " + res[k][3] + " at " + date_time.strftime('%I:%M %p') + " " + res[k][5] + ".<br> "
                                 connection.close()
                                 return ans
 
@@ -230,7 +233,9 @@ def chat(sentence):
                                 res = SQLMethods.SQLMethods.sql_select_next_date_by_sportName(connection, KeyValues.KeyValues.Sport_Keys[i][0])
                                 max3 = len(res)
                                 for k in range(0,max3):
-                                    ans = ans + res[k][0] + " " + res[k][2] + " on " + res[k][3] + " at " + res[k][4] + ".<br> "
+                                    date_time = datetime.strptime(res[k][4], '%H:%M');
+                                    #print(date_time)
+                                    ans = ans + res[k][0] + " " + res[k][2] + " on " + res[k][3] + " at " + date_time.strftime('%I:%M %p') + " in " + res[k][5] + ".<br> "
                                 connection.close()
                                 return ans
                         
