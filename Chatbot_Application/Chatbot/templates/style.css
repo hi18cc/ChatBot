@@ -29,8 +29,8 @@ body {
     transition: all .5s ease-in-out;
     color: white;
     background: #f9f9f9;
-    height: 900px;
-    width: 700px;
+    height: 85vh;
+    width: 100%;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
 }
