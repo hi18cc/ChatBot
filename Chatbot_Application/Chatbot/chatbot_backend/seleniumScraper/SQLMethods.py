@@ -612,7 +612,7 @@ class SQLMethods:
         :return: The earliest games
         :rtype: tuple (gameName, sportName, contingent, date, times)
         """
-        query = """ Select ContingentGames.gameName, sportName, contingent, dates, times from games, ContingentGames where sportName = ? AND contingentGames.gamename = games.gamename AND dates = (Select min(dates) from Games where sportName = ? AND contingentGames.gamename = games.gamename AND Dates >= Date()) GROUP BY ContingentGames.gameName,  sportName ORDER BY times"""
+        query = """ Select ContingentGames.gameName, sportName, contingent, dates, times, location  from games, ContingentGames where sportName = ? AND contingentGames.gamename = games.gamename AND dates = (Select min(dates) from Games where sportName = ? AND contingentGames.gamename = games.gamename AND Dates >= Date()) GROUP BY ContingentGames.gameName,  sportName ORDER BY times"""
 
         cur = conn.cursor()
         queryTuple = (sportName, sportName)
@@ -632,7 +632,7 @@ class SQLMethods:
         :rtype: tuple(gameName, sportName, contingent, date, times)
         """
 
-        query = """ Select ContingentGames.gameName, sportName, contingent, dates, times from games, ContingentGames where Contingent = ? AND contingentGames.gamename = games.gamename AND dates = (Select min(dates) from Games, contingentgames where Contingent = ? AND contingentGames.gamename = games.gamename AND Dates >= Date())  """
+        query = """ Select ContingentGames.gameName, sportName, contingent, dates, times, location from games, ContingentGames where Contingent = ? AND contingentGames.gamename = games.gamename AND dates = (Select min(dates) from Games, contingentgames where Contingent = ? AND contingentGames.gamename = games.gamename AND Dates >= Date())  """
         
         cur = conn.cursor()
         queryTuple = (contingent, contingent)
@@ -654,7 +654,7 @@ class SQLMethods:
         :return: next game with 
         :rtype: tuple
         """
-        query = """ select sportName, gameName, dates, Times from games where sportName = ? AND dates = ? AND Times = (Select min(Times) from Games where sportName = ? AND dates = ?)"""
+        query = """ select sportName, gameName, dates, Times from games, location where sportName = ? AND dates = ? AND Times = (Select min(Times) from Games where sportName = ? AND dates = ?)"""
 
         cur = conn.cursor()
         queryTuple = (sportName, date, sportName, date)
@@ -674,7 +674,7 @@ class SQLMethods:
         :param string contingent: 
         """
 
-        query = """ select sportName, games.gameName, dates, contingent, Times from games, ContingentGames where contingent = ? AND contingentGames.GameName = Games.GameName AND dates = ? AND Times = (Select min(Times) from Games contingent = ? AND contingentGames.GameName = Games.GameName AND dates = ?)"""
+        query = """ select sportName, games.gameName, dates, contingent, Times, location from games, ContingentGames where contingent = ? AND contingentGames.GameName = Games.GameName AND dates = ? AND Times = (Select min(Times) from Games contingent = ? AND contingentGames.GameName = Games.GameName AND dates = ?)"""
 
         cur = conn.cursor()
         queryTuple = (contingent, date, contingent, date)
@@ -697,7 +697,7 @@ class SQLMethods:
         :rtype: tuple
         """
 
-        query = """ select sportName, Games.gameName, dates, contingent, Times from games, ContingentGames where contingent = ? AND contingentGames.GameName = Games.GameName AND dates = ? AND sportName = ? AND Times = (Select min(Times) from Games WHERE contingent = ? AND contingentGames.GameName = Games.GameName AND dates = ? AND sportName = ?) """
+        query = """ select sportName, Games.gameName, dates, contingent, Times, location from games, ContingentGames where contingent = ? AND contingentGames.GameName = Games.GameName AND dates = ? AND sportName = ? AND Times = (Select min(Times) from Games WHERE contingent = ? AND contingentGames.GameName = Games.GameName AND dates = ? AND sportName = ?) """
 
         cur = conn.cursor(contingent, date, sport)
         queryTuple = (query, queryTuple)
@@ -719,7 +719,7 @@ class SQLMethods:
         :rtype: tuple(gameName, sportName, contingent, date, times)
         """
 
-        query = """ Select ContingentGames.gameName, sportName, contingent, dates, times from games, ContingentGames where Contingent = ? AND sportName = ? AND contingentGames.gamename = games.gamename AND dates = (Select min(dates) from Games, contingentgames where Contingent = ? AND contingentGames.gamename = games.gamename AND sportName = ? AND Dates >= Date())"""
+        query = """ Select ContingentGames.gameName, sportName, contingent, dates, times, location from games, ContingentGames where Contingent = ? AND sportName = ? AND contingentGames.gamename = games.gamename AND dates = (Select min(dates) from Games, contingentgames where Contingent = ? AND contingentGames.gamename = games.gamename AND sportName = ? AND Dates >= Date())"""
                      
         
         cur = conn.cursor()
