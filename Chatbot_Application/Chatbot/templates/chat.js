@@ -96,7 +96,7 @@ class chat {
         let html = '';
         this.messages.slice().reverse().forEach(function(item, index) {
             if (item.name === "Bot") {
-                const options = { defaultProtocol: 'https' };
+                const options = { defaultProtocol: 'https', target: "_blank" };
                 html += '<div class="messages visitor">' + linkifyHtml(item.message, options) + '</div>'
             }
             
