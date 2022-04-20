@@ -55,6 +55,11 @@ body {
     background: #ff0005;
 }
 
+.help {
+    color: white;
+    background-color: #004f71;
+}
+
 .back {
     color: white;
     background-color: #004f71;
