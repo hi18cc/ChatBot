@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="textbookstyle.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <meta charset="UTF-8">
@@ -16,7 +16,8 @@
                 <div class="container-fluid">
                     <div class="row">
                       <div class="col">
-                          <button class="back"><div class="bi bi-arrow-return-left"></div></button>
+                          <a href="home.html" class="back"><div class="bi bi-arrow-return-left"></div></a>
+                          
                       </div>
                       <div class="col-7">
                     <h4>Chat Bot</h4>
@@ -24,6 +25,7 @@
                       <div class="col">
                         <button class="history"><i class="bi bi-chat-left-text"></i></button>
                       </div>
+                      <a href="home.html" class="help"><div class="bi bi-info-lg"></div></a> 
                     </div>
                 </div>
             </div>
@@ -31,13 +33,12 @@
             <div class="input">
                 <button class="clear">x</button>
                 <input type="text" id="msg" placeholder="Write a message...">
-                <button class="send">Send</button>
+                <button class="send">Send</button>    
             </div>
+            
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/linkifyjs@3.0.5/dist/linkify.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/linkify-html@3.0.5/dist/linkify-html.min.js"></script>
 <script src="./chat.js"></script>
 </body>
 </html>
