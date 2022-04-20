@@ -109,9 +109,11 @@ def chat(sentence):
                             name = temp[i].capitalize() + " " + temp[i+1].capitalize()
                             res = SQLMethods.SQLMethods.sql_select_person_by_person_name_all_columns(connection, name)
                             if res:
-                                for ele in res[0] :
-                                    if str(ele) != "NULL":
-                                        ans = ans + str(ele) + " "
+                                for r in res:
+                                    for ele in r :
+                                        if str(ele) != "None" and str(ele) != "NULL":
+                                            ans = ans + str(ele) + " "
+                                    ans = ans + "<br/>"
                                 connection.close()
                                 return ans
                         connection.close()
