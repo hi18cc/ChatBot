@@ -23,11 +23,6 @@ class chat {
     clear() {
         document.getElementById ("msg").value = "";
     }
-
-    help()
-    {
-        window.open("index.html", "_self");
-    }
     
     history() {
         let html = "Niagara Games 2022 Chatbot Conversation History \n\n";
@@ -96,7 +91,8 @@ class chat {
         let html = '';
         this.messages.slice().reverse().forEach(function(item, index) {
             if (item.name === "Bot") {
-                html += '<div class="messages visitor">' + item.message + '</div>'
+				const options = { defaultProtocol: 'https' };
+                html += '<div class="messages visitor">' + linkifyHtml(item.message, options) + '</div>'
             }
             
             else {
