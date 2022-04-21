@@ -215,48 +215,73 @@ def fill_player_data():
         except Exception as e:
             other_info = 'NULL'
         
-        print("ID is: " + str(person[0]))
+        #finally we update using SQL
         SQLMethods.sql_update_hometown_type_age_hieght_weight_club_coach_position_goals_for_games_personal_best_result_award_personal_role_model_other_info_for_person(
             conn, hometown, type, age, height, weight, club, coach, position, goals_for_games, 
             personal_best_result, personal_award,personal_role_model, other_info, person[0]
         )
 
 def get_contingent_games():
-    dates = KeyValues.GameDay_Keys
-    sports = KeyValues.Sport_Keys
-    contingents = KeyValues.Contingent_Keys
-    dateCount = range(len(dates))
-    sportCount = range(len(sports))
-    contingentCount = range(6, len(contingents))
+    """
+    This matches the games to the contingents in the SQL table ContingentGames.
+    """
+    
+    dates = KeyValues.GameDay_Keys # Hard coded array of values.
+    sports = KeyValues.Sport_Keys  # Hard coded array of values.
+    contingents = KeyValues.Contingent_Keys # Hard coded array of values.
+    dateCount = range(len(dates)) # number of dates to loop.
+    sportCount = range(len(sports)) # number of sports to loop.
+    contingentCount = range(6, len(contingents)) # number of contingents to loop through
 
-    gameTimesXPath = Utilities.getGameTimes(driver)
+    gameTimesXPath = Utilities.getGameTimes(driver)  #these methods get the XPATH but not the webelement.
     gameNamesXPath = Utilities.getGameNames(driver)
     gameDateXPath = Utilities.getHeading(driver)
     sportNameXPath = Utilities.getSubHeading(driver)
 
-    conn = SQLMethods.create_connection(database)
+    conn = SQLMethods.create_connection(database) # connects to the databse variable.
     for h in contingentCount:
         for i in dateCount:
             for j in sportCount:
                 url = KeyValues.getURL(dates[i][1],sports[j][1], contingents[h][1])
                 
                 driver.get(url)
-                try:
-                    driver.find_element(*gameDateXPath).text
+                try: # We try to find the gameDate element but if it doesn't exist we skip.
+                    driver.find_element(*gameDateXPath).text 
                 except Exception as e:
                     print("----SKIP-----")
                     continue
-                gameTimes = driver.find_elements(*gameTimesXPath)
+                gameTimes = driver.find_elements(*gameTimesXPath) # We find the elements on the page.
                 gameNames = driver.find_elements(*gameNamesXPath)
                 sportName = driver.find_element(*sportNameXPath).text
 
-                gameCount = range(len(gameTimes))
-                print(url)
-                contingents[h][0]
+                gameCount = range(len(gameTimes)) # Number of games available.
+                contingents[h][0] #h is the contingnet number we're looking at
                 for m in gameCount:
-                    gameName = gameNames[m].text
+                    gameName = gameNames[m].text #m is the row number.
                     with conn:
-                        SQLMethods.insert_ContingentGames(conn, gameName,  contingents[h][0], sportName)
+                        SQLMethods.insert_ContingentGames(conn, gameName,  contingents[h][0], sportName) #we insert.
+
+def update_medals():
+    """
+    Updates the medal count in the SQL database.
+    """       
+
+    url = "https://cg2019.gems.pro/Result/MedalList.aspx?SetLanguage=en-CA"
+    driver.get(url)
+    driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
+    driver.implicitly_wait(2)
+    
+
+    conn = SQLMethods.create_connection(database) # connects to our database
+
+    for x in KeyValues.Contingent_Acronym: # we use the contingent acronym to find the row and add.
+        cAbbrev = x[0]
+        gold = Utilities.get_gold_medal_count_for_contingent(driver, cAbbrev).text # finds element and it's text.
+        silver = Utilities.get_silver_medal_count_for_contingent(driver, cAbbrev).text
+        bronze = Utilities.get_bronze_medal_count_for_contingent(driver, cAbbrev).text
+        total = Utilities.get_total_medal_count_for_contingent(driver, cAbbrev).text
+
+        SQLMethods.sql_update_medals(conn, gold, silver, bronze, total, cAbbrev)
             
 
     

@@ -1,5 +1,8 @@
 
 class KeyValues:
+    """
+    Hard coded Key values which can be used in the URL for canadagames to get data.
+    """
     GameDay_Keys = [
         ['Saturday, August 6, 2022','9121fc9b-61b8-4be9-ba98-8f17822da322'],
         ['Sunday, August 7, 2022','af512934-abf6-46ab-99ff-258a66bd70c9'],
@@ -82,7 +85,33 @@ class KeyValues:
         ['Yukon','1c709ed0-94c5-4ad3-907d-9f8d45a3a61d']
         ]
 
+    Contingent_Acronym = [
+        ['AB', 'Alberta'],
+        ['BC', 'British Columbia'],
+        ['NS', 'Nova Scotia'],
+        ['NL', 'Newfoundland and Labrador'],
+        ['PE', 'Prince Edward Island'],
+        ['NB', 'New Brunswick'],
+        ['QC', 'Quebec'],
+        ['ON', 'Ontario'],
+        ['MB', 'Manitoba'],
+        ['SK', 'Saskatchewan'],
+        ['YT', 'Yukon'],
+        ['NT', 'Northwest Territories'],
+        ['NU', 'Nunavut']
+    ]
+
     def getURL(gameday_key = '', sport_key = '', contingent_key = '' ):
+        """
+        Uses the parameters to go to the page with the necessary data on Canada Games.
+
+        :param string gameday_key: The key used for the date of the game. Can be found in the KeyValues gameday_keys List.
+        :param string sport_key: The key used for sports. Can be found in the KeyValues sport_keys List.
+        :param string contingent: The key used for contingent. Can be found in the KeyValues contingent_key List.
+        
+        
+        """
+
         if(gameday_key != ''):
             gameday_key = '&GameDay_GUID=' + gameday_key
         if(sport_key != ''):
