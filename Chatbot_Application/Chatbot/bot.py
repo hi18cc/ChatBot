@@ -110,7 +110,7 @@ def chat(sentence):
                             res = SQLMethods.SQLMethods.sql_select_person_by_person_name_all_columns(connection, name)
                             if res:
                                 for r in res:
-                                    for ele in r :
+                                    for ele in r[1:]:
                                         if str(ele) != "None" and str(ele) != "NULL":
                                             ans = ans + str(ele) + " "
                                     ans = ans + "<br/>"

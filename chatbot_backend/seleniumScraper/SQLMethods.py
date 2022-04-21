@@ -15,9 +15,6 @@ class SQLMethods:
         except Error as e:
             print(e)
 
-        print("connection created")
-        cursor = conn.cursor
-
         return conn
 
  
@@ -124,10 +121,10 @@ class SQLMethods:
 
     def insert_gameContingents(conn, gameContingent):
         """
-        insert gameContingent into the gameContingents table
+        insert gameContingent into the gameContingents table.
         :param Connect conn: conn connected database file.
-        :param tuple gameContingent:The tuple of (gameName, contingentName)
-        :return: gameContingent id
+        :param tuple gameContingent:The tuple of (gameName, contingentName).
+        :return: gameContingent id.
         """
 
         sql = ''' INSERT OR IGNORE INTO gameContingents(gameName, contingentName) VALUES (?,?)'''
