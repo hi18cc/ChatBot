@@ -2,6 +2,11 @@ import sqlite3
 from sqlite3 import Error
 
 class SQLMethods:
+    """
+    The SQL methods class is used with the sqlite3 class to insert, update, and select items from the chatbot database.
+    Please keep in mind that each select cna return tuples with multiple items and should be adjusted for.
+    """
+
     def create_connection(db_file):
         """ Create a database connection to the SQLite database
             specified by db_file
@@ -262,8 +267,7 @@ class SQLMethods:
         cur.close()
 
         return records
-
-    
+  
     def sql_select_all_columns_for_contingents(conn, ContingentAbbreviation): 
         """
         SQL Select all columns for contingent table that matches the abbreviation for a contingent.
