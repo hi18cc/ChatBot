@@ -5,6 +5,9 @@ from seleniumScraper.PageObjects.CanadaGamesPlayersPage import CanadaGamesPlayer
 from seleniumScraper.PageObjects.CanadaGamePersonPage import CanadaGamesPersonPage
 from selenium.webdriver.support.ui import Select
 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 
 class Utilities:
     def getHeading(driver, headingNum=1):
@@ -74,7 +77,7 @@ class Utilities:
 
     def getContingentDropdown(driver):
         """
-        gets the XPATH for the contingent dropdown on the Canada Summer Games page and finds the element.
+        Gets the web element by XPATH for the contingent dropdown on the Canada Summer Games page and finds the element.
 
         :param WebDriver driver: driver used to find element.
 
@@ -128,6 +131,7 @@ class Utilities:
         :Return: WebElement.
         """
         element = CanadaGamesPersonPage.person_hometown()
+        W
         element = driver.find_element(*element)
 
         return element
