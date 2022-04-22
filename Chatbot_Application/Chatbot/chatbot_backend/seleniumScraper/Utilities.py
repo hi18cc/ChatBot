@@ -1,4 +1,4 @@
-from Chatbot_Application.Chatbot.autoScraper.PageObjects.CanadaGamesMedalsPage import CanadaGamesMedalPage
+from seleniumScraper.PageObjects.CanadaGamesMedalsPage import CanadaGamesMedalPage
 from seleniumScraper.PageObjects.CanadaGamePersonPage import CanadaGamesPersonPage
 from seleniumScraper.PageObjects.NiagaraSchedulePage import NiagaraSchedulePage
 from seleniumScraper.PageObjects.CanadaGamesPlayersPage import CanadaGamesPlayerPage
@@ -226,7 +226,7 @@ class Utilities:
         :rtype: WebElement
         """
         element = CanadaGamesPersonPage.person_hometown()
-        WebDriverWait(driver, 2).until(EC.text_to_be_present_in_element(*element))
+        #WebDriverWait(driver, 2).until(EC.text_to_be_present_in_element(*element))
         element = driver.find_element(*element)
 
         return element

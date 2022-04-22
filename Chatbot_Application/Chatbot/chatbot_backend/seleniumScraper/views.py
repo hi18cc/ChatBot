@@ -11,9 +11,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 #Extras
 from . import urls
-from utils import Utilities
-from KeyValues import KeyValues
-from SQLMethods import SQLMethods
+from seleniumScraper.Utilities import Utilities
+from seleniumScraper.KeyValues import KeyValues
+from seleniumScraper.SQLMethods import SQLMethods
 
 
 database = r"./4P02 Chatbot Database.db"
@@ -42,7 +42,7 @@ URL = 'https://cg2022.gems.pro/Result/Calendar.aspx?SetLanguage=en-CA&GameDay_GU
 
     
 def view_name(request):
-    get_contingent_games()
+    fill_player_data()
     return HttpResponse("Done")
 
 
@@ -143,7 +143,8 @@ def fill_player_data():
     This fills the bio for the person on their bio page. It uses SQL update to change from null to data.
     """
     conn = SQLMethods.create_connection(database)
-
+    driver.implicitly_wait(1)
+    
     persons = SQLMethods.sql_select_url_and_id_from_persons(conn)
 
     for person in persons: #we try to insert what we can.
@@ -188,7 +189,7 @@ def fill_player_data():
         try:
             position = Utilities.getPosition(driver).text
         except Exception as e:
-            position = 'NULL'       
+            position = 'NULL' 
 
         try:
             goals_for_games = Utilities.getGoalsforTheGames(driver).text
