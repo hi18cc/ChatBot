@@ -2,11 +2,16 @@ import sqlite3
 from sqlite3 import Error
 
 class SQLMethods:
+    """
+    The SQL methods class is used with the sqlite3 class to insert, update, and select items from the chatbot database.
+    Please keep in mind that each select cna return tuples with multiple items and should be adjusted for.
+    """
+
     def create_connection(db_file):
-        """ create a database connection to the SQLite database
+        """ Create a database connection to the SQLite database
             specified by db_file
-        :param db_file: database file
-        :return: Connection object or None
+        :param db_file: database file.
+        :return: Connection object or None.
         """
 
         conn = None
@@ -16,14 +21,12 @@ class SQLMethods:
         except Error as e:
             print(e)
 
-        print("connection created")
-
         return conn
 
  
     def insert_games(conn, game):
         """
-        insert game into the games table
+        Insert game into the games table.
         :param Connect conn: Connected database file.
         :param games:
         :return: game id
@@ -34,14 +37,13 @@ class SQLMethods:
         cur = conn.cursor()
         cur.execute(sql, game)
         conn.commit()
-        print("commited Games")
         return cur.lastrowid
 
     def insert_sports(conn, sport):
         """
-        insert sport into the sports table
+        Insert sport into the sports table
         :param Connect conn: Connected database file.
-        :param sport:
+        :param String sport: Name of sport being played
         :return: sport id
         """
 
@@ -68,12 +70,11 @@ class SQLMethods:
         cur.execute(sql, location)
         conn.commit()
 
-        print("commited locations")
         return cur.lastrowid
 
     def insert_sportLocations(conn, sportLocation):
         """
-        insert location into the locations table
+        Insert location into the locations table
         :param Connect conn: Connected database file.
         :param Tuple sportLocation: The tuple containing (sportName, Location Name).
         :return: location id
@@ -85,14 +86,13 @@ class SQLMethods:
         cur.execute(sql, sportLocation)
         conn.commit()
 
-        print("commited sportLocations")
         return cur.lastrowid
 
     def insert_contingents(conn, contingent):
         """
-        insert contingent into the contingents table
+        Insert contingent into the contingents table.
         :param Connect conn: Connected database file.
-        :param Tuple contingent: Contingent abberviation, Contingent Name, medals
+        :param Tuple contingent: Contingent abberviation, Contingent Name, medals.
         :return: location id
         """
 
@@ -102,12 +102,11 @@ class SQLMethods:
         cur.execute(sql, contingent)
         conn.commit()
 
-        print("commited contingents")
         return cur.lastrowid
 
     def insert_ContingentGames(conn, gameName, contingent, sport):
         """
-        insert ContingentGames into the ContingentGames table
+        Insert ContingentGames into the ContingentGames table.
 
         :param Connect conn: Connected database file.
         :param string gameName: The name of the specific game to be played.
@@ -122,24 +121,22 @@ class SQLMethods:
         queryTuple = (gameName, contingent, sport) 
         cur.execute(query, queryTuple)
         conn.commit()
-        print("commited ContingentGames")
         return cur.lastrowid
 
     def insert_person_with_contingent_sportName_personName(conn, Contingent, sportName, personName, personURL ):
         """
-        Insert person into the persons table
-        :param Connect conn: connected database file.
-        :param string personName: person name (string).
+        Insert person into the persons table.
+
+        :param Connect conn: Connected database file.
+        :param string personName: Person name.
         :return: person id
         """
         query = ''' INSERT INTO Persons(Contingent, sportName, personName, URL) VALUES (?,?,?,?)'''
 
         cur = conn.cursor()
         queryTuple = (Contingent[0], sportName, personName, personURL)
-        print(queryTuple)
         cur.execute(query, queryTuple)
         conn.commit()
-        print("commited Persons")
         return cur.lastrowid
 
     def sql_select_person_by_personID_all_columns(conn, personID):
@@ -147,8 +144,9 @@ class SQLMethods:
         Gets all columns from person, refer to the database to see what order the columns are presented in.
 
         :param Connected conn: Connected database file.
-        :param string personName: Person ID string. (string)
-        :return: records
+        :param string personName: Person ID string.
+        :return: Records of all players with the matching ID
+        :rtype: Tuple of all player columns.
         """
 
         query = """select * from Persons where personID = ?"""
@@ -164,12 +162,13 @@ class SQLMethods:
 
     def sql_select_persons_by_sport_all_columns(conn, sportName):
         """
-        select personName, Contingent, and sportName
+        SQL Select personName, Contingent, and sportName by using sport name.
         :param Connect conn: Connected database file.
-        :param personName: Person name string. (string)
-        :param personSport: Name of sport. (string)
+        :param string personName: Person name string. 
+        :param string personSport: Name of sport.
 
-        :return: records
+        :return: tuple of all player columns.
+        :rtype: tuple
         """
         query = """ select * from Persons where SportName = '?'"""
 
@@ -184,13 +183,14 @@ class SQLMethods:
 
     def sql_select_person_by_contingent_all_columns(conn, contingent): 
         """
-        select person, Contingent and sportname
+        Select person, Contingent and sportname by Contingent name (the full name not abbreviation).
 
         :param Connect conn: Connected database file.
         :param String personName: Person name string.
         :param String personSport: Name of sport.
 
-        :return: records
+        :return: tuple of all player columns.
+        :rtype: tuple
         """
         query = """select * from Persons where Contingent = '?' """
 
@@ -205,16 +205,16 @@ class SQLMethods:
 
     def sql_select_person_by_person_name_all_columns(conn, name):
         """
-        Select all columns for person who's name matches the value given, keep in mind that there could be two people with the same names.
+        SQL Select all columns for person who's name matches the value given, keep in mind that there could be two people with the same names.
         
         :param Connect conn: Connected database file.
         :param String name: Name of the person you're looking for. First and Last
 
-        :Return: Returns the records matching the names.
+        :Return: Returns tuple of all person columns.
         :rtype: tuple
         """
 
-        query = """ select  * from Persons where personname = ?"""
+        query = """ select  * from Persons where personName = ?"""
 
         cur = conn.cursor()
 
@@ -227,9 +227,9 @@ class SQLMethods:
 
     def sql_select_person_by_person_name_sport_column_personName_column_contingent_column(conn, name):
         """
-        Select person Name column, sport column, contingent column for person who's name matches the value given, keep in mind that there could be two people with the same names.
+        SQL Select personName column, sport column, contingent column for person who's name matches the param name, keep in mind that there could be two people with the same names.
         :param Connect conn: Connected database file.
-        :param String name: Name of the person you're looking for. First and Last
+        :param String name: Name of the person you're looking for. First and Last.
 
         :Return: Returns the records matching the names.
         :rtype: tuple
@@ -248,12 +248,12 @@ class SQLMethods:
 
     def sql_select_person_by_any_column(conn, column, value):
         """
-        Select all columns for Person that matches the column selected for the value provided
+        SQL Select all columns for Person that matches the column selected for the value provided.
 
         :param Connect conn: Connected database file.
         :param String column: Column to be searched within.
         :param String Value: The value you want to check the column for, there is no exception if the value does not exist.
-        :return: Matching records
+        :return: All columns for person who matches the value of the given value. Can be multiple.
         :rtype: tuple
         """
 
@@ -267,16 +267,16 @@ class SQLMethods:
         cur.close()
 
         return records
-
-    
+  
     def sql_select_all_columns_for_contingents(conn, ContingentAbbreviation): 
         """
-        Select all columns for contingent that matches the abbreviation
+        SQL Select all columns for contingent table that matches the abbreviation for a contingent.
 
         :param Connect conn: Connected database file.
-        :param ContingentAbbreviation: 
+        :param ContingentAbbreviation: Abbreviation for a province/territory E.g. ON, QC, AB
 
-        :return: records
+        :return: All columns for the matching record in the contingent tables.
+        :rtype: Tuple
         """
 
         query = """ select * from Contingents where ContingentAbbreviation = '?'"""
@@ -292,10 +292,11 @@ class SQLMethods:
 
     def sql_select_contingentName_from_contingents_table(conn):
         """
-        Select contingent Name column from the Contingents table
+        SQL Select contingent Name column from the Contingents table.
         :param Connect conn: Connected database file.
 
-        :return: records
+        :return: All the participating Contingent Names.
+        :rtype: tuple
         """
 
         query = """select contingentName from Contingents"""
@@ -306,13 +307,14 @@ class SQLMethods:
         cur.close()
 
         return records
+
     def sql_select_medals_from_Contingents(conn):
         """
-        Gets the medal count (gold,silver,bronze) for all contingents and the contingent name.
+        SQL Select the medal count (gold,silver,bronze) for all contingents and the contingent name.
 
         :param Connect conn: Connected Database File.
 
-        :return: Contingent and it's medal count
+        :return: all Contingents and their gold medal, silver medal, bronze medal and total counts. (contingent Name, gold medal, silver medal, bronze medal, total medals).
         :rtype: tuple
 
         """
@@ -328,7 +330,7 @@ class SQLMethods:
 
     def sql_select_medals_from_contingents_by_contingentName(conn, contingentName):
         """
-        Gets the medals (gold,silver,brone) from contingents by the contingent name
+        SQL select the medals (gold,silver,brone) from contingents by the contingent name
 
         :param Connect conn: Connected Database File.
         :param String contingentName: name of contingent.
@@ -347,47 +349,14 @@ class SQLMethods:
 
         return records 
 
-    def sql_select_medals_from_Contingents(conn):
-        """
-        Gets the medal count for all contingents
-
-        :param Connect conn: Connected Database File.
-
-        :return: Contingent and it's medal count
-        :rtype: tuple
-
-        """
-
-        query = """select ContingentName, Medals From Contingents"""
-
-        cur = conn.cursor()
-        cur.execute(query)
-        records = cur.fetchall()
-        cur.close()
-
-        return records
-
-    
-
-    def sql_select_contingent_by_contingent_name(conn, contingent):
-        """
-        Gets the contingent abbreviation and medal count by name
-
-        :param Connect conn: Connected database file.
-        :param String contingent: contingent name searching for.
-
-        :return: Contingent
-        :rtype: 
-        """
-
     def sql_select_all_colums_from_contingent_games_by_contingent(conn, contingent):
         """
-        Select all columns from the contingent games table by contingent name
+        Select all columns from the contingent games table by contingent name.
 
         :param Connect conn: Connected database file.
         :param String Contingent: The name of the contingent you want to see the games for.
 
-        :return: all games that are played by the Contingent
+        :return: returns Contingent, sportName and all the games of the contingent by contingent name.
         :rtype: tuple
         """
 
@@ -404,9 +373,9 @@ class SQLMethods:
 
     def sql_select_all_columns_from_contingentgames_by_sport(conn, sport):
         """
-        select all columns from the contingent games table by sport name
+        Select all columns from the contingent games table by sport name.
 
-        :param Connect conn: Connected database file
+        :param Connect conn: Connected database file.
         :param String sport: Name of Sport.
 
         :return
@@ -423,16 +392,16 @@ class SQLMethods:
 
     def sql_select_all_columns_from_contingentgames_by_gamename(conn, gameName):
         """
-        select all columns from the contingent games table by gameName():
+        Select all columns from the contingent games table by gameName.
 
         :param Connect conn: Connected database file.
         :param String gameName: Name of game being played.
 
-        :return: Games with that name, the sport being played and the contingents name.
-        :rtype: tuple.
+        :return: Games with the param name, the sport being played and the contingents name.
+        :rtype: tuple
         """
 
-        query = "select * from contingentgames where gameName = '?'"
+        query = "select * from contingentGames where gameName = '?'"
 
         cur = conn.cursor()
         queryTuple = (gameName,)
@@ -443,23 +412,39 @@ class SQLMethods:
 
         return records
 
-    def sql_select_all_columns_from_contingentgames_by_gamename_and_sport():
+    def sql_select_all_columns_from_contingentgames_by_gamename_and_sport(conn, gameName, sport):
         """
-        
-        """
+        SQL Select all columns from the contingent games table by gameName and Sport Name.
 
-    def sql_select_all_columns_from_games_by_sport(conn, sportName):
-        """
-        Select all columns from Games Table matching sport
-        
         :param Connect conn: Connected database file.
-        :param string sportName: Name of the sport.
+        :param String gameName: Name of game being played.
+        :param string sport: Name of sport.
 
-        :return: rows
+        :return: All columns of games with matching game name, sport name, and contingent. duplicate game names but different contingents.
+        :rtype: tuple
         """
+
+        query = "select * from contingentGames where gameName = '?' AND sport = '?' "
+
+        cur = conn.cursor()
+        queryTuple = (gameName, sport)
+
+        cur.execute(query,queryTuple)
+        records = cur.fetchall()
+        cur.close()
+
+        return records
 
     def sql_select_all_columns_from_games_by_sportName(conn, sportName):
+        """
+        SQL Select all columns from Games Table matching sport name.
+        
+        :param Connect conn: Connected database file.
+        :param string gameName: Name of the sport.
 
+        :return: all columns from games matching sportName.
+        :rtype: tuple
+        """
         query = """ select * from Games Where sportName = '?'"""
 
         cur = conn.cursor()
@@ -473,15 +458,17 @@ class SQLMethods:
 
     def sql_select_all_columns_from_games_by_gameName(conn, gameName):
         """
-        Select all columns from Games Table matching game name.
+        SQL Select all columns from Games Table matching game name.
         
         :param Connect conn: Connected database file.
-        :param string gameName: Name of the sport. (string)
+        :param string gameName: Name of the sport.
 
-        :return: rows
+        :return: all columns from games table by game Name.
+        :rtype: tuple
+
         """
 
-        query = """ select * from Games Where sportName = '?'"""
+        query = """ select * from Games Where gameName = '?'"""
 
         cur = conn.cursor()
 
@@ -494,7 +481,7 @@ class SQLMethods:
 
     def sql_select_all_columns_from_sports(conn):
         """
-        Select all columns from Sports
+        SQL Select all columns from Sports
 
         :param Connect conn: Connected database file.
 
@@ -510,23 +497,22 @@ class SQLMethods:
 
         return records
 
-
-    def sql_exists_for_sports_by_name(conn, value):
+    def sql_exists_for_sports_by_name(conn, sport):
         """
-        This will check the database to see if an item exists.
+        This will check the sports table to see if a sport exists.
 
-        :param Connect conn: connected database file.
+        :param Connect conn: Connected database file.
         :param string table: Name of the table you're checking in.
         :param string column: Name of the column you're checking
 
-        :return: if item exists.
+        :return: True if sport exists, or false if it doesn't.
         :rtype: bool
         """
 
         query = """SELECT EXISTS (SELECT 1 FROM Sports WHERE SportName = ?) """
         
         cur = conn.cursor()
-        queryTuple = (value, )
+        queryTuple = (sport, )
         cur.execute(query, queryTuple)
         records = cur.fetchall()
         cur.close()
@@ -534,11 +520,11 @@ class SQLMethods:
     
     def sql_select_url_and_id_from_persons(conn):
         """
-        This will select the columns url and ID from the persons table.
+        This will select all persons url and ID from the persons table.
 
         :param Connect conn: Connected Database file.
-        :return: records found.
-        :rtype: bool
+        :return: Tuples of personID and url.
+        :rtype: tuple(personID, URL)
         """
 
         query = "SELECT personID, url FROM persons"
@@ -608,8 +594,9 @@ class SQLMethods:
         Finds the next games for the sport by the earliest date.
 
         :param Connect conn: Connected Game
+        :param string sportName: Name of sport.
 
-        :return: The earliest games
+        :return: The date of the next game for the passed sport.
         :rtype: tuple (gameName, sportName, contingent, date, times)
         """
         query = """ Select ContingentGames.gameName, sportName, contingent, dates, times, location  from games, ContingentGames where sportName = ? AND contingentGames.gamename = games.gamename AND dates = (Select min(dates) from Games where sportName = ? AND contingentGames.gamename = games.gamename AND Dates >= Date()) GROUP BY ContingentGames.gameName,  sportName ORDER BY times"""
@@ -623,12 +610,12 @@ class SQLMethods:
 
     def sql_select_next_date_by_contingent(conn, contingent):
         """
-        Is able to find the next game being played by the contingent
+        SQL Select the next game being played by the contingent.
 
-        :param Connect conn: Connected game
-        :param String contingent: name of contingent
+        :param Connect conn: Connected game.
+        :param String contingent: Name of contingent.
 
-        :return: next dates game
+        :return: select the date of the next closest game from games column by contingent.
         :rtype: tuple(gameName, sportName, contingent, date, times)
         """
 
@@ -645,14 +632,14 @@ class SQLMethods:
 
     def select_next_time_by_date_and_sportName(conn, date, sportName):
         """
-        Selects the next game by earliest time, with the selected date and sport.
+        SQL Selects the next game by earliest time, with the selected date and sport.
 
         :param Connect conn: Connected database file.
         :param String sportName: Name of the sport.
         :param String date: YYYY-MM-DD
 
-        :return: next game with 
-        :rtype: tuple
+        :return: next game with earliest time by the selected date.
+        :rtype: tuple(sportName, gameName, dates, Times)
         """
         query = """ select sportName, gameName, dates, Times from games, location where sportName = ? AND dates = ? AND Times = (Select min(Times) from Games where sportName = ? AND dates = ?)"""
 
@@ -667,11 +654,14 @@ class SQLMethods:
     
     def select_next_time_by_date_and_contingent(conn, date, contingent):
         """
-        Selects the next game by earliest time using the date and contingent 
+        SQL Selects the next game by earliest time using the date and contingent 
 
         :param Connect conn: Connected database file.
         :param String date: YYYY-MM-DD
-        :param string contingent: 
+        :param string contingent: Name of province/territory in full.
+
+        :return: Game information based on date and contingent.
+        :rtype: 
         """
 
         query = """ select sportName, games.gameName, dates, contingent, Times, location from games, ContingentGames where contingent = ? AND contingentGames.GameName = Games.GameName AND dates = ? AND Times = (Select min(Times) from Games contingent = ? AND contingentGames.GameName = Games.GameName AND dates = ?)"""
@@ -686,14 +676,14 @@ class SQLMethods:
 
     def select_next_time_by_date_and_Contingent_and_sport(conn, date, contingent, sport):
         """
-        Selects the next game by earliest tume using the date, contingent and sport
+        SQL Selects the next game by earliest tume using the date, contingent and sport
 
         :param Connect conn: Connected database file.
         :param String date: YYYY-MM-DD
-        :param String contingent: name of province/territory.
-        :param  String sport: name of sport.
+        :param String contingent: Name of province/territory.
+        :param  String sport: Name of sport.
 
-        :return: all records with the earliest time that has the given date, contingent and sport.
+        :return: All records with the earliest time that has the given date, contingent and sport.
         :rtype: tuple
         """
 
@@ -709,13 +699,13 @@ class SQLMethods:
 
     def sql_select_next_date_by_contingent_and_sport(conn, contingent, sport):
         """
-        Is able to find the next date for the game being played by contingent and sport.
+        SQL selects the next date for the game being played by contingent and sport.
 
         :param Connect conn: Connected game
         :param String contingent: Name of contingent.
         :param String sport: Name of Sport.
 
-        :return: next dates game
+        :return: Gets the next game for the sport by contingent by the next earliest date.
         :rtype: tuple(gameName, sportName, contingent, date, times)
         """
 
@@ -730,6 +720,20 @@ class SQLMethods:
         cur.close()
 
         return records 
+
+    def sql_update_medals(conn, goldMedals, silverMedals, bronzeMedals, totalMedals, conAbbrev):
+        """
+        Updates the medal count for the contingent provided.
+
+        :param string goldMedals: The count for the gold medals.
+        :param string silverMedals: The count for the silver medals.
+        :param string bronzeMedals: The count for the bronze medals.
+        :param string totalMedals: The count for the total medals.
+        :param string conAbbrev: The abreviation for the province whose medal count were changing.
+
+        :return records: records of the
+        :rtype: tuple
+        """
 
 
     

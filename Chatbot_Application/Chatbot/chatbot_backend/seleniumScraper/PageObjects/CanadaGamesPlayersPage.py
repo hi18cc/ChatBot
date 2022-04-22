@@ -8,8 +8,8 @@ class CanadaGamesPlayerPage:
         """
         Element for the dropdown for contingent.
 
-        :return: tuple with By.XPATH as the first item and the locator string as the 2nd item.
-        :rtype: tuple
+        :return: XPath and path of dropdown for contingent selection.
+        :rtype: tuple(By.XPATH, string)
         """
         return (By.XPATH, "//td[@class='LM_MasterPageDataCell']//tr[4]//select[1]")
 
@@ -17,7 +17,8 @@ class CanadaGamesPlayerPage:
         """
         Element for the dropdown for sport.
 
-        :return: tuple with By.XPATH as the first item and the locator string as the 2nd item.
+        :return: XPath and path of dropdown for sport selection.
+        :rtype: Tuple(By.XPATH, string)
         """
 
         return (By.XPATH, "//td[@class='LM_MasterPageDataCell']//tr[4]//select[1]")
@@ -26,7 +27,8 @@ class CanadaGamesPlayerPage:
         """
         Element for find button.
 
-        :return::return: tuple with By.XPATH as the first item and the locator string as the 2nd item.
+        :return: XPath and path of the find button which completes the query and loads the url.
+        :rtype: Tuple(By.XPATH, string)
         """
 
         return (By.CSS_SELECTOR, ".LM_Button_Find")
@@ -57,6 +59,10 @@ class CanadaGamesPlayerPage:
 
     def table_rows():
         """
+        Returns the path and type for all tables in the row.
+
+        :return: XPath and path for all tables.
+        :rtype: tuple(By.XPATH, string)
         """
 
         return (By.XPATH, "//*[@id='ctl00_ContentPlaceHolder1_tblParticipant']/tbody/tr")
