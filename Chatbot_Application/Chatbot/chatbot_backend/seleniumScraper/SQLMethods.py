@@ -126,6 +126,7 @@ class SQLMethods:
     def insert_person_with_contingent_sportName_personName(conn, Contingent, sportName, personName, personURL ):
         """
         Insert person into the persons table.
+
         :param Connect conn: Connected database file.
         :param string personName: Person name.
         :return: person id
@@ -134,7 +135,6 @@ class SQLMethods:
 
         cur = conn.cursor()
         queryTuple = (Contingent[0], sportName, personName, personURL)
-        print(queryTuple)
         cur.execute(query, queryTuple)
         conn.commit()
         return cur.lastrowid
@@ -524,7 +524,7 @@ class SQLMethods:
 
         :param Connect conn: Connected Database file.
         :return: Tuples of personID and url.
-        :rtype: bool
+        :rtype: tuple(personID, URL)
         """
 
         query = "SELECT personID, url FROM persons"
