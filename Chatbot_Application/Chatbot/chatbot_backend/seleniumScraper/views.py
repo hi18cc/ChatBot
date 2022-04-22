@@ -43,6 +43,8 @@ URL = 'https://cg2022.gems.pro/Result/Calendar.aspx?SetLanguage=en-CA&GameDay_GU
     
 def view_name(request):
     update_medals()
+    print("Medals Done")
+    fill_player_data()
     return HttpResponse("Done")
 
 
@@ -270,8 +272,8 @@ def update_medals():
     url = "https://cg2019.gems.pro/Result/MedalList.aspx?SetLanguage=en-CA"
     
     driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
-    driver.implicitly_wait(2)
-    driver.get(url) 
+    driver.implicitly_wait(1)
+    driver.get(url)
     
 
     conn = SQLMethods.create_connection(database) # connects to our database
