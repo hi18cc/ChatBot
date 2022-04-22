@@ -721,6 +721,20 @@ class SQLMethods:
 
         return records 
 
+    def sql_update_medals(conn, goldMedals, silverMedals, bronzeMedals, totalMedals, conAbbrev):
+        """
+        Updates the medal count for the contingent provided.
+
+        :param string goldMedals: The count for the gold medals.
+        :param string silverMedals: The count for the silver medals.
+        :param string bronzeMedals: The count for the bronze medals.
+        :param string totalMedals: The count for the total medals.
+        :param string conAbbrev: The abreviation for the province whose medal count were changing.
+
+        :return records: records of the
+        :rtype: tuple
+        """
+
 
     
 
