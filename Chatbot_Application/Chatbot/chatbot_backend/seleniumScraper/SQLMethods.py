@@ -736,6 +736,18 @@ class SQLMethods:
         """
 
 
+        query = """ update Contingents SET goldMedals = ?, silverMedals = ?, bronzeMedals = ?, totalMedals = ?  where ContingentAbbreviation = ? """
+        queryTuple = (goldMedals, silverMedals, bronzeMedals, totalMedals, conAbbrev)
+
+        cur = conn.cursor()
+        cur.execute(query, queryTuple)
+        records = cur.fetchall()
+        conn.commit()
+        cur.close()
+
+        return records
+
+
     
 
 
