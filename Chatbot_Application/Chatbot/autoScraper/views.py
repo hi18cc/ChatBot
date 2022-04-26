@@ -13,7 +13,7 @@ from autoScraper.KeyValues import KeyValues
 from autoScraper.SQLMethods import SQLMethods
 
 
-database = r"./4P02 Chatbot Database.db"
+database = r"./chatbot_backend/4P02 Chatbot Database.db"
 
 chrome_options = Options()  
 chrome_options.add_argument("--headless")  
