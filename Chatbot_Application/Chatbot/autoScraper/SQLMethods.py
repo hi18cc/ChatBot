@@ -728,7 +728,7 @@ class SQLMethods:
         """
         Is able to find the next date for the game being played by contingent and sport.
 
-        :param Connect conn: Connected game
+        :param Connect conn: Connected databse.
         :param String contingent: Name of contingent.
         :param String sport: Name of Sport.
 
@@ -752,6 +752,7 @@ class SQLMethods:
         """
         Updates the medal count for the contingent provided.
 
+        :param Connect conn: Connected database.
         :param string goldMedals: The count for the gold medals.
         :param string silverMedals: The count for the silver medals.
         :param string bronzeMedals: The count for the bronze medals.
@@ -773,6 +774,75 @@ class SQLMethods:
         cur.close()
 
         return records
+
+    def select_all_sports(conn):
+        """
+        Gets the name of all the sports played in the competition.
+        
+        :param Connect conn: Connected database file.
+
+        :return: The name of all the sports
+        :rtype: List<string>
+        """
+
+        query = """ select * from sports"""
+
+        cur = conn.cursor()
+        cur.execute(query)
+        records = cur.fetchall()
+        cur.close()
+
+        return records
+
+    def select_all_locations(conn):
+        """
+        Gets the name of all the sports played in the competition.
+        
+        :param Connect conn: Connected database file.
+
+        :return: The name of all the locations
+        :rtype: List<string>
+        """
+
+        query = """ select * from locations"""
+
+        cur = conn.cursor()
+        cur.execute(query)
+        records = cur.fetchall()
+        cur.close()
+
+        return records
+
+    def select_game_by_game_name_and_sport(conn, gameName, sportName):
+        """
+        Gets the information about the game using the game name and sport. This uses SQL like so
+        it only needs to be contained within the game name column. Example name cases.
+        
+        EXAMPLES
+
+        Preliminary | Pool B - Game 16 - NB vs QC
+        Preliminary - Race 01 - 50m (S1-5)
+        Quarterfinal - Game 19 (2A vs. 3B)
+
+        :param Connect conn: Connected database file.
+        :param string gameName: Name of the game being played.
+        :param string sportName: Name of the sport of the game we're searching for.
+
+        :return: tuple of the game information for that sport.
+        """
+        query = """ select * from Games Where sportName = ? AND gameName = ?"""
+
+        cur = conn.cursor()
+        queryTuple = (sportName, '%' +gameName +'%')
+        cur.execute(query, queryTuple)
+        records = cur.fetchall()
+        cur.close()
+
+        return records
+
+
+    
+
 
     
 
