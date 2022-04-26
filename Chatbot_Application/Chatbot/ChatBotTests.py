@@ -107,7 +107,62 @@ class TestAksingCovid19(unittest.TestCase):
 	def testRandomInput (self):
 		response = chat ("i'm sick")
 		assert response != "The Niagara region COVID-19 information can be found here https://www.niagararegion.ca/health/covid-19/default.aspx?topic=1", "Random input error. Function returned function output, response = " + response
+		
+class TestAksingStartDate(unittest.TestCase):
 	
+	def testCorrectSpelling (self):
+		response = chat ("How long until Canada games starts?")
+		assert response == "Saturday, August 6, 2022", "Correct input error. Function did not return expected output, response = " + response
+	
+	def testAbbriviation (self):
+		response = chat ("start")
+		assert response == "Saturday, August 6, 2022", "Abbriviation input error. Function did not return expected output, response = " + response
+
+			
+class TestAksingNews(unittest.TestCase):
+	
+	def testCorrectSpelling (self):
+		response = chat ("What’s new with the Canada games?")
+		assert response == "The Canada Games news is available here https://niagara2022games.ca/news/", "Correct input error. Function did not return expected output, response = " + response
+	
+	def testAbbriviation (self):
+		response = chat ("News Canada games?")
+		assert response == "The Canada Games news is available here https://niagara2022games.ca/news/", "Abbriviation input error. Function did not return expected output, response = " + response
+	
+	def testJustNews (self):
+		response = chat ("News")
+		assert response == "The Canada Games news is available here https://niagara2022games.ca/news/", "Abbriviation input error. Function did not return expected output, response = " + response
+	
+class TestAksingLocation(unittest.TestCase):
+	
+	def testCorrectSpelling (self):
+		response = chat ("Where is the Canada games?")
+		assert response == "The Canada Games events will be taking place in various locations across the Niagara region, locations for specific sports can be found here https://niagara2022games.ca/sports/", "Correct input error. Function did not return expected output, response = " + response
+	
+	def testAbbriviation (self):
+		response = chat ("Where")
+		assert response != "The Canada Games events will be taking place in various locations across the Niagara region, locations for specific sports can be found here https://niagara2022games.ca/sports/", "Abbriviation input error. Function did not return expected output, response = " + response
+	
+	def testIncorrectSpelling (self):
+		response = chat ("ware Kanade gaems?")
+		assert response != "The Canada Games news is available here https://niagara2022games.ca/news/", "Inorrect input error. Function did not return expected output, response = " + response
+	
+class TestAthlete(unittest.TestCase):
+	
+	def testValidInput (self):
+		response = chat ("Tell me about Kelsey Ayers")
+		assert response == "The Canada Games events will be taking place in various locations across the Niagara region, locations for specific sports can be found here https://niagara2022games.ca/sports/", "Correct input error. Function did not return expected output, response = " + response
+	
+	def testInvalidInput (self):
+		response = chat ("Where")
+		assert response != "The Canada Games events will be taking place in various locations across the Niagara region, locations for specific sports can be found here https://niagara2022games.ca/sports/", "Abbriviation input error. Function did not return expected output, response = " + response
+	
+	def testRephrasing (self):
+		response = chat ("ware Kanade gaems?")
+		assert response != "The Canada Games news is available here https://niagara2022games.ca/news/", "Inorrect input error. Function did not return expected output, response = " + response
+	
+	
+
 	
 if __name__ == "__main__":
 	unittest.main()
