@@ -94,7 +94,7 @@ class TestAksingHotels(unittest.TestCase):
 		assert response != "The Niagara Falls Tourism website provided here https://www.niagarafallstourism.com/niagara-region/ has information about what you can see and do in the region", "Inorrect input error. Function did not return expected output, response = " + response
   
 		
-class TestAksingHotels(unittest.TestCase):
+class TestAksingCovid19(unittest.TestCase):
 	
 	def testCorrectSpelling (self):
 		response = chat ("What are the COVID-19 restrictions like in Niagara?")
