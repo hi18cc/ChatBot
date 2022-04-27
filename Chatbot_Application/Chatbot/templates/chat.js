@@ -1,35 +1,43 @@
 class chat {
     constructor() {
         this.args = {
-        output: document.querySelector('.main'),
-        send: document.querySelector('.send'),
-        clear: document.querySelector('.clear'),
-        history: document.querySelector('.history'),
-        back: document.querySelector('.back')
+        output: document.querySelector('.main'), // Selects the main element which contains all elements.
+        send: document.querySelector('.send'), // Element for the send button.
+        clear: document.querySelector('.clear'), // Element for the clear button.
+        history: document.querySelector('.history'), // Element for the history button.
+        back: document.querySelector('.back') 
     };
     this.messages = [];
 }
     main() {
         const {output, send, clear, history, back} = this.args;
-        send.addEventListener('click', () => this.send(output));
-        clear.addEventListener('click', () => this.clear());
-        history.addEventListener('click', () => this.history());
-        back.addEventListener('click', () => this.back());
-        const node = output.querySelector('input');
-        node.addEventListener("keyup", ({key}) => {
+        send.addEventListener('click', () => this.send(output)); // Adds a click event listener to the send button to run the send() method.  
+        clear.addEventListener('click', () => this.clear()); // Adds a click event listener to the clear button to run the clear() method.
+        history.addEventListener('click', () => this.history()); // Adds a click event listener to the history button that runs history(). 
+        back.addEventListener('click', () => this.back()); // Adds a click event listener to the back button that runs back()
+        const node = output.querySelector('input');  
+        node.addEventListener("keyup", ({key}) => { // This allows for us to hit enter on the text box to run the send()
             if (key === "Enter") this.send(output)
         })
         this.sendSuggestion(output);
     }
+    /**
+     * Clears the text from the input.
+     */
     clear() {
         document.getElementById ("msg").value = "";
     }
 
+    /**
+     * Navigates to the index html
+     */
     help()
     {
         window.open("index.html", "_self");
     }
-    
+    /**
+     * Saves the chat log to a note file.
+     */
     history() {
         let html = "Niagara Games 2022 Chatbot Conversation History \n\n";
 
@@ -63,6 +71,9 @@ class chat {
         saveAs(historyFile, "NiagaraGames_Chatbot.txt");
     }
     
+    /**
+     * Back button leads to the index page.
+     */
     back() {
         window.open("index.html", "_self");
     }
@@ -125,6 +136,11 @@ class chat {
         out.querySelector('input').value = text
     }
 
+    /**
+     * This will take text and input it in the textbox, then hits send.
+     * @param {Element} out: This is the main element used.
+     * @param {string} text: This is the string which needs to be sent.
+     */
     inputAndSendText(out, text){
         this.inputTextInTextBox(out, text);
         this.send(out);
@@ -136,26 +152,26 @@ class chat {
     */
     update(out) {
         
-        let html = '';
+        let html = ''; 
         this.messages.slice().reverse().forEach(function(item, index) {
-            if (item.name === "Bot") {
+            if (item.name === "Bot") { // Messages is a tuple of (name, message) if name is bot we add the proper elements.
                 const options = { defaultProtocol: 'https', target: "_blank" };
                 html += '<div class="messages visitor">' + linkifyHtml(item.message, options) + '</div>'
-            } else if (item.name === "Quick"){
+            } else if (item.name === "Quick"){ // Quick is the name of non-terminal suggestive options.
                 const options = { defaultProtocol: 'https', target: "_blank" };
-                html += '<div class="messages quick-reply">' + linkifyHtml(item.message, options) + '</div>';
-            } else if (item.name =="Quick1" || item.name =="Quick2" || item.name =="Quick3" || item.name =="Quick4" || item.name =="Quick5"){
+                html += '<div class="messages quick-reply">' + linkifyHtml(item.message, options) + '</div>'; 
+            } else if (item.name =="Quick1" || item.name =="Quick2" || item.name =="Quick3" || item.name =="Quick4" || item.name =="Quick5"){ // Checks to see if the message is a quick-reply.
                 const options = { defaultProtocol: 'https', target: "_blank" };
                 html += '<div class="messages quick-suggest">' + linkifyHtml(item.message, options) + '</div>';
             }
             
-            else {
+            else { // Sets up the user messages.
                 if (index === 0) {
                     html += '<div class="text-center"> <div class="spinner-border text-dark p-1" style="width: 2rem; height: 2rem;"> </div> </div>'
                     html += '<div class="messages bot">' + item.message + '</div>'
                 }
 
-                else {
+                else { 
                     html += '<div class="messages bot">' + item.message + '</div>'
                 }
             }
@@ -194,6 +210,11 @@ class chat {
         }
     }
 
+    /**
+     * The switch statements which push out the clickable quick reply messages based on the suggestion clicked.
+     * @param {Element} out: The main element.
+     * @param {string} message: The suggestion message that was clicked.
+     */
     quickMessageSelect(out, message){
         switch(message){
             case "Information about Canada Summer Games...":
@@ -212,6 +233,11 @@ class chat {
 
     }
 
+    /**
+     * The suggested message that was clicked on that introduced quick message 1
+     * @param {Element} out: .main element containing all the elements.
+     * @param {string} origMessage : The suggsested message clicked on to get here.
+     */
     quickMessage1Push(out, origMessage){
         let message0 = { name: "User", message: origMessage}
         let message01 = { name: "Bot", message: "Here are some clickable questions below:"}
@@ -225,6 +251,11 @@ class chat {
         this.update(out)
     }
     
+    /**
+     * The suggested message that was clicked on that introduced quick message 2
+     * @param {Element} out:  .main element containing all the elements.
+     * @param {string} origMessage: The suggsested message clicked on to get here.
+     */
     quickMessage2Push(out, origMessage){
         let message0 = { name: "User", message: origMessage}
         let message01 = { name: "Bot", message: "Here are some clickable questions below:"} 
@@ -238,6 +269,11 @@ class chat {
         this.update(out)
     }
 
+    /**
+     * The suggested message that was clicked on that introduced quick message 3
+     * @param {Element} out: .main element containing all the elements.
+     * @param {string} origMessage: The suggsested message clicked on to get here.
+     */
     quickMessage3Push(out, origMessage){
         let message0 = { name: "User", message: origMessage}
         let message01 = { name: "Bot", message: "Here are some clickable questions below:"} 
@@ -250,6 +286,11 @@ class chat {
         this.update(out)
     }
 
+    /**
+     * The suggested message that was clicked on that introduced quick message 4
+     * @param {Element} out: .main element containing all the elements.
+     * @param {*} origMessage: The suggsested message clicked on to get here.
+     */
     quickMessage4Push(out, origMessage){
         let message0 = { name: "User", message: origMessage}
         let message01 = { name: "Bot", message: "Here are some clickable questions below:"} 
