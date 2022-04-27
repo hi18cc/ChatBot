@@ -204,7 +204,15 @@ class TestEventTimes(unittest.TestCase):
 		response = chat ("when is ontario's next game?")
 		assert response == "Here are the upcoming games for Ontario<br>Preliminary | Pool A - Game 27 - NS vs ON Baseball on 2022-08-10 at 07:00 PM in Welland Baseball Stadium.<br> Preliminary | Pool A - Duel 1089 - AB vs ON Wrestling on 2022-08-10 at 08:30 AM in Canada Games Park.<br> Preliminary | Pool B - Duel 6100 - ON vs YT Wrestling on 2022-08-10 at 10:00 AM in Canada Games Park.<br> Preliminary | Pool A - Duel 1111 - ON vs SK Wrestling on 2022-08-10 at 12:30 PM in Canada Games Park.<br> Preliminary | Pool B - Duel 3122 - AB vs ON Wrestling on 2022-08-10 at 02:00 PM in Canada Games Park.<br> ", "Function did not return the expected games for ontario. response = " + response
 		
-	
+class TestTicketInfo(unittest.TestCase):
+
+	def testProperInput(self):
+		response = chat ("where can i buy tickets?")
+		assert response == "Tickets and ticket information can be obtained here https://niagara2022games.ca/tickets/", "No link to ticket info returned. response = " + response
+		
+	def testMisspelling(self):
+		response = chat ("ware kan bye tickats?")
+		assert response != "Tickets and ticket information can be obtained here https://niagara2022games.ca/tickets/", "A link was returned from misspelling. response = " + response
 	
 
 	
