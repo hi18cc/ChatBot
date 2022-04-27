@@ -13,7 +13,7 @@ from autoScraper.KeyValues import KeyValues
 from autoScraper.SQLMethods import SQLMethods
 
 
-database = r"./4P02 Chatbot Database.db"
+database = r"./chatbot_backend/4P02 Chatbot Database.db"
 
 chrome_options = Options()  
 chrome_options.add_argument("--headless")  
@@ -345,7 +345,6 @@ def update_medals():
     for x in KeyValues.Contingent_Acronym:
         cAbbrev = x[0]
         gold = Utilities.get_gold_medal_count_for_contingent(driver, cAbbrev).text
-        print(gold)
         silver = Utilities.get_silver_medal_count_for_contingent(driver, cAbbrev).text
         bronze = Utilities.get_bronze_medal_count_for_contingent(driver, cAbbrev).text
         total = Utilities.get_total_medal_count_for_contingent(driver, cAbbrev).text

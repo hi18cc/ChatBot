@@ -109,9 +109,11 @@ def chat(sentence):
                             name = temp[i].capitalize() + " " + temp[i+1].capitalize()
                             res = SQLMethods.SQLMethods.sql_select_person_by_person_name_all_columns(connection, name)
                             if res:
-                                for ele in res[0] :
-                                    if str(ele) != "NULL":
-                                        ans = ans + str(ele) + " "
+                                for r in res:
+                                    for ele in r[1:]:
+                                        if str(ele) != "None" and str(ele) != "NULL":
+                                            ans = ans + str(ele) + " "
+                                    ans = ans + "<br/>"
                                 connection.close()
                                 return ans
                         connection.close()
@@ -129,7 +131,7 @@ def chat(sentence):
                             res = SQLMethods.SQLMethods.sql_select_person_by_person_name_sport_column_personName_column_contingent_column(connection, name)
                             if res:
                                 max2 = len(res)
-                                ans = f"There are {str(max2)} player matching that name."
+                                ans = f"There are {str(max2)} player matching that name. <br/>"
                                 for j in range(max2):
                                     if(max2 == 1):
                                         ans = res[j][0] + " " +  "participates in " + res[j][1]
