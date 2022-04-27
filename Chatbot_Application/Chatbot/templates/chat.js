@@ -24,7 +24,10 @@ class chat {
         document.getElementById ("msg").value = "";
     }
 
-    
+    help()
+    {
+        window.open("index.html", "_self");
+    }
     
     history() {
         let html = "Niagara Games 2022 Chatbot Conversation History \n\n";
