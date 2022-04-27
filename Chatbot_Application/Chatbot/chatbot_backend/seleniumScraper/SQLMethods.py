@@ -240,7 +240,7 @@ class SQLMethods:
         query = """ select personName, sportName, contingent from Persons where (' ' || personName || ' ') LIKE ? """
 
         cur = conn.cursor()
-        name = '% ' +name +' %'
+        name = '%' +' ' +name + ' ' +'%'
         queryTuple = (name,)
         
         cur.execute(query, queryTuple)
