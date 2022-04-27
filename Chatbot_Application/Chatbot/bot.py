@@ -108,6 +108,11 @@ def chat(sentence):
                         for i in range(max-1):
                             name = temp[i].capitalize() + " " + temp[i+1].capitalize()
                             res = SQLMethods.SQLMethods.sql_select_person_by_person_name_all_columns(connection, name)
+
+                            if not res:
+                                name = temp[i].capitalize()
+                                res = SQLMethods.SQLMethods.sql_select_person_by_person_name_all_columns(connection, name)
+                                
                             if res:
                                 for r in res:
                                     for ele in r[1:]:
