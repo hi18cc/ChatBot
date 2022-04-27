@@ -295,7 +295,7 @@ class chat {
         let message0 = { name: "User", message: origMessage}
         let message01 = { name: "Bot", message: "Here are some clickable questions below:"} 
         let message1 = { name: "Quick", message: "Tell me about Evelyn Beaton"}
-        let message2 = { name: "Quick", message: "What sport does Evelyn Beaton play"}
+        let message2 = { name: "Quick", message: "What sport does Evelyn Beaton play?"}
 
         this.messages.push(message0, message01,message1, message2)
         this.update(out)

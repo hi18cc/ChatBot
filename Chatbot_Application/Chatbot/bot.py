@@ -122,7 +122,7 @@ def chat(sentence):
                                 connection.close()
                                 return ans
                         connection.close()
-                        return "Could not find player" 
+                        return "Could not find player, try full name." 
 
 
                     # returns the sport a specific player plays
@@ -145,7 +145,7 @@ def chat(sentence):
                                 connection.close()
                                 return ans 
                         connection.close()
-                        return "Could not find player"
+                        return "Could not find player, try full name."
 
 
                     # returns how many medals a specific contingent has
