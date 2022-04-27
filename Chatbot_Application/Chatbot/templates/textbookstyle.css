@@ -7,10 +7,14 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 100vh;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    min-height: 100%;
 }
 
 .header {
+    font-family: Gilroy-Black,sans-serif;
+    color: white;
     position: sticky;
     top: 0;
     background: #004f71;
@@ -36,17 +40,23 @@ body {
 }
 
 .send {
+    font-family: Gilroy-Black,sans-serif;
+    font-weight: 600;
+    margin-left: 1rem;
     padding: 6px;
     border: none;
     outline: none;
     cursor: pointer;
-    border-radius: 20px;
-    color: black;
-    background: white;
+    border-radius: 5px;
+    color: white;
+    background: #004f71;
 }
 
 .clear {
+    margin-right: 1rem;
     padding: 6px;
+    padding-left: 8px;
+    padding-right: 8px;
     border: none;
     outline: none;
     cursor: pointer;
@@ -55,14 +65,65 @@ body {
     background: #ff0005;
 }
 
-.help {
+.back {
+    
     color: white;
     background-color: #004f71;
 }
 
-.back {
-    color: white;
+.info {
     background-color: #004f71;
+    color: white;
+    margin-left: 1rem;
+}
+
+
+.popup {
+    width: 400px;
+    background: #fff;
+    border: #004f71;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+    z-index: 2;
+}
+
+.open-popup{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%,-50%) scale(1);
+}
+
+
+.popup h2 {
+    font-family: Gilroy-Black,sans-serif;
+  color: #004f71;
+  font-style: normal;
+  font-weight: 800;
+  text-decoration: none;
+  margin: 20px 0 20px;
+}
+
+.popup button{
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px 0;
+    background: #004f71;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .history {
@@ -174,3 +235,4 @@ body {
     text-align: left;
     border-radius: 20px;
 }
+
