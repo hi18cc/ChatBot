@@ -42,10 +42,12 @@ URL = 'https://cg2022.gems.pro/Result/Calendar.aspx?SetLanguage=en-CA&GameDay_GU
 
     
 def view_name(request):
-    update_medals()
-    print("Medals Done")
-    fill_player_data()
-    return HttpResponse("Done")
+    conn = SQLMethods.create_connection(database)
+    test =SQLMethods.sql_select_person_by_person_name_all_columns(conn,'Beaton')
+    # update_medals()
+    # print("Medals Done")
+    # fill_player_data()
+    return HttpResponse(str(test))
 
 
 def index(request):
