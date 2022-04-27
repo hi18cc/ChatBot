@@ -244,7 +244,7 @@ class chat {
         let message1 = { name: "Quick", message: "What is the Canada Summer Games website?"}
         let message2 = { name: "Quick", message: "When does Canada Summer Games begin?"}
         let message3 = { name: "Quick", message: "Updates on the Canada Summer Games?"}
-        let message4 = { name: "Quick", message: "Where is the Canada Summer Games"}
+        let message4 = { name: "Quick", message: "Where is the Canada Summer Games?"}
         let message5 = { name: "Quick", message: "Where can I buy tickets?"}
 
         this.messages.push(message0, message01,message1, message2, message3, message4, message5)

@@ -218,7 +218,7 @@ class SQLMethods:
 
         cur = conn.cursor()
         name = name
-        queryTuple = ('%' +name +'%',)
+        queryTuple = (name,)
         cur.execute(query, queryTuple)
         records = cur.fetchall()
         conn.set_trace_callback(print)
@@ -240,7 +240,7 @@ class SQLMethods:
 
         cur = conn.cursor()
         name = name
-        queryTuple = ('%'+name +'%',)
+        queryTuple = (name,)
         
         cur.execute(query, queryTuple)
 
