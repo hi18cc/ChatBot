@@ -108,12 +108,13 @@ class chat {
      * @param {Element} out: The element that is the main class.
      */
     sendSuggestion(out){
-        let suggestion = "Welcome to the Chatbot, ask me questions and I'll try to answer them, here are some suggestion questions;"
+        let suggestion = "Welcome to the Chatbot, ask me questions and I'll try to answer them, here are some suggestion questions:"
         let suggestion1 = { name: "Bot", message: suggestion }; 
-        let suggestion2 = { name: "Quick", message: "How many medals does Ontario have?"}; 
-        let suggestion3 = { name: "Quick", message: "What sport does Spencer Allen play?"};
-        let suggestion4 = { name: "Quick", message: "Where can I buy tickets?"};
-        this.messages.push(suggestion1, suggestion2, suggestion3, suggestion4)
+        let suggestion2 = { name: "Quick1", message: "Information about Canada Summer Games..."}; 
+        let suggestion3 = { name: "Quick2", message: "Information about Niagara..."};
+        let suggestion4 = { name: "Quick3", message: "Information about Sports..."};
+        let suggestion5 = { name: "Quick4", message: "Information about Players..."};
+        this.messages.push(suggestion1, suggestion2, suggestion3, suggestion4, suggestion5)
         this.update(out)
     }
     /**
@@ -143,6 +144,9 @@ class chat {
             } else if (item.name === "Quick"){
                 const options = { defaultProtocol: 'https', target: "_blank" };
                 html += '<div class="messages quick-reply">' + linkifyHtml(item.message, options) + '</div>';
+            } else if (item.name =="Quick1" || item.name =="Quick2" || item.name =="Quick3" || item.name =="Quick4" || item.name =="Quick5"){
+                const options = { defaultProtocol: 'https', target: "_blank" };
+                html += '<div class="messages quick-suggest">' + linkifyHtml(item.message, options) + '</div>';
             }
             
             else {
@@ -159,16 +163,103 @@ class chat {
         
         
         out.querySelector('.output').innerHTML = html;
-        let replies = document.querySelectorAll('.quick-reply')
 
+        let replies = document.querySelectorAll('.quick-reply')
         replies.forEach((reply) => {
             reply.addEventListener('click', () =>{
                 this.inputAndSendText(out, reply.textContent);
             });
         });
 
+        let suggests = document.querySelectorAll('.quick-suggest')
+        suggests.forEach((suggestion) => {
+            suggestion.addEventListener('click', () =>{
+                this.quickMessageSelect(out, suggestion.textContent);
+            })
+        })
+
         this.scrollFix(out.querySelector('.output'));
     }
+
+    /**
+     * Quick method to make a quick check on the text to see which category it belongs in.
+     * @param {*} text: The name of the message which can either be Bot || quickX || User 
+     * @returns true if we have a QuickX text. 
+     */
+    checkQuickMessage(text){
+        if(text =="Quick1" || text =="Quick2" || text =="Quick3" || text =="Quick4" || text =="Quick5"){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    quickMessageSelect(out, message){
+        switch(message){
+            case "Information about Canada Summer Games...":
+                this.quickMessage1Push(out, "Information about Canada Summer Games...");
+                break;
+            case "Information about Niagara...":
+                this.quickMessage2Push(out, "Information about Niagara...");
+                break;
+            case "Information about Sports...":
+                this.quickMessage3Push(out,"Information about Sports..." )
+                break;
+            case "Information about Players...":
+                this.quickMessage4Push(out, "Information about Players...")
+                break;
+        }
+
+    }
+
+    quickMessage1Push(out, origMessage){
+        let message0 = { name: "User", message: origMessage}
+        let message01 = { name: "Bot", message: "Here are some clickable questions below:"}
+        let message1 = { name: "Quick", message: "What is the Canada Summer Games website?"}
+        let message2 = { name: "Quick", message: "When does Canada Summer Games begin?"}
+        let message3 = { name: "Quick", message: "Updates on the Canada Summer Games?"}
+        let message4 = { name: "Quick", message: "Where is the Canada Summer Games"}
+        let message5 = { name: "Quick", message: "Where can I buy tickets?"}
+
+        this.messages.push(message0, message01,message1, message2, message3, message4, message5)
+        this.update(out)
+    }
+    
+    quickMessage2Push(out, origMessage){
+        let message0 = { name: "User", message: origMessage}
+        let message01 = { name: "Bot", message: "Here are some clickable questions below:"} 
+        let message1 = { name: "Quick", message: "What transportation options are available?"}
+        let message2 = { name: "Quick", message: "Is there an app for buses?"}
+        let message3 = { name: "Quick", message: "What can you do in the Niagara region?"}
+        let message4 = { name: "Quick", message: "Where can you stay in the Niagara region?"}
+        let message5 = { name: "Quick", message: "What are the COVID-19 restrictions like in Niagara?"}
+
+        this.messages.push(message0, message01,message1, message2, message3, message4, message5)
+        this.update(out)
+    }
+
+    quickMessage3Push(out, origMessage){
+        let message0 = { name: "User", message: origMessage}
+        let message01 = { name: "Bot", message: "Here are some clickable questions below:"} 
+        let message1 = { name: "Quick", message: "When is the next Baseball game?"}
+        let message2 = { name: "Quick", message: "Ontario's next baseball game"}
+        let message3 = { name: "Quick", message: "When is the next Basketball game?"}
+        let message4 = { name: "Quick", message: "How many medals does Ontario have?"}
+
+        this.messages.push(message0, message01,message1, message2, message3, message4)
+        this.update(out)
+    }
+
+    quickMessage4Push(out, origMessage){
+        let message0 = { name: "User", message: origMessage}
+        let message01 = { name: "Bot", message: "Here are some clickable questions below:"} 
+        let message1 = { name: "Quick", message: "Tell me about Evelyn Beaton"}
+        let message2 = { name: "Quick", message: "What sport does Evelyn Beaton play"}
+
+        this.messages.push(message0, message01,message1, message2)
+        this.update(out)
+    }
+        
 
     scrollFix(e) {
         e.scrollTop = e.scrollHeight;
