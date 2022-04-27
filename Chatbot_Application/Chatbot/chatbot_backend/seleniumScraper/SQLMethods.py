@@ -214,10 +214,10 @@ class SQLMethods:
         :rtype: tuple
         """
 
-        query = """ select  * from Persons where (' ' || personName || ' ') LIKE '% ? %'"""
+        query = """ select  * from Persons where (' ' || personName || ' ') LIKE ? """
 
         cur = conn.cursor()
-        name = name
+        name = '% ' +name +' %'
         queryTuple = (name,)
         cur.execute(query, queryTuple)
         records = cur.fetchall()
@@ -236,10 +236,10 @@ class SQLMethods:
         :rtype: tuple
         """
 
-        query = """ select personName, sportName, contingent from Persons where (' ' || personName || ' ') LIKE '% ? %'"""
+        query = """ select personName, sportName, contingent from Persons where (' ' || personName || ' ') LIKE ? """
 
         cur = conn.cursor()
-        name = name
+        name = '% ' +name +' %'
         queryTuple = (name,)
         
         cur.execute(query, queryTuple)
