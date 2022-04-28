@@ -105,9 +105,14 @@ def chat(sentence):
                         connection = SQLMethods.SQLMethods.create_connection(r"chatbot_backend/4P02 Chatbot Database.db")
                         max = len(temp)
                         ans = ""
-                        for i in range(max-1):
-                            name = temp[i].capitalize() + " " + temp[i+1].capitalize()
-                            res = SQLMethods.SQLMethods.sql_select_person_by_person_name_all_columns(connection, name)
+                        for i in range(max):
+                            if(i != max-1):
+                                name = temp[i].capitalize() + " " + temp[i+1].capitalize()
+                                res = SQLMethods.SQLMethods.sql_select_person_by_person_name_all_columns(connection, name)
+
+                            if not res:
+                                name = temp[i].capitalize()
+                                res = SQLMethods.SQLMethods.sql_select_person_by_person_name_all_columns(connection, name)   
                             if res:
                                 for r in res:
                                     for ele in r[1:]:
@@ -117,7 +122,7 @@ def chat(sentence):
                                 connection.close()
                                 return ans
                         connection.close()
-                        return "Could not find player" 
+                        return "Could not find player, try full name." 
 
 
                     # returns the sport a specific player plays
@@ -126,9 +131,15 @@ def chat(sentence):
                         connection = SQLMethods.SQLMethods.create_connection(r"chatbot_backend/4P02 Chatbot Database.db")
                         max = len(temp)
                         ans = ""
-                        for i in range(max-1):
-                            name = temp[i].capitalize() + " " + temp[i+1].capitalize()
-                            res = SQLMethods.SQLMethods.sql_select_person_by_person_name_sport_column_personName_column_contingent_column(connection, name)
+                        for i in range(max):
+                            if (i != max-1):
+                                name = temp[i].capitalize() + " " + temp[i+1].capitalize()
+                                res = SQLMethods.SQLMethods.sql_select_person_by_person_name_sport_column_personName_column_contingent_column(connection, name)
+                            
+                            if(not res):
+                                name = temp[i].capitalize()
+                                res = SQLMethods.SQLMethods.sql_select_person_by_person_name_sport_column_personName_column_contingent_column(connection, name)
+
                             if res:
                                 max2 = len(res)
                                 ans = f"There are {str(max2)} player matching that name. <br/>"
@@ -140,7 +151,7 @@ def chat(sentence):
                                 connection.close()
                                 return ans 
                         connection.close()
-                        return "Could not find player"
+                        return "Could not find player, try full name."
 
 
                     # returns how many medals a specific contingent has

@@ -1,3 +1,10 @@
+@charset "UTF-8";
+@import url("https://use.fontawesome.com/releases/v5.13.1/css/all.css");
+@font-face {
+    font-family: Gilroy-Black;
+    src: url(Gilroy-Black.woff);
+  }
+
 .home-container {
   width: 100%;
   display: flex;
@@ -20,6 +27,7 @@
   background-color: #004F71;
 }
 .home-text {
+  font-family: Gilroy-Black,sans-serif;
   color: #ffffff;
   font-style: normal;
   font-weight: 800;
@@ -79,6 +87,7 @@
   text-decoration: none;
 }
 .home-nav {
+  margin-left: 3rem;
   display: flex;
 }
 .home-nav1 {
@@ -88,7 +97,8 @@
   flex-direction: row;
 }
 .home-text01 {
-  color: #004F71;
+  font-family: Gilroy-Black,sans-serif;
+  color: #004f71;
   font-style: normal;
   font-weight: 800;
   text-decoration: none;
@@ -121,6 +131,7 @@
   background-color: #00263E;
 }
 .home-text04 {
+  font-family: Gilroy-Black,sans-serif;
   color: #ffffff;
   z-index: 100;
   font-size: 75px;
@@ -131,6 +142,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-shadow: 2px 2px 0px #111111;
 }
 .home-image1 {
   height: 382px;
@@ -142,9 +154,8 @@
   display: flex;
   padding: var(--dl-space-space-threeunits);
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  background-color: #F5F5F5;
 }
 .home-container2 {
   width: 50%;
@@ -156,9 +167,10 @@
   margin-bottom: 0px;
   padding-right: 0px;
   flex-direction: column;
-  border: 2px solid black;
 }
 .home-text05 {
+  font-family: Gilroy-Black,sans-serif;
+  font-weight: 900;
   color: #004f71;
   font-size: 3rem;
   max-width: 450px;
@@ -178,22 +190,7 @@
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  background-color: #00263E;
-  border-color: black;
-  padding: 5px;
 }
-.centerimage {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 10%;
-}
-.centerimagex{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 5%;}
-
 .home-navlink {
   color: var(--dl-color-gray-white);
   font-style: normal;
@@ -216,14 +213,10 @@
   margin-left: var(--dl-space-space-unit);
   padding-top: var(--dl-space-space-unit);
   border-color: transparent;
-  font-weight: 800;
   padding-left: var(--dl-space-space-twounits);
   padding-right: var(--dl-space-space-twounits);
   padding-bottom: var(--dl-space-space-unit);
   text-decoration: none;
-  background-color:  #004f71;
-  text-emphasis-color: white;
-  color: var(--dl-color-gray-white);
 }
 .home-link08:hover {
   border-color: var(--dl-color-gray-black);
@@ -237,6 +230,8 @@
   flex-direction: column;
 }
 .home-text13 {
+  font-family: Gilroy-Black,sans-serif;
+  font-weight: 900;
   color: #004f71;
   font-size: 3rem;
   margin-bottom: var(--dl-space-space-twounits);
@@ -440,7 +435,6 @@
     align-items: center;
     padding-left: var(--dl-space-space-twounits);
     padding-right: var(--dl-space-space-twounits);
-	background-color: #F5F5F5;
   }
   .home-text06 {
     padding-left: var(--dl-space-space-unit);
@@ -504,7 +498,6 @@
     padding-left: var(--dl-space-space-unit);
     padding-right: var(--dl-space-space-unit);
     padding-bottom: var(--dl-space-space-twounits);
-	background-color: #F5F5F5;
   }
   .home-container2 {
     margin-bottom: var(--dl-space-space-unit);
