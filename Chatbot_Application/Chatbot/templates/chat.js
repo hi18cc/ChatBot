@@ -38,35 +38,47 @@ class chat {
     /**
      * Saves the chat log to a note file.
      */
-    history() {
+     history() {
+        let copy_messages = [];
         let html = "Niagara Games 2022 Chatbot Conversation History \n\n";
 
-        for (let i=0 ; i<this.messages.length ; i++) {
+        for (let i=5 ; i<this.messages.length ; i++) {
+            if ( this.messages[i].message != "Information about Canada Summer Games..." && this.messages[i].message != "Information about Niagara..." && this.messages[i].message != "Information about Sports..." && this.messages[i].message != "Information about Players..." ) {
+                if ( (this.messages[i].name == "Bot" && this.messages[i].message != "Here are some clickable questions below:") || this.messages[i].name == "User" ) {
+                    copy_messages.push(this.messages[i]);
+                }
+            }
+
+            else if ( this.messages[i].message == "Information about Canada Summer Games..." || this.messages[i].message == "Information about Niagara..." || this.messages[i].message == "Information about Sports..." || this.messages[i].message == "Information about Players..." ) {
+                if ( (i+1) < this.messages.length && this.messages[i+1].message != "Here are some clickable questions below:") {
+                    copy_messages.push(this.messages[i]);
+                }
+            }
+        }
+
+        for (let i=0 ; i<copy_messages.length ; i++) {
             if ( i%2 === 0 ) {
                 html += "User: ";
-                let a = this.messages[i].message.split("<br>");
-
+                let a = copy_messages[i].message.split("<br>");
                 for ( let j=0 ; j<a.length ; j++ ) {
                     html += a[j] + "\n";
                 }
             }
-            
+           
             else {
                 html += "Bot: ";
-                let a = this.messages[i].message.split("<br>");
-                
+                let a = copy_messages[i].message.split("<br>");
+               
                 for ( let j=0 ; j<a.length ; j++ ) {
                     let a1 = a[j].split("<br/>");
-
                     for (let h=0 ; h<a1.length ; h++ ) {
                         html += a1[h] + "\n";
                     }
                 }
-
                 html += "\n";
             }
         }
-        
+       
         var historyFile = new Blob([html], {type: "text/plain;charset=utf-8"});
         saveAs(historyFile, "NiagaraGames_Chatbot.txt");
     }
