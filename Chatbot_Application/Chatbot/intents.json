@@ -251,6 +251,10 @@
     {"tag": "Question14", 
     "patterns": ["Where can I buy tickets?", "I want to buy a ticket?", "How can I purchase a ticket?", "How much is a ticket?", "How much are tickets?", "buy", "tickets", "bye tickets", "i want to bye tickets", "want buy tickets", "want bye tickets", "tickets bye", "where can i get tickets", "get tickets", "Ticket purchasing information"],
     "responses": ["Tickets and ticket information can be obtained here https://niagara2022games.ca/tickets/"]
-    }
+    },
+    {"tag": "Question15",
+    "Patterns": ["What sports are in the tournament?", "Which sports are being played?", "How many sports are there?", "Sports in Canada Summer Games?"],
+    "responses": ["TBD6"]}
+    
 
 ]}

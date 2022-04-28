@@ -254,9 +254,21 @@ def chat(sentence):
                         
                         connection.close
                         return "I could not find any information on that. Sorry :("
+                    
+                    elif answer == "TBD6":
+                        connection = SQLMethods.SQLMethods.create_connection(r"chatbot_backend/4P02 Chatbot Database.db")
+                        res = SQLMethods.SQLMethods.select_all_sports(connection)
+                        length = len(res)
+                        ans = ""
+                        for i in range (0,length):
+                            ans += res[i]+ "<br/>"
+                        connection.close()
+                        return ans
 
                     else:
                         return answer
+
+                    
             results.pop(0)
     else:
         return "I'm sorry, I don't understand. Can you be more specific or you can go to this website https://niagara2022games.ca/?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ym4JMO1oHPSmRfiX047qNfEf9FtK22b_Y8FrkJQxEMnOcZFlv3MbCEaAtQiEALw_wcB"
