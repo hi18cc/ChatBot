@@ -23,11 +23,11 @@ class TestAksingAboutTransit (unittest.TestCase):
 	
 	def testCorrectSpelling (self):
 		response = chat ("What transport options are available.")
-		assert response == "Niagara Region Transit information is available here: https://www.niagararegion.ca/transit/", "Correct input error, Incorrect response returned. Response = " + response
+		assert response == "Niagara Region Transit information is available here: https://www.niagararegion.ca/transit/", "Incorrect response returned, something other than a response from function. Response = " + response
 	
-	def testAbbriviationSpelling (self):
+	def testAlternateInput (self):
 		response = chat ("How can I get there.")
-		assert response == "Niagara Region Transit information is available here: https://www.niagararegion.ca/transit/", "Abbriviation input error, Incorrect response returned. Response = " + response
+		assert response != "Niagara Region Transit information is available here: https://www.niagararegion.ca/transit/", "Did not return expected ouput from function. Response = " + response
 	
 	def testRandomInput (self):
 		response = chat ("What car do I drive.")
@@ -49,7 +49,7 @@ class TestAskingAboutTransitApp (unittest.TestCase):
 		assert response == "The Niagara Reigon Transit app for Android is avaiable here https://play.google.com/store/apps/details?id=com.thetransitapp.droid and a version for iOS is available here https://apps.apple.com/ca/app/transit-bus-train-times/id498151501", "Abbriviation spelling error. Function did not return proper output, response = " + response
 	
 	def testRandomInput (self):
-		response = chat ("what colour is the bus?")
+		response = chat ("what colour is the road?")
 		assert response != "The Niagara Reigon Transit app for Android is avaiable here https://play.google.com/store/apps/details?id=com.thetransitapp.droid and a version for iOS is available here https://apps.apple.com/ca/app/transit-bus-train-times/id498151501", "Random input error. Function returned output for the function, response = " + response
 	
 	def testIncorrectSpelling (self):
@@ -79,7 +79,7 @@ class TestAksingHotels(unittest.TestCase):
 	
 	def testCorrectSpelling (self):
 		response = chat ("Where can you stay in Niagara Region?")
-		assert response == "The Niagara Falls Tourism website provided here https://www.niagarafallstourism.com/niagara-region/ has information about what you can see and do in the region", "Correct input error. Function did not return expected output, response = " + response
+		assert response == "The Niagara Falls Tourism website provided here https://www.niagarafallstourism.com/niagara-region/ has information about accommodations in the Niagara Region ", "Correct input error. Function did not return expected output, response = " + response
 	
 	def testAbbriviation (self):
 		response = chat ("Niagara region")
@@ -104,9 +104,9 @@ class TestAksingCovid19(unittest.TestCase):
 		response = chat ("Covid-19")
 		assert response == "The Niagara region COVID-19 information can be found here https://www.niagararegion.ca/health/covid-19/default.aspx?topic=1", "Abbriviation input error. Function did not return expected output, response = " + response
 	
-	def testRandomInput (self):
+	def testDifferentInput (self):
 		response = chat ("i'm sick")
-		assert response != "The Niagara region COVID-19 information can be found here https://www.niagararegion.ca/health/covid-19/default.aspx?topic=1", "Random input error. Function returned function output, response = " + response
+		assert response == "The Niagara region COVID-19 information can be found here https://www.niagararegion.ca/health/covid-19/default.aspx?topic=1", "Random input error. Function returned function output, response = " + response
 		
 class TestAksingStartDate(unittest.TestCase):
 	
@@ -141,7 +141,7 @@ class TestAksingLocation(unittest.TestCase):
 	
 	def testAbbriviation (self):
 		response = chat ("Where")
-		assert response != "The Canada Games events will be taking place in various locations across the Niagara region, locations for specific sports can be found here https://niagara2022games.ca/sports/", "Abbriviation input error. Function did not return expected output, response = " + response
+		assert response == "The Canada Games events will be taking place in various locations across the Niagara region, locations for specific sports can be found here https://niagara2022games.ca/sports/", "Abbriviation input error. Function did not return expected output, response = " + response
 	
 	def testIncorrectSpelling (self):
 		response = chat ("ware Kanade gaems?")
