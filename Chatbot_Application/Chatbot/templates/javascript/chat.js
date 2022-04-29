@@ -33,7 +33,7 @@ class chat {
      */
     help()
     {
-        window.open("index.html", "_self");
+        window.open("../html/index.html", "_self");
     }
     /**
      * Saves the chat log to a note file.
@@ -87,7 +87,7 @@ class chat {
      * Back button leads to the index page.
      */
     back() {
-        window.open("index.html", "_self");
+        window.open("../html/index.html", "_self");
     }
 
     /**
