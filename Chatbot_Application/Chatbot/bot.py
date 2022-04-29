@@ -32,6 +32,7 @@ classes = data['classes']
 train_x = data['train_x']
 train_y = data['train_y']
 
+PersonsColumns =['Person ID','Contingent','Sport Name','Person Name', 'URL', 'Hometown', 'Type', 'Age', 'Height', 'Weight', 'Club', 'Coach', 'Position', 'Goals for Games', 'Personal Best Result', 'Award', 'Personal Role Model', 'Other Info']
 with open('intents.json') as json_data:
     intents = json.load(json_data)
 
@@ -71,7 +72,7 @@ def bow(sentence, words):
 
 
 
-ERROR_THRESHOLD = 0.25
+ERROR_THRESHOLD = 0.87
 def classify(sentence):
     # generate probabilities from the model
     results = model.predict([bow(sentence, words)])[0]
@@ -106,6 +107,7 @@ def chat(sentence):
                         max = len(temp)
                         ans = ""
                         res = []
+                        url = None
                         for i in range(max):
                             if(i != max-1):
                                 name = temp[i].capitalize() + " " + temp[i+1].capitalize()
@@ -116,10 +118,14 @@ def chat(sentence):
                                 res = SQLMethods.SQLMethods.sql_select_person_by_person_name_all_columns(connection, name)   
                             if res:
                                 for r in res:
-                                    for ele in r[1:]:
-                                        if str(ele) != "None" and str(ele) != "NULL":
-                                            ans = ans + str(ele) + " "
-                                    ans = ans + "<br/>"
+                                    count = len(r)
+                                    for j in range(1,count):
+                                        if (j == 4):
+                                            url = r[j]
+                                            continue
+                                        if str(r[j]) != "None" and str(r[j]) != "NULL":
+                                            ans = ans + "<b>" + PersonsColumns[j] + ": </b>" + str(r[j]) +"<br/>" 
+                                    ans = ans + url + "<br/><br/>"
                                 connection.close()
                                 return ans
                         connection.close()
@@ -236,7 +242,7 @@ def chat(sentence):
                                 max3 = len(res)
                                 ans = "Here are the upcoming games for " + KeyValues.KeyValues.Contingent_Keys[i][0] + "<br>"
                                 for k in range(0, max3):
-                                    date_time = datetime.strptime(res[k][4], '%H:%M');
+                                    date_time = datetime.strptime(res[k][4], '%H:%M')
                                     ans = ans + res[k][0] + " " + res[k][1] + " on " + res[k][3] + " at " + date_time.strftime('%I:%M %p') + " in " + res[k][5] + ".<br> "
                                 connection.close()
                                 return ans

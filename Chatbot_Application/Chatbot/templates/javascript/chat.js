@@ -163,17 +163,22 @@ class chat {
     * @param {Element} out: An element which should contain another element of the class input.
     */
     update(out) {
-        
+        const options = { defaultProtocol: 'https', target: "_blank", format: (value, type) =>{
+            if(type === 'url' && value.length > 38){
+                value = "Get More Info Here"
+            }
+            return value;
+        }};
         let html = ''; 
         this.messages.slice().reverse().forEach(function(item, index) {
             if (item.name === "Bot") { // Messages is a tuple of (name, message) if name is bot we add the proper elements.
-                const options = { defaultProtocol: 'https', target: "_blank" };
+                
                 html += '<div class="messages visitor">' + linkifyHtml(item.message, options) + '</div>'
             } else if (item.name === "Quick"){ // Quick is the name of non-terminal suggestive options.
-                const options = { defaultProtocol: 'https', target: "_blank" };
+                
                 html += '<div class="messages quick-reply">' + linkifyHtml(item.message, options) + '</div>'; 
             } else if (item.name =="Quick1" || item.name =="Quick2" || item.name =="Quick3" || item.name =="Quick4" || item.name =="Quick5"){ // Checks to see if the message is a quick-reply.
-                const options = { defaultProtocol: 'https', target: "_blank" };
+                
                 html += '<div class="messages quick-suggest">' + linkifyHtml(item.message, options) + '</div>';
             }
             

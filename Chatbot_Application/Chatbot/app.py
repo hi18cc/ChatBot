@@ -31,4 +31,4 @@ if __name__ == '__main__':
     # runs task every week
     scheduler.add_job(id ='Scheduled task2', func = scheduledTask2, trigger = 'interval', seconds = 604800)
     scheduler.start()
-    app.run()
+    app.run(debug=True)
