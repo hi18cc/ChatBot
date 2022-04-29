@@ -164,7 +164,7 @@ class chat {
     */
     update(out) {
         const options = { defaultProtocol: 'https', target: "_blank", format: (value, type) =>{
-            if(type === 'url' && value.length > 38){
+            if(type === 'url' && value.length > 109){
                 value = "Get More Info Here"
             }
             return value;
