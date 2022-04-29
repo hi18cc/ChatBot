@@ -153,9 +153,9 @@ def chat(sentence):
                                 ans = f"There are {str(max2)} player matching that name. <br/>"
                                 for j in range(max2):
                                     if(max2 == 1):
-                                        ans = res[j][0] + " " +  "participates in " + res[j][1]
+                                        ans = "<i>" + res[j][0] + "</i>" + " " +  "participates in " + "<b>" + res[j][1] + "</b>"
                                     else:
-                                        ans = ans + " " + res[j][0] + " from " + res[j][2] + " participates in " + res[j][1] + ".<br/>"
+                                        ans = ans + " <i>" + res[j][0] + "</i>" + " from " + "<i>" + res[j][2] + "</i>" + " participates in " + "<b>" + res[j][1] + "</b>.<br/>"
                                 connection.close()
                                 return ans 
                         connection.close()
@@ -199,7 +199,7 @@ def chat(sentence):
                                     connection.close()
                                     return ans
                         connection.close()
-                        return "Cannot find province or territory by that name"
+                        return "Cannot find province or territory by that name."
 
 
                     # returns the date for the next game of a contingent and/or a sport
@@ -218,18 +218,19 @@ def chat(sentence):
                                 temp2 = temp2 + char.capitalize() + " "
                             else: 
                                 temp2 = temp2 + char + " "
-
+                        #no actual if so can be improved to speed up
                         # if user specifies a contingent with a game type
+                        gameColumns = ['Game Name', 'Sport Name', 'Contingent' ,'Dates', 'Times', 'Location']
                         for i in range(0,max):
-                            if KeyValues.KeyValues.Contingent_Keys[i][0] in temp2:
+                            if KeyValues.KeyValues.Contingent_Keys[i][0] in temp2: 
                                 for j in range(0,max2):
                                     if KeyValues.KeyValues.Sport_Keys[j][0] in temp2:
                                         res = SQLMethods.SQLMethods.sql_select_next_date_by_contingent_and_sport(connection, KeyValues.KeyValues.Contingent_Keys[i][0], 
                                             KeyValues.KeyValues.Sport_Keys[j][0])
                                         max3 = len(res)
                                         for k in range(0,max3):
-                                            date_time = datetime.strptime(res[k][4], '%H:%M');
-                                            ans = ans + res[k][0] + " at " + res[k][3] + " on " + date_time.strftime('%I:%M %p') + " in " + res[k][5] + ".<br> "
+                                            date_time = datetime.strptime(res[k][4], '%H:%M')
+                                            ans = ans + "<b>" + gameColumns[0] + ": </b>" + res[k][0] + "</br><b>" + gameColumns[3] + ": </b>" + res[k][3] + "</br> <b>" + gameColumns[4] + ": </b>" + res[k][4] + "</br> <b>" + gameColumns[5] + ": </b>"+ res[k][5] + "<br> "
                                         connection.close()
                                         return ans
 
@@ -243,7 +244,7 @@ def chat(sentence):
                                 ans = "Here are the upcoming games for " + KeyValues.KeyValues.Contingent_Keys[i][0] + "<br>"
                                 for k in range(0, max3):
                                     date_time = datetime.strptime(res[k][4], '%H:%M')
-                                    ans = ans + res[k][0] + " " + res[k][1] + " on " + res[k][3] + " at " + date_time.strftime('%I:%M %p') + " in " + res[k][5] + ".<br> "
+                                    ans = ans + "<b>" + gameColumns[0] + ": </b>" + res[k][0] + "</br> <b>"+ gameColumns[1] +": </b>" + res[k][1] + "</br><b>" + gameColumns[3] + ": </b>" + res[k][3] + "</br><b>" + gameColumns[4] + ": </b>" +res[k][4] + "</br> <b>" +gameColumns[5] + ": </b>"+ res[k][5] + "</br></br>"
                                 connection.close()
                                 return ans
 
@@ -254,9 +255,9 @@ def chat(sentence):
                                 res = SQLMethods.SQLMethods.sql_select_next_date_by_sportName(connection, KeyValues.KeyValues.Sport_Keys[i][0])
                                 max3 = len(res)
                                 for k in range(0,max3):
-                                    date_time = datetime.strptime(res[k][4], '%H:%M');
+                                    date_time = datetime.strptime(res[k][4], '%H:%M')
                                     #print(date_time)
-                                    ans = ans + res[k][0] + " " + res[k][2] + " on " + res[k][3] + " at " + date_time.strftime('%I:%M %p') + " in " + res[k][5] + ".<br> "
+                                    ans = ans + "<b>" + gameColumns[0] + ": </b>" + res[k][0] + "</br> <b>" + gameColumns[2] + ": </b>" + res[k][2] + "</br><b>" + gameColumns[3] + ": </b>" + res[k][3] + "</br><b>" +  gameColumns[4] + ": </b>" +res[k][4] + "</br> <b>" + gameColumns[5] + ": </b>"+ res[k][5] + "</br></br>"
                                 connection.close()
                                 return ans
                         

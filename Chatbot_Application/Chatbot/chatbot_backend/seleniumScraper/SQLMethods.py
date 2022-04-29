@@ -618,7 +618,7 @@ class SQLMethods:
         :param String contingent: Name of contingent.
 
         :return: select the date of the next closest game from games column by contingent.
-        :rtype: tuple(gameName, sportName, contingent, date, times)
+        :rtype: tuple(gameName, sportName, contingent, date, times, location)
         """
 
         query = """ Select ContingentGames.gameName, sportName, contingent, dates, times, location from games, ContingentGames where Contingent = ? AND contingentGames.gamename = games.gamename AND dates = (Select min(dates) from Games, contingentgames where Contingent = ? AND contingentGames.gamename = games.gamename AND Dates >= Date())  """
@@ -708,7 +708,7 @@ class SQLMethods:
         :param String sport: Name of Sport.
 
         :return: Gets the next game for the sport by contingent by the next earliest date.
-        :rtype: tuple(gameName, sportName, contingent, date, times)
+        :rtype: tuple(gameName, sportName, contingent, date, times, location)
         """
 
         query = """ Select ContingentGames.gameName, sportName, contingent, dates, times, location from games, ContingentGames where Contingent = ? AND sportName = ? AND contingentGames.gamename = games.gamename AND dates = (Select min(dates) from Games, contingentgames where Contingent = ? AND contingentGames.gamename = games.gamename AND sportName = ? AND Dates >= Date())"""
