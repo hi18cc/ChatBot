@@ -1,0 +1,1 @@
+To install place the folder chatbot anywhere then run the command pip install -r requirements.txt with the  requirements file included
