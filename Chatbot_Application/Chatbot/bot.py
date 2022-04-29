@@ -190,12 +190,12 @@ def chat(sentence):
                                     connection.close()
                                     return ans
                                 elif "bronze" in sentence.lower():
-                                    ans = res[0][0] + " currently has " + str(res[0][3]) + " bronze medals"
+                                    ans = res[0][0] + " currently has "+ str(res[0][3]) + "</b>" + " bronze medals"
                                     connection.close()
                                     return ans
                                 else:
                                     total = res[0][1] + res[0][2] + res[0][3]
-                                    ans = res[0][0] + " currently has " + str(total) + " medals. " + str(res[0][1]) + " gold, " + str(res[0][2]) + " silver, " + str(res[0][3]) + " bronze"
+                                    ans = res[0][0] + " currently has <b>"+ str(total) + "</b> medals. <b>" +str(res[0][1]) + "</b> gold, <b>" + str(res[0][2]) + "</b> silver, <b>" +str(res[0][3]) + "</b> bronze"
                                     connection.close()
                                     return ans
                         connection.close()
