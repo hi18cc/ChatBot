@@ -120,7 +120,7 @@ class chat {
                 this.clear();
             }).catch((error) => {
 				console.error('Error:', error);
-				let msg2 = { name: "Bot", message: "Sorry your input could not be sent to the chatbot. Please retry or come back later" };
+				let msg2 = { name: "Bot", message: "Sorry your input could not be sent to the chatbot. Please retry or come back later." };
 				this.messages.push(msg2);
 				setTimeout(() => {  this.update(out); }, 3000);
         });
