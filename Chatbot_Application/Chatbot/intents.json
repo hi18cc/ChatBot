@@ -193,8 +193,8 @@
     },
     {"tag": "Question1",
     "patterns": ["What is the Canada Game website?", "What is the Canada Summer Games website?","Is there a Canada Game webiste?", "Is there a Canada Summer Games webiste?","How can I get to the Canada Game website?", "What is the link to the Canada Game website", "give me the link to canada summer games", "canada game website", "website", "what is the website to canada games", "what website", "what canada game website", "link", "I want the website", "want website", "want link", "Where can I find Canadian games online", "Where can I find games from Canada online?", "where can I find the website to get more information on canada summer games", "I need more information on canada summer games", "I need more info on canada summer games", "i need more info about canada summer games", "i need more info"],
-    "responses": ["You can get to the Canada Game website by using this link: https://niagara2022games.ca/?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ym4JMO1oHPSmRfiX047qNfEf9FtK22b_Y8FrkJQxEMnOcZFlv3MbCEaAtQiEALw_wcB",
-    "The link to the Canada Game website is https://niagara2022games.ca/?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ym4JMO1oHPSmRfiX047qNfEf9FtK22b_Y8FrkJQxEMnOcZFlv3MbCEaAtQiEALw_wcB"]
+    "responses": ["You can get to the Canada Game website by using this link: https://niagara2022games.ca",
+    "The link to the Canada Game website is https://niagara2022games.ca"]
     },
     {"tag": "Question2",
     "patterns": ["What transportation options are available?", "Are there transportation options avaliable?", "Give me some transportation options", "What modes of transportation could I use", "What are some transporation options?", "Give me transportation options", "What transportation options are there for Canada Summer Games", "I would like transporation options", "transporation options", "transportation", "cars", "vehicles", "trains", "How can I get around?", "How can you get around?", "Is there a range of transportation options?", "Does canada summer games provide transport"],
@@ -214,7 +214,7 @@
     },
     {"tag": "Question6",
     "patterns": ["What are the COVID-19 restrictions like in Niagara?", "Are there COVID-19 restrictions in Niagara", "How strict are the COVID-19 restrictions in the Niagara Region?", "covid-19","restrictions", "guidelines", "masks", "do i need to wear a mask", "wear mask", "vaccine", "booster shot", "vaccine passport", "do i need a vaccine passport", "do i need to be vaccinated", "vaccinated", "sick", "flu", "cold", "In Niagara, what restrictions apply to COVID-19?", "Is COVID-19 restricted in Niagara?", "In Niagara, what is the COVID-19 restriction?", "The COVID-19 regulations in Niagara are what?", "Covid", "Coivd 19", "Do I need a mask", "mask", "Do I need to wear a mask", "Do I have to be 6 feet away", "social distancing", "Do I need to social distance"],
-    "responses": ["The Niagara region COVID-19 information can be found here https://www.niagararegion.ca/health/covid-19/default.aspx?topic=1"]
+    "responses": ["The Niagara region COVID-19 information can be found here https://www.niagararegion.ca/health/covid-19/"]
     }, 
     {"tag": "Question7",
     "patterns": ["How long until Canada Games starts", "When does Canada Games begin", "When does Canada Summer Games begin","Has Canada Games already started?", "What's the starting time for Canada Games", "When does Canada Games start", "When is Canada Games starting", "start", "begin", "commence", "when", "When are the Canada Games?", "The start of Canada Games is how long away", "How long until the Canada Games begin?", "In how long will the Canada Games begin?", "How long before the Canada Games start?", "when do the games start", "start", "what time is the event going to be", "what time is the even going to be"],

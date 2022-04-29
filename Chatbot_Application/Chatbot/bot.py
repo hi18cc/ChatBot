@@ -105,6 +105,7 @@ def chat(sentence):
                         connection = SQLMethods.SQLMethods.create_connection(r"chatbot_backend/4P02 Chatbot Database.db")
                         max = len(temp)
                         ans = ""
+                        res = []
                         for i in range(max):
                             if(i != max-1):
                                 name = temp[i].capitalize() + " " + temp[i+1].capitalize()
@@ -131,6 +132,7 @@ def chat(sentence):
                         connection = SQLMethods.SQLMethods.create_connection(r"chatbot_backend/4P02 Chatbot Database.db")
                         max = len(temp)
                         ans = ""
+                        res =[]
                         for i in range(max):
                             if (i != max-1):
                                 name = temp[i].capitalize() + " " + temp[i+1].capitalize()
@@ -253,7 +255,7 @@ def chat(sentence):
                                 return ans
                         
                         connection.close
-                        return "I could not find any information on that. Sorry :("
+                        return "I could not find any information on that. Try adding the province/territory name."
                     
                     elif answer == "TBD6":
                         connection = SQLMethods.SQLMethods.create_connection(r"chatbot_backend/4P02 Chatbot Database.db")
