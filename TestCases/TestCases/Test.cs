@@ -17,14 +17,17 @@ namespace TestCases
     class Test
     {
 
-        string intromessage = "Welcome to the Chatbot, ask me questions and I'll try to answer them, here are some suggestion questions:";
+        
         ChromeDriver driver;
+        string input = "";
 
         [SetUp]
         public void startBrowser()
         {
             new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
-            driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("headless");
+            driver = new ChromeDriver(options);
         }
 
         [Test, Description("Tests that the front end has all the elements with the appropriate texts")]
@@ -54,13 +57,13 @@ namespace TestCases
         {
             driver.Url = "http://127.0.0.1:5500/Chatbot_Application/Chatbot/templates/html/textbox.html";
             ChatbotPage chatbotPage = new ChatbotPage(driver);
-
+            string intromessage = "Welcome to the Chatbot, ask me questions and I'll try to answer them, here are some suggestion questions:";
             string firstSuggestion = "Information about Canada Summer Games...";
             string secondSuggestion = "Information about Niagara...";
             string thirdSuggestion = "Information about Sports...";
             string fourthSuggestion = "Information about Players...";
 
-
+            
             Assert.IsTrue(chatbotPage.LastBotMessage.Text == intromessage);
             var quickMessages = chatbotPage.QuickSuggestMessages;
             Assert.AreEqual(4, quickMessages.Count());
@@ -76,7 +79,7 @@ namespace TestCases
 
         [Test, Description("Tests questions for asking about Canada Games website")]
         ///
-        public void Question1CanadaGamesWebsite()
+        public void Question01CanadaGamesWebsite()
         {
 
             driver.Url = "http://127.0.0.1:5500/Chatbot_Application/Chatbot/templates/html/textbox.html";
@@ -94,19 +97,20 @@ namespace TestCases
             responses.Add(response[0], 1);
             responses.Add(response[1], 1);
 
-
+            
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
             for(int i=0; i<questions.Length; i++)
             {
                 chatbotPage.SendMessage(questions[i]);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
+                input = questions[i];
                 Assert.IsTrue(responses.ContainsKey(chatbotPage.LastBotMessage.Text));
-
             }
+            input = "";
         }
 
         [Test,Description("Tests Question 2 which asks about transportation")]
-        public void Question2CanadaGamesTransit()
+        public void Question02CanadaGamesTransit()
         {
 
             driver.Url = "http://127.0.0.1:5500/Chatbot_Application/Chatbot/templates/html/textbox.html";
@@ -124,14 +128,15 @@ namespace TestCases
             {
                 chatbotPage.SendMessage(questions[i]);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
+                input = questions[i];
                 Assert.AreEqual(response, chatbotPage.LastBotMessage.Text);
-
             }
+            input = "";
         }
 
 
         [Test, Description("Tests Question 3 which asks about Transit")]
-        public void Question3CanadaGamesBusSystem()
+        public void Question03CanadaGamesBusSystem()
         {
 
             driver.Url = "http://127.0.0.1:5500/Chatbot_Application/Chatbot/templates/html/textbox.html";
@@ -149,13 +154,14 @@ namespace TestCases
             {
                 chatbotPage.SendMessage(questions[i]);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
+                input = questions[i];
                 Assert.AreEqual(response, chatbotPage.LastBotMessage.Text);
-
             }
+            input = "";
         }
 
         [Test, Description("Tests Question 4 What can you do in the Niagara region?")]
-        public void Question4NiagaraActivities()
+        public void Question04NiagaraActivities()
         {
 
             driver.Url = "http://127.0.0.1:5500/Chatbot_Application/Chatbot/templates/html/textbox.html";
@@ -174,13 +180,14 @@ namespace TestCases
             {
                 chatbotPage.SendMessage(questions[i]);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
+                input = questions[i];
                 Assert.AreEqual(response, chatbotPage.LastBotMessage.Text);
-
             }
+            input = "";
         }
 
         [Test, Description("Tests Question 5 Where can you stay in the Niagara Region?")]
-        public void Question5NiagaraAccomodations()
+        public void Question05NiagaraAccomodations()
         {
 
             driver.Url = "http://127.0.0.1:5500/Chatbot_Application/Chatbot/templates/html/textbox.html";
@@ -202,13 +209,14 @@ namespace TestCases
             {
                 chatbotPage.SendMessage(questions[i]);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
+                input = questions[i];
                 Assert.AreEqual(response, chatbotPage.LastBotMessage.Text);
-
             }
+            input = "";
         }
 
         [Test, Description("Tests Question 6 Covid restrictions in Niagara?")]
-        public void Question6Covidrestrictions()
+        public void Question06Covidrestrictions()
         {
 
             driver.Url = "http://127.0.0.1:5500/Chatbot_Application/Chatbot/templates/html/textbox.html";
@@ -226,13 +234,14 @@ namespace TestCases
             {
                 chatbotPage.SendMessage(questions[i]);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
+                input = questions[i];
                 Assert.AreEqual(response, chatbotPage.LastBotMessage.Text);
-
             }
+            input = "";
         }
 
         [Test, Description("Tests Question 7 How long until Canada Games Starts?")]
-        public void Question7StartDate()
+        public void Question07StartDate()
         {
 
             driver.Url = "http://127.0.0.1:5500/Chatbot_Application/Chatbot/templates/html/textbox.html";
@@ -251,13 +260,14 @@ namespace TestCases
             {
                 chatbotPage.SendMessage(questions[i]);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
+                input = questions[i];
                 Assert.AreEqual(response, chatbotPage.LastBotMessage.Text);
-
             }
+            input = "";
         }
 
         [Test, Description("Tests Question 8 Canada Games News")]
-        public void Question8GamesNews()
+        public void Question08GamesNews()
         {
 
             driver.Url = "http://127.0.0.1:5500/Chatbot_Application/Chatbot/templates/html/textbox.html";
@@ -275,13 +285,14 @@ namespace TestCases
             {
                 chatbotPage.SendMessage(questions[i]);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
+                input = questions[i];
                 Assert.AreEqual(response, chatbotPage.LastBotMessage.Text);
-
             }
+            input = "";
         }
 
         [Test, Description("Tests Question 9 Where is Canada Games being hosted this year?")]
-        public void Question9CanadaGamesHosting()
+        public void Question09CanadaGamesHosting()
         {
 
             driver.Url = "http://127.0.0.1:5500/Chatbot_Application/Chatbot/templates/html/textbox.html";
@@ -300,9 +311,10 @@ namespace TestCases
             {
                 chatbotPage.SendMessage(questions[i]);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
+                input = questions[i];
                 Assert.AreEqual(response, chatbotPage.LastBotMessage.Text);
-
             }
+            input = "";
         }
 
         [Test,Description("Tests Question 10 Tell me about a Player, full name ")]
@@ -314,18 +326,25 @@ namespace TestCases
             string player = "Evelyn Beaton";
 
             string[] questions = { "Tell me about", "I want to know more about", "Give me information on", "know more about", "more about", "about", "information on", "what do you know about", "do you know", "you know", "know", "info on", "Please tell me about", "Let me know about", "Can you tell me about", "who is", "" };
-            string response = "Alberta Judo Evelyn Beaton https://cg2019.gems.pro/Result/ShowPerson.aspx?Person_GUID=1ecd1887-403f-47be-9285-ac8873657230&SetLanguage=en-CA Lethbridge, AB Athlete 14 158cm 44kg Lethbridge Judo Club Russel Gallant, Trevor McAlpine, Ewan Beaton 44kg Podium in 44kg and podium in team event National Championships because it is the National Championships." +
-                " I just won the U18 Quebec Open and beat a tough girl from the USA during the competition." +
-                " In November I won the U16 Ontario Open and beat a tough girl from Brazil in the final that I had lost to the week before, so beating her was really exciting 2018 Female Proficiency Award Lethbridge Judo Club My dad went to the olympics for Judo and my mom did Judo to so it came from both of my parents. I was always around judo when I was younger and by the age of 6 or 7 I started Judo.";
+            string response = "Contingent: AlbertaSport Name: JudoPerson Name: Evelyn BeatonHometown: " +
+                "Lethbridge, ABType: AthleteAge: 14Height: 158cmWeight: 44kgClub: Lethbridge Judo ClubCoach: " +
+                "Russel Gallant, Trevor McAlpine, Ewan BeatonPosition: 44kgGoals for Games: Podium in 44kg and podium in team " +
+                "eventPersonal Best Result: National Championships because it is the National Championships. I just won the U18 Quebec " +
+                "Open and beat a tough girl from the USA during the competition. In November I won the U16 Ontario Open and beat a tough " +
+                "girl from Brazil in the final that I had lost to the week before, so beating her was really excitingAward: 2018 " +
+                "Female Proficiency Award Lethbridge Judo ClubOther Info: My dad went to the olympics for Judo and my mom did Judo " +
+                "to so it came from both of my parents. I was always around judo when I was younger and by the age of 6 or 7 I started " +
+                "Judo.Get More Info Here";
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
             for (int i = 0; i < questions.Length; i++)
             {
                 chatbotPage.SendMessage(questions[i] + " " +player);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
-                Assert.AreEqual(response, chatbotPage.LastBotMessage.Text);
-
+                input = questions[i];
+                Assert.AreEqual(response, chatbotPage.LastBotMessage.GetAttribute("textContent"));
             }
+            input = "";
         }
 
         [Test, Description("Tests Question 10 Tell me about a Player, first name ")]
@@ -335,29 +354,36 @@ namespace TestCases
             driver.Url = "http://127.0.0.1:5500/Chatbot_Application/Chatbot/templates/html/textbox.html";
             ChatbotPage chatbotPage = new ChatbotPage(driver);
             string player = "Evelyn";
-
+            input = player;
             string[] questions = { "Tell me about", "I want to know more about", "Give me information on", "know more about", "more about", "about", "information on", "what do you know about", 
                 "do you know", "you know", "know", "info on", "Please tell me about", "Let me know about", "Can you tell me about", "who is", "" };
 
-            string response = "Alberta Judo Evelyn Beaton https://cg2019.gems.pro/Result/ShowPerson.aspx?Person_GUID=1ecd1887-403f-47be-9285-ac8873657230&SetLanguage=en-CA Lethbridge, " +
-                "AB Athlete 14 158cm 44kg Lethbridge Judo Club Russel Gallant, Trevor McAlpine, Ewan Beaton 44kg Podium in 44kg and podium in team event National Championships " +
-                "because it is the National Championships. I just won the U18 Quebec Open and beat a tough girl from the USA during the competition. In November I won the U16 Ontario " +
-                "Open and beat a tough girl from Brazil in the final that I had lost to the week before, so beating her was really exciting 2018 Female Proficiency Award Lethbridge Judo Club " +
-                "My dad went to the olympics for Judo and my mom did Judo to so it came from both of my parents. I was always around judo when I was younger and by the age of 6 or 7 I " +
-                "started Judo.\r\nNova Scotia Ringette Elizabeth Evelyn C Welsh https://cg2019.gems.pro/Result/ShowPerson.aspx?Person_GUID=98ba1511-b7bb-42d4-a80f-894027eae720&SetLanguage=en-CA " +
-                "Bedford Athlete 20 168 Tracy Tulloch Goalie I went to a neurologist at six years old for chronic headaches and while treating me he told me about ringette and how it was the right sport for \"smart girls\"";
+            string response = "Contingent: AlbertaSport Name: JudoPerson Name: Evelyn BeatonHometown: " +
+                "Lethbridge, ABType: AthleteAge: 14Height: 158cmWeight: 44kgClub: Lethbridge Judo ClubCoach: " +
+                "Russel Gallant, Trevor McAlpine, Ewan BeatonPosition: 44kgGoals for Games: Podium in 44kg and podium in team " +
+                "eventPersonal Best Result: National Championships because it is the National Championships. I just won the U18 Quebec " +
+                "Open and beat a tough girl from the USA during the competition. In November I won the U16 Ontario Open and beat a tough " +
+                "girl from Brazil in the final that I had lost to the week before, so beating her was really excitingAward: 2018 " +
+                "Female Proficiency Award Lethbridge Judo ClubOther Info: My dad went to the olympics for Judo and my mom did Judo " +
+                "to so it came from both of my parents. I was always around judo when I was younger and by the age of 6 or 7 I started " +
+                "Judo.Get More Info HereContingent: Nova ScotiaSport Name: RingettePerson Name: " +
+                "Elizabeth Evelyn C WelshHometown: BedfordType: AthleteAge: 20Height: 168Coach: Tracy " +
+                "TullochPosition: GoalieOther Info: I went to a neurologist at six years old for chronic headaches " +
+                "and while treating me he told me about ringette and how it was the right sport for \"smart girls\"Get " +
+                "More Info Here";
+
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
+            
             for (int i = 0; i < questions.Length; i++)
             {
                 chatbotPage.SendMessage(questions[i] + " " + player);
 
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
-                Console.WriteLine(chatbotPage.LastBotMessage.Text);
-                Assert.AreEqual(response, chatbotPage.LastBotMessage.Text);
-                
-
+                input = questions[i];
+                Assert.AreEqual(response, chatbotPage.LastBotMessage.GetAttribute("textContent"));
             }
+            input = "";
         }
 
         [Test, Description("Tests Question 10 Tell me about a Player, Last name.")]
@@ -369,18 +395,25 @@ namespace TestCases
             string player = "Beaton";
 
             string[] questions = { "Tell me about", "I want to know more about", "Give me information on", "know more about", "more about", "about", "information on", "what do you know about", "do you know", "you know", "know", "info on", "Please tell me about", "Let me know about", "Can you tell me about", "who is", "" };
-            string response = "Alberta Judo Evelyn Beaton https://cg2019.gems.pro/Result/ShowPerson.aspx?Person_GUID=1ecd1887-403f-47be-9285-ac8873657230&SetLanguage=en-CA Lethbridge, AB Athlete 14 158cm 44kg Lethbridge Judo Club Russel Gallant, Trevor McAlpine, Ewan Beaton 44kg Podium in 44kg and podium in team event National Championships because it is the National Championships." +
-                " I just won the U18 Quebec Open and beat a tough girl from the USA during the competition." +
-                " In November I won the U16 Ontario Open and beat a tough girl from Brazil in the final that I had lost to the week before, so beating her was really exciting 2018 Female Proficiency Award Lethbridge Judo Club My dad went to the olympics for Judo and my mom did Judo to so it came from both of my parents. I was always around judo when I was younger and by the age of 6 or 7 I started Judo.";
+            string response = "Contingent: AlbertaSport Name: JudoPerson Name: Evelyn BeatonHometown: " +
+                "Lethbridge, ABType: AthleteAge: 14Height: 158cmWeight: 44kgClub: Lethbridge Judo ClubCoach: " +
+                "Russel Gallant, Trevor McAlpine, Ewan BeatonPosition: 44kgGoals for Games: Podium in 44kg and podium in team " +
+                "eventPersonal Best Result: National Championships because it is the National Championships. I just won the U18 Quebec " +
+                "Open and beat a tough girl from the USA during the competition. In November I won the U16 Ontario Open and beat a tough " +
+                "girl from Brazil in the final that I had lost to the week before, so beating her was really excitingAward: 2018 " +
+                "Female Proficiency Award Lethbridge Judo ClubOther Info: My dad went to the olympics for Judo and my mom did Judo " +
+                "to so it came from both of my parents. I was always around judo when I was younger and by the age of 6 or 7 I started " +
+                "Judo.Get More Info Here";
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
             for (int i = 0; i < questions.Length; i++)
             {
                 chatbotPage.SendMessage(questions[i] + " " + player);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
-                Assert.AreEqual(response, chatbotPage.LastBotMessage.Text);
-
+                input = questions[i];
+                Assert.AreEqual(response, chatbotPage.LastBotMessage.GetAttribute("textContent"));
             }
+            input = "";
         }
 
         [Test, Description("Tests Question 11 What sport did person play? Full Name.")]
@@ -390,8 +423,9 @@ namespace TestCases
             driver.Url = "http://127.0.0.1:5500/Chatbot_Application/Chatbot/templates/html/textbox.html";
             ChatbotPage chatbotPage = new ChatbotPage(driver);
             string player = "Evelyn Beaton";
+            
 
-            string[] questions = { "What sport did", "sport", "what sport", "sport did", "sport", "what sport did play", "what sport does play" };
+            string[] questions = { "What sport did", "what sport", "sport did", "what sport did play", "what sport does play" };
             string response = "Evelyn Beaton participates in Judo";
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
@@ -399,9 +433,12 @@ namespace TestCases
             {
                 chatbotPage.SendMessage(questions[i] + " " + player);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
+                input = questions[i];
                 Assert.AreEqual(response, chatbotPage.LastBotMessage.Text);
 
             }
+
+            input = "";
         }
 
         [Test, Description("Tests Question 11 What sport did person play? First Name.")]
@@ -412,7 +449,7 @@ namespace TestCases
             ChatbotPage chatbotPage = new ChatbotPage(driver);
             string player = "Evelyn";
 
-            string[] questions = { "What sport did", "What sport does", "sport", "what sport", "sport did", "sport does", "sport", "what sport did play", "what sport does play" };
+            string[] questions = { "What sport did", "What sport does", "what sport", "sport did", "sport does", "sport", "what sport did play", "what sport does play" };
             string response = "There are 2 player matching that name.\r\nEvelyn Beaton from Alberta participates in Judo.\r\nElizabeth Evelyn C Welsh from Nova Scotia participates in Ringette.";
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
@@ -420,9 +457,10 @@ namespace TestCases
             {
                 chatbotPage.SendMessage(questions[i] + " " + player);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
+                input = questions[i];
                 Assert.AreEqual(response, chatbotPage.LastBotMessage.Text);
-
             }
+            input = "";
         }
 
         [Test, Description("Tests Question 11 What sport did person play? Last Name.")]
@@ -433,7 +471,7 @@ namespace TestCases
             ChatbotPage chatbotPage = new ChatbotPage(driver);
             string player = "Beaton";
 
-            string[] questions = { "What sport did", "What sport does", "sport", "what sport", "sport did", "sport does", "sport", "what sport did play", "what sport does play" };
+            string[] questions = { "What sport did", "What sport does", "what sport", "sport did", "sport does", "what sport did play", "what sport does play" };
             string response = "Evelyn Beaton participates in Judo";
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
@@ -441,9 +479,10 @@ namespace TestCases
             {
                 chatbotPage.SendMessage(questions[i] + " " + player);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
+                input = questions[i];
                 Assert.AreEqual(response, chatbotPage.LastBotMessage.Text);
-
             }
+            input = "";
         }
 
         [Test, Description("Tests Question 14 Where can I buy tickets?")]
@@ -468,9 +507,11 @@ namespace TestCases
             {
                 chatbotPage.SendMessage(questions[i]);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
+                input = questions[i];
                 Assert.IsTrue(responses.ContainsKey( chatbotPage.LastBotMessage.Text));
 
             }
+            input = "";
         }
 
 
@@ -490,13 +531,20 @@ namespace TestCases
             {
                 chatbotPage.SendMessage(questions[i]);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".spinner-border")));
+                input = questions[i];
                 Assert.AreEqual(response, chatbotPage.LastBotMessage.Text);
             }
-        }
+            input = "";
+;        }
 
         [TearDown]
             public void closeBrowser()
         {
+            if (input != "")
+            {
+                Console.WriteLine(input);
+            }
+            
             driver.Close();
         }
 
