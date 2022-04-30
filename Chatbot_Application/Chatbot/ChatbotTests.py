@@ -17,7 +17,7 @@ class TestAskingForCanadaGamesWebsite (unittest.TestCase):
 	
 	def testIncorrectSpelling (self):
 		response = chat ("Th Kanade Geams web")
-		assert any([response == "You can get to the Canada Game website by using this link: https://niagara2022games.ca/?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ym4JMO1oHPSmRfiX047qNfEf9FtK22b_Y8FrkJQxEMnOcZFlv3MbCEaAtQiEALw_wcB", response == "The link to the Canada Game website is https://niagara2022games.ca/?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ym4JMO1oHPSmRfiX047qNfEf9FtK22b_Y8FrkJQxEMnOcZFlv3MbCEaAtQiEALw_wcB"]),"Incorrect spelling failure. The output recieved was a string containing link to canada games url, response = " + response
+		assert all([response != "You can get to the Canada Game website by using this link: https://niagara2022games.ca/?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ym4JMO1oHPSmRfiX047qNfEf9FtK22b_Y8FrkJQxEMnOcZFlv3MbCEaAtQiEALw_wcB", response != "The link to the Canada Game website is https://niagara2022games.ca/?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ym4JMO1oHPSmRfiX047qNfEf9FtK22b_Y8FrkJQxEMnOcZFlv3MbCEaAtQiEALw_wcB"]),"Incorrect spelling failure. The output recieved was a string containing link to canada games url, response = " + response
 	
 class TestAksingAboutTransit (unittest.TestCase):
 	
@@ -27,7 +27,7 @@ class TestAksingAboutTransit (unittest.TestCase):
 	
 	def testAlternateInput (self):
 		response = chat ("How can I get there.")
-		assert response != "Niagara Region Transit information is available here: https://www.niagararegion.ca/transit/", "Did not return expected ouput from function. Response = " + response
+		assert response == "Niagara Region Transit information is available here: https://www.niagararegion.ca/transit/", "Did not return expected ouput from function. Response = " + response
 	
 	def testRandomInput (self):
 		response = chat ("What car do I drive.")
