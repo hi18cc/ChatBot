@@ -118,13 +118,14 @@ def chat(sentence):
                                 res = SQLMethods.SQLMethods.sql_select_person_by_person_name_all_columns(connection, name)   
                             if res:
                                 for r in res:
+                                    ans = ans + "<b>" + PersonsColumns[3] + ": </b>" + str(r[3]) +"<br/>"
                                     count = len(r)
                                     for j in range(1,count):
                                         if (j == 4):
                                             url = r[j]
                                             continue
-                                        if str(r[j]) != "None" and str(r[j]) != "NULL":
-                                            ans = ans + "<strong>" + PersonsColumns[j] + ": </strong>" + str(r[j]) +"<br/>" 
+                                        if str(r[j]) != "None" and j != 3 and str(r[j]) != "NULL":
+                                            ans = ans + "<b>" + PersonsColumns[j] + ": </b>" + str(r[j]) +"<br/>" 
                                     ans = ans + url + "<br/><br/>"
                                 connection.close()
                                 return ans
