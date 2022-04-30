@@ -33,7 +33,7 @@ class chat {
      */
     help()
     {
-        window.open("index.html", "_self");
+        window.open("../html/index.html", "_self");
     }
     /**
      * Saves the chat log to a note file.
@@ -87,7 +87,7 @@ class chat {
      * Back button leads to the index page.
      */
     back() {
-        window.open("index.html", "_self");
+        window.open("../html/index.html", "_self");
     }
 
     /**
@@ -119,9 +119,10 @@ class chat {
                 setTimeout(() => {  this.update(out); }, 3000);
                 this.clear();
             }).catch((error) => {
-            console.error('Error:', error);
-            setTimeout(() => {  this.update(out); }, 3000);
-            this.clear();
+				console.error('Error:', error);
+				let msg2 = { name: "Bot", message: "Sorry your input could not be sent to the chatbot. Please retry or come back later." };
+				this.messages.push(msg2);
+				setTimeout(() => {  this.update(out); }, 3000);
         });
 
     }
@@ -163,17 +164,22 @@ class chat {
     * @param {Element} out: An element which should contain another element of the class input.
     */
     update(out) {
-        
+        const options = { defaultProtocol: 'https', target: "_blank", format: (value, type) =>{
+            if(type === 'url' && value.length > 109){
+                value = "Get More Info Here"
+            }
+            return value;
+        }};
         let html = ''; 
         this.messages.slice().reverse().forEach(function(item, index) {
             if (item.name === "Bot") { // Messages is a tuple of (name, message) if name is bot we add the proper elements.
-                const options = { defaultProtocol: 'https', target: "_blank" };
+                
                 html += '<div class="messages visitor">' + linkifyHtml(item.message, options) + '</div>'
             } else if (item.name === "Quick"){ // Quick is the name of non-terminal suggestive options.
-                const options = { defaultProtocol: 'https', target: "_blank" };
+                
                 html += '<div class="messages quick-reply">' + linkifyHtml(item.message, options) + '</div>'; 
             } else if (item.name =="Quick1" || item.name =="Quick2" || item.name =="Quick3" || item.name =="Quick4" || item.name =="Quick5"){ // Checks to see if the message is a quick-reply.
-                const options = { defaultProtocol: 'https', target: "_blank" };
+                
                 html += '<div class="messages quick-suggest">' + linkifyHtml(item.message, options) + '</div>';
             }
             
@@ -290,8 +296,8 @@ class chat {
         let message0 = { name: "User", message: origMessage}
         let message01 = { name: "Bot", message: "Here are some clickable questions below:"} 
         let message1 = { name: "Quick", message: "When is the next Baseball game?"}
-        let message2 = { name: "Quick", message: "Ontario's next baseball game"}
-        let message3 = { name: "Quick", message: "When is the next Basketball game?"}
+        let message2 = { name: "Quick", message: "Ontario's next baseball game?"}
+        let message3 = { name: "Quick", message: "When is Ontario's next game?"}
         let message4 = { name: "Quick", message: "How many medals does Ontario have?"}
 
         this.messages.push(message0, message01,message1, message2, message3, message4)
