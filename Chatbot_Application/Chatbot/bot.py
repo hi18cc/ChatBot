@@ -72,7 +72,7 @@ def bow(sentence, words):
 
 
 
-ERROR_THRESHOLD = 0.87
+ERROR_THRESHOLD = 0.60
 def classify(sentence):
     # generate probabilities from the model
     results = model.predict([bow(sentence, words)])[0]
@@ -124,7 +124,7 @@ def chat(sentence):
                                             url = r[j]
                                             continue
                                         if str(r[j]) != "None" and str(r[j]) != "NULL":
-                                            ans = ans + "<b>" + PersonsColumns[j] + ": </b>" + str(r[j]) +"<br/>" 
+                                            ans = ans + "<strong>" + PersonsColumns[j] + ": </strong>" + str(r[j]) +"<br/>" 
                                     ans = ans + url + "<br/><br/>"
                                 connection.close()
                                 return ans
@@ -269,8 +269,8 @@ def chat(sentence):
                         res = SQLMethods.SQLMethods.select_all_sports(connection)
                         length = len(res)
                         ans = ""
-                        for i in range (0,length):
-                            ans += res[i]+ "<br/>"
+                        for sport in res:
+                            ans += sport[0] + "<br/>"
                         connection.close()
                         return ans
 
