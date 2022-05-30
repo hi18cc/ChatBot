@@ -28,18 +28,6 @@ URL = 'https://cg2022.gems.pro/Result/Calendar.aspx?SetLanguage=en-CA&GameDay_GU
 #conn = SQLMethods.create_connection(database)
 
 
-# def navigate(url):
-    
-#         driver.get(url)
-#         title = driver.title
-#         print(driver.title)
-#         return title
-
-# def getInfo(element):
-#     print("finding element ====")
-#     info = driver.find_element(*element).text
-#     return info
-
     
 def view_name(request):
     conn = SQLMethods.create_connection(database)
@@ -49,11 +37,6 @@ def view_name(request):
     # fill_player_data()
     return HttpResponse(str(test))
 
-
-def index(request):
-    return HttpResponse("Hello, world. You're at the poll index.")
-
-    print("test")
 
 def get_players():
     """
@@ -90,7 +73,7 @@ def get_players():
             SQLMethods.insert_person_with_contingent_sportName_personName(conn, contingent, sport, person, personURL)
       
 
-def getData():
+def get_game_schedules():
     """
     Gets game data from the https://cg2022.gems.pro/ site and adds it to the database variable.
     This methods Utilities has to get the XPATH and then find elements unlike player.
