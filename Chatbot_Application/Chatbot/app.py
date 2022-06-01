@@ -8,6 +8,11 @@ app = Flask(__name__)
 # scheduler = APScheduler()
 CORS(app)
 
+@app.route('/')
+def index():
+    print('Request for index page received')
+    return render_template('html/index.html')
+
 @app.post("/predict")
 def predict():
     text = request.get_json().get("message")
