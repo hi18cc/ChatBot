@@ -24,11 +24,11 @@ def scheduledTask2():
 def scheduledTask3():
     views.update_medals()
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
     # runs task every hour
-    scheduler.add_job(id ='Scheduled task', func = scheduledTask, trigger = 'interval', seconds = 3600)
-    scheduler.add_job(id ='Scheduled task3', func = scheduledTask3, trigger = 'interval', seconds = 3600)
+    # scheduler.add_job(id ='Scheduled task', func = scheduledTask, trigger = 'interval', seconds = 3600)
+    # scheduler.add_job(id ='Scheduled task3', func = scheduledTask3, trigger = 'interval', seconds = 3600)
     # runs task every week
-    scheduler.add_job(id ='Scheduled task2', func = scheduledTask2, trigger = 'interval', seconds = 604800)
-    scheduler.start()
-    app.run()
+    # scheduler.add_job(id ='Scheduled task2', func = scheduledTask2, trigger = 'interval', seconds = 604800)
+    # scheduler.start()
+    # app.run()
