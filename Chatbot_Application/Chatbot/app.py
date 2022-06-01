@@ -15,14 +15,14 @@ def predict():
     message = {"answer": response}
     return jsonify(message)
 
-# def scheduledTask():
-#     views.update_games()
+def scheduledTask():
+    views.update_games()
 
-# def scheduledTask2():
-#     views.update_players()
+def scheduledTask2():
+    views.update_players()
 
-# def scheduledTask3():
-#     views.update_medals()
+def scheduledTask3():
+    views.update_medals()
 
 # if __name__ == '__main__':
     # runs task every hour
