@@ -24,6 +24,7 @@ ignore_words = ['?']
 # loop through each sentence in our intents patterns
 for intent in intents['intents']:
     for pattern in intent['patterns']:
+
         # tokenize each word in the sentence
         w = nltk.word_tokenize(pattern)
         # add to our words list
@@ -88,7 +89,7 @@ net = tflearn.regression(net)
 # Define model and setup tensorboard
 model = tflearn.DNN(net, tensorboard_dir='tflearn_logs')
 # Start training (apply gradient descent algorithm)
-model.fit(train_x, train_y, n_epoch=1000, batch_size=8, show_metric=True)
+model.fit(train_x, train_y, n_epoch=300, batch_size=16, show_metric=True)
 model.save('model.tflearn')
 
 
