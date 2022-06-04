@@ -10,9 +10,9 @@ CORS(app)
 
 @app.route('/')
 def home():
-    # print('Request for index page received')
-    # return render_template('html/index.html')
-    return "Hello, Flask!"
+    print('Request for index page received')
+    return render_template('html/index.html')
+    # return "Hello, Flask!"
 
 @app.post("/predict")
 def predict():
