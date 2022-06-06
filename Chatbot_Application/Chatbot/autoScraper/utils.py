@@ -1,7 +1,7 @@
-from autoScraper.PageObjects.CanadaGamePersonPage import CanadaGamesPersonPage
-from autoScraper.PageObjects.NiagaraSchedulePage import NiagaraSchedulePage
-from autoScraper.PageObjects.CanadaGamesPlayersPage import CanadaGamesPlayerPage
-from autoScraper.PageObjects.CanadaGamesMedalsPage import CanadaGamesMedalPage
+from Chatbot_Application.Chatbot.autoScraper.PageObjects.CanadaGamePersonPage import CanadaGamesPersonPage
+from Chatbot_Application.Chatbot.autoScraper.PageObjects.NiagaraSchedulePage import NiagaraSchedulePage
+from Chatbot_Application.Chatbot.autoScraper.PageObjects.CanadaGamesPlayersPage import CanadaGamesPlayerPage
+from Chatbot_Application.Chatbot.autoScraper.PageObjects.CanadaGamesMedalsPage import CanadaGamesMedalPage
 from selenium.webdriver.support.ui import Select
 
 

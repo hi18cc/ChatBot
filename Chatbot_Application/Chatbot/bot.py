@@ -8,9 +8,10 @@ This code is used to run the trained chatbot
 import json
 import re 
 import numpy as np
+import os
 
 import pickle
-from chatbot_backend.seleniumScraper import KeyValues, SQLMethods
+from Chatbot_Application.Chatbot.chatbot_backend.seleniumScraper import KeyValues, SQLMethods
 import sqlite3
 from sqlite3 import Error
 
@@ -25,15 +26,20 @@ import tensorflow as tf
 import random
 
 from datetime import datetime
-
-data = pickle.load( open( "training_data", "rb" ) )
+basepath = os.path.dirname(__file__)
+training_data = os.path.abspath(os.path.join(basepath, "training_data"))
+with open(training_data,'rb') as f:
+   data = pickle.load(f)
 words = data['words']
 classes = data['classes']
 train_x = data['train_x']
 train_y = data['train_y']
 
 PersonsColumns =['Person ID','Contingent','Sport Name','Person Name', 'URL', 'Hometown', 'Type', 'Age', 'Height', 'Weight', 'Club', 'Coach', 'Position', 'Goals for Games', 'Personal Best Result', 'Award', 'Personal Role Model', 'Other Info']
-with open('intents.json') as json_data:
+
+basepath = os.path.dirname(__file__)
+intents = os.path.abspath(os.path.join(basepath, "intents.json"))
+with open(intents) as json_data:
     intents = json.load(json_data)
 
 
@@ -43,10 +49,14 @@ net = tflearn.fully_connected(net, 8)
 net = tflearn.fully_connected(net, len(train_y[0]), activation='softmax')
 net = tflearn.regression(net)
 
-
 model = tflearn.DNN(net, tensorboard_dir='tflearn_logs')
 # load our saved model
-model.load('./model.tflearn')
+basepath = os.path.dirname(__file__)
+training_data = os.path.abspath(os.path.join(basepath, "training_data"))
+basepath = os.path.dirname(__file__)
+pathtflearn = os.path.abspath(os.path.join(basepath, "model.tflearn"))
+# model.load('./model.tflearn')
+model.load(pathtflearn)
 
 
 def clean_up_sentence(sentence):

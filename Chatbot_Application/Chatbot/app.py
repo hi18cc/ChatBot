@@ -1,8 +1,8 @@
 from flask import Flask, request, render_template, request, jsonify
 from flask_cors import CORS
-from bot import chat
+from Chatbot_Application.Chatbot.bot import chat
 from flask_apscheduler import APScheduler
-from autoScraper import views
+from Chatbot_Application.Chatbot.autoScraper import views
 
 app = Flask(__name__)
 # scheduler = APScheduler()

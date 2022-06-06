@@ -8,9 +8,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 #Extras
-from autoScraper.utils import Utilities
-from autoScraper.KeyValues import KeyValues
-from autoScraper.SQLMethods import SQLMethods
+from Chatbot_Application.Chatbot.autoScraper.utils import Utilities
+from Chatbot_Application.Chatbot.autoScraper.KeyValues import KeyValues
+from Chatbot_Application.Chatbot.autoScraper.SQLMethods import SQLMethods
 
 
 database = r"./chatbot_backend/4P02 Chatbot Database.db"
