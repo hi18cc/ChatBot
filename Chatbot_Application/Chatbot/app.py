@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, request, jsonify
+from flask import Flask, render_template, redirect, url_for, request, jsonify
 # from flask_cors import CORS
 from Chatbot_Application.Chatbot.bot import chat
 from flask_apscheduler import APScheduler
