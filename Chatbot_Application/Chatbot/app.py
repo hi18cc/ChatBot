@@ -10,24 +10,24 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # print('Request for index page received')
-    # return render_template('html/home.html')
-    return "Hello, Flask!"
+    print('Request for index page received')
+    return render_template('html/home.html')
+    # return "Hello, Flask!"
 
 @app.route('/textbox.html')
 def chatpage():
-    # print('Request for textbox page received')
-    # return render_template('html/textbox.html')
-    return "Hello, Flask!"
+    print('Request for textbox page received')
+    return render_template('html/textbox.html')
+    # return "Hello, Flask!"
 
 
 
-# @app.post("/predict")
-# def predict():
-#     text = request.get_json().get("message")
-#     response = chat(text)
-#     message = {"answer": response}
-#     return jsonify(message)
+@app.post("/predict")
+def predict():
+    text = request.get_json().get("message")
+    response = chat(text)
+    message = {"answer": response}
+    return jsonify(message)
 
 
 
