@@ -1763,11 +1763,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ridwa\\source\\repos\\hi18cc\\ChatBot\\TestCases\\TestCases\\TestCases.csproj",
+      "projectUniqueName": "C:\\Users\\ridwa\\ChatBot\\TestCases\\TestCases\\TestCases.csproj",
       "projectName": "TestCases",
-      "projectPath": "C:\\Users\\ridwa\\source\\repos\\hi18cc\\ChatBot\\TestCases\\TestCases\\TestCases.csproj",
+      "projectPath": "C:\\Users\\ridwa\\ChatBot\\TestCases\\TestCases\\TestCases.csproj",
       "packagesPath": "C:\\Users\\ridwa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ridwa\\source\\repos\\hi18cc\\ChatBot\\TestCases\\TestCases\\obj\\",
+      "outputPath": "C:\\Users\\ridwa\\ChatBot\\TestCases\\TestCases\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ridwa\\AppData\\Roaming\\NuGet\\NuGet.Config",

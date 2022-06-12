@@ -1,0 +1,47 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "run-flask",
+            "type": "python",
+            "request": "launch",
+            "module": "flask",
+            "env": {
+                "FLASK_APP": "run.py",
+                "FLASK_ENV": "development",
+                "FLASK_DEBUG": "1",
+                "EMAIL_USER": "farmgo.project.21@gmail.com",
+                "EMAIL_PASS": "password",
+            },
+            "args": [
+                "run",
+                "--no-debugger"
+            ],
+            "jinja": true,
+        },
+        
+
+
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+            "name": ".NET Core Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/TestCases/TestCases/bin/Debug/netcoreapp3.1/TestCases.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/TestCases/TestCases",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ]
+}
