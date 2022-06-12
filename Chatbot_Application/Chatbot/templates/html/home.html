@@ -38,11 +38,11 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" /> <!--"../css/style.css"-->
   </head>
   <body>
     <div>
-      <link href="../css/home.css" rel="stylesheet" />
+      <link href="{{url_for('static', filename='css/home.css')}}" rel="stylesheet" /><!--"../css/styles.css"-->
 
       <div class="home-container">
         <header data-role="Header" class="home-header">
@@ -120,7 +120,7 @@
           </a>
           <div class="home-nav">
             <nav class="home-nav1">
-              <a href="home.html" class="home-text01"><span>SUPPORT</span></a>
+              <a href="{{url_for('home')}}" class="home-text01"><span>SUPPORT</span></a>
             </nav>
           </div>
           <div>
@@ -161,7 +161,7 @@
               </span>
             </span>
             <div class="home-btn-group">
-              <a href="textbox.html" class="home-navlink button">Get Started</a>
+              <a href="{{url_for('chatpage')}}" class="home-navlink button">Get Started</a>
               <a href="#learn" class="home-link08 button">Learn More</a>
             </div>
           </div>
@@ -173,9 +173,9 @@
               Watch this demo video if you need help using the chat bot, more information available, just press "Get started"
             </span>
             <span></span>
-          </span>
+          </span> <!--"../videos/help_video.mp4"-->
           <video
-            src="../videos/help_video.mp4"
+            src="{{url_for('static', filename='videos/help_video.mp4')}}"
             loop="true"
             muted="true"
             poster="https://play.teleporthq.io/static/svg/videoposter.svg"

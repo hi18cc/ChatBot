@@ -1,24 +1,33 @@
 from flask import Flask, render_template, redirect, url_for, request, jsonify
+import os
 # from flask_cors import CORS
 from Chatbot_Application.Chatbot.bot import chat
 from flask_apscheduler import APScheduler
 from Chatbot_Application.Chatbot.autoScraper import views
 
-app = Flask(__name__)
+
+app = Flask(__name__,
+static_url_path='',
+static_folder=os.path.abspath('Chatbot_Application/Chatbot/static')
+)
+
 # scheduler = APScheduler()
 # CORS(app)
 
 @app.route('/')
-def index():
-    print('Request for index page received')
+def home():
+    print('Request for Home page received')
     return render_template('html/home.html')
-    # return "Hello, Flask!"
 
 @app.route('/textbox.html')
 def chatpage():
     print('Request for textbox page received')
     return render_template('html/textbox.html')
-    # return "Hello, Flask!"
+
+@app.route('/index.html')
+def index():
+    print('request for index received')
+    return render_template('html/index.html')
 
 
 
