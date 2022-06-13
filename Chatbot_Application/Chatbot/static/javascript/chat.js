@@ -104,7 +104,7 @@ class chat {
         this.messages.push(msg1); // Takes the string from input and adds it to the messages array.
         this.update(out); // Takes the 
 
-        fetch('http://127.0.0.1:5000/predict', {
+        fetch('/predict', { // "http://127.0.0.1:5000/predict.html"
             method: 'POST',
             body: JSON.stringify({ message: content }),
             mode: 'cors',
