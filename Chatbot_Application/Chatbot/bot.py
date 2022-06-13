@@ -215,9 +215,6 @@ def chat(sentence):
                     
                     # returns the date for the next game of a contingent and/or a sport
                     elif answer == "TBD5":
-                        directory = os.getcwd()
-
-                        print(directory)
                         temp = sentence.split(" ")
                         connection = SQLMethods.SQLMethods.create_connection(r"Chatbot_Application/Chatbot/chatbot_backend/4P02 Chatbot Database.db")
                         max = len(KeyValues.KeyValues.Contingent_Keys)
