@@ -113,7 +113,7 @@ def chat(sentence):
                     # returns information of a specific player 
                     elif answer == "TBD2":
                         temp = sentence.split(" ")
-                        connection = SQLMethods.SQLMethods.create_connection(r"chatbot_backend/4P02 Chatbot Database.db")
+                        connection = SQLMethods.SQLMethods.create_connection(r"Chatbot_Application/Chatbot/chatbot_backend/4P02 Chatbot Database.db")
                         max = len(temp)
                         ans = ""
                         res = []
@@ -146,7 +146,7 @@ def chat(sentence):
                     # returns the sport a specific player plays
                     elif answer == "TBD3":
                         temp = sentence.split(" ")
-                        connection = SQLMethods.SQLMethods.create_connection(r"chatbot_backend/4P02 Chatbot Database.db")
+                        connection = SQLMethods.SQLMethods.create_connection(r"Chatbot_Application/Chatbot/chatbot_backend/4P02 Chatbot Database.db")
                         max = len(temp)
                         ans = ""
                         res =[]
@@ -176,7 +176,7 @@ def chat(sentence):
                     # returns how many medals a specific contingent has
                     elif answer == "TBD4":
                         temp = sentence.split(" ")
-                        connection = SQLMethods.SQLMethods.create_connection(r"chatbot_backend/4P02 Chatbot Database.db")
+                        connection = SQLMethods.SQLMethods.create_connection(r"Chatbot_Application/Chatbot/chatbot_backend/4P02 Chatbot Database.db")
                         max = len(KeyValues.KeyValues.Contingent_Keys)
                         temp2 = ""
 
@@ -212,11 +212,14 @@ def chat(sentence):
                         connection.close()
                         return "Cannot find province or territory by that name."
 
-
+                    
                     # returns the date for the next game of a contingent and/or a sport
                     elif answer == "TBD5":
+                        directory = os.getcwd()
+
+                        print(directory)
                         temp = sentence.split(" ")
-                        connection = SQLMethods.SQLMethods.create_connection(r"chatbot_backend/4P02 Chatbot Database.db")
+                        connection = SQLMethods.SQLMethods.create_connection(r"Chatbot_Application/Chatbot/chatbot_backend/4P02 Chatbot Database.db")
                         max = len(KeyValues.KeyValues.Contingent_Keys)
                         max2 = len(KeyValues.KeyValues.Sport_Keys)
                         temp2 = ""
@@ -276,7 +279,7 @@ def chat(sentence):
                         return "I could not find any information on that. Try adding the province/territory name."
                     
                     elif answer == "TBD6":
-                        connection = SQLMethods.SQLMethods.create_connection(r"chatbot_backend/4P02 Chatbot Database.db")
+                        connection = SQLMethods.SQLMethods.create_connection(r"Chatbot_Application/Chatbot/chatbot_backend/4P02 Chatbot Database.db")
                         res = SQLMethods.SQLMethods.select_all_sports(connection)
                         length = len(res)
                         ans = ""
